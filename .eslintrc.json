@@ -3,7 +3,11 @@
         "browser": true,
         "es2021": true
     },
-    "extends": "plugin:react/recommended",
+    "extends": [
+        "airbnb",
+        "airbnb/hooks",
+        "prettier"
+    ],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -15,6 +19,14 @@
         "react"
     ],
     "rules": {
-      "react/react-in-jsx-scope": "off"
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-filename-extension" : "off",
+      "import/order": "off",
+      "no-undef": "off"
+    },
+    "env": {
+      "jest": true
     }
+
+
 }
