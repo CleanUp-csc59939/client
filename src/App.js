@@ -6,7 +6,7 @@ import Login from './components/login/login';
 import SignUp from './components/signup/SignUp';
 
 function App() {
-  const loggedIn = true;
+  const loggedIn = false;
   return (
     <div>
       <Header loggedIn={loggedIn} />
