@@ -3,6 +3,7 @@ import './login.css';
 
 export default function Login() {
   return (
+    <div className='loginBody'>
     <div className='login-page'>
       <div className='form'>
         <form className='register-form'>
@@ -23,6 +24,7 @@ export default function Login() {
           </p>
         </form>
       </div>
+    </div>
     </div>
   );
 }
