@@ -1,20 +1,13 @@
-import { Button } from 'antd';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Shared/Header';
+import SignUp from './SignUp/SignUp';
 
 function App() {
+  const loggedIn = true;
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-          <Button>testing ant design ui library_</Button>
-        </p>
-        <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header loggedIn={loggedIn} />
+      <SignUp />
     </div>
   );
 }

@@ -1,0 +1,16 @@
+.site-page-header {
+  border: 1px solid rgb(235, 237, 240);
+}
+.subtitle {
+  padding: 0 2% 0 2% /*horizontal padding*/
+}
+
+/*For web (s, m, l): Hide on xs screen*/
+@media (max-width: 48em)                       { .web { display: none !important; } }
+
+/*For mobile (xs): Hide on small screen to large*/
+@media (min-width: 48em)                       { .mobile { display: none !important; } }
+
+@media (min-width: 48em) and (max-width: 62em) { .hidden-sm { display: none !important; } }
+@media (min-width: 62em) and (max-width: 75em) { .hidden-md { display: none !important; } }
+@media (min-width: 75em)                       { .hidden-lg { display: none !important; } }
