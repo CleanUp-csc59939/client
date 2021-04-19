@@ -1,10 +1,17 @@
 import React from 'react';
-
-import { FormWeb } from './Form';
+import '../../Shared/Header.css';
+import { FormWeb, FormMobile } from './Form';
 
 const SignUp = () => {
   const onFinish = (values) => {
     console.log('Success:', values);
+    fetch('http://localhost:8080/api/user/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -13,10 +20,13 @@ const SignUp = () => {
 
   return (
     <div>
+      <h1 style={{ textAlign: 'center' }}>Register</h1>
       <div className='web'>
         <FormWeb onFinish={onFinish} onFinishFailed={onFinishFailed} />
       </div>
-      <div className='mobile'>login for mobile - working on it</div>
+      <div className='mobile'>
+        <FormMobile onFinish={onFinish} onFinishFailed={onFinishFailed} />
+      </div>
     </div>
   );
 };

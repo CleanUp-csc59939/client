@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, PageHeader, Space } from 'antd';
-import '../CSS/Header.css';
+import './Header.css';
 
 const Header = (props) => {
   // logic to check if logged in goes here to switch between 2 different headers
