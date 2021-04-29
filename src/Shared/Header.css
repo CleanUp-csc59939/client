@@ -16,6 +16,19 @@
 .headerTitle {
   color: whitesmoke;
 }
+
+.headerOther{
+  color: whitesmoke;
+}
+
+.headerImg{
+  justify-self: center;
+  height: 75px;
+  position: fixed;
+  margin-top: -25px;
+  margin-left: 37%;
+
+}
 .subtitle {
   padding: 0 2% 0 2%; /*horizontal padding*/
 }

@@ -45,13 +45,13 @@ const Header = (props) => {
           <h2 className='headerTitle'>CleanUp</h2>
         </Button>,
       ]}
-      subTitle="Let's clean up our home"
+      subTitle={[<img className='headerImg' src='./logo.png' alt='' />, "Let's Clean Up Our Home"]}
       extra={[
-        <Button href='/login' key='3'>
-          Login
+        <Button className='homeButton' href='/login' key='3'>
+          <h4 className='headerOther'>Login</h4>
         </Button>,
-        <Button href='/signup' key='2'>
-          SignUp
+        <Button className='homeButton' href='/signup' key='2'>
+          <h4 className='headerOther'>SignUp</h4>
         </Button>,
       ]}
     ></PageHeader>
