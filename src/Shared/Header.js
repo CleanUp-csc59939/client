@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, PageHeader, Space } from 'antd';
+import { Row, Col, PageHeader, Button, Space } from 'antd';
 import './Header.css';
 
 const Header = (props) => {
@@ -37,26 +37,24 @@ const Header = (props) => {
     );
   }
   return (
-    <div className='site-page-header'>
-      <Row className='web'>
-        <Col span={4}>
-          <h2>Clean Up</h2>
-        </Col>
-        <Col span={6} offset={14}>
-          <Row>
-            <Col className='subtitle'>
-              <h2>Log In</h2>
-            </Col>
-            <Col className='subtitle'>
-              <h2>Sign Up</h2>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row sm={4} className='mobile'>
-        <PageHeader className='site-page-header' title='Clean Up' subTitle='Logged Out, Small Screen' />
-      </Row>
-    </div>
+    <PageHeader
+      className='site-page-header'
+      ghost={false}
+      title={[
+        <Button className='homeButton' href='/home' key='1'>
+          <h2>CleanUp</h2>
+        </Button>,
+      ]}
+      subTitle="Let's clean up our home"
+      extra={[
+        <Button href='/login' key='3'>
+          Login
+        </Button>,
+        <Button href='/signup' key='2'>
+          SignUp
+        </Button>,
+      ]}
+    ></PageHeader>
   );
 };
 export default Header;

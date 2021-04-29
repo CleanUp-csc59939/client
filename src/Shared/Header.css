@@ -1,5 +1,21 @@
 .site-page-header {
-  border: 1px solid rgb(235, 237, 240);
+  background-color: #bdc1f3ff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  
+}
+
+.homeButton{
+  background-color: #4caf50;
+  stroke: black;
+  border: transparent;
+}
+
+.homeButton:hover{
+  background-color: #228a26;
+}
+
+h2{
+  color:whitesmoke;
 }
 .subtitle {
   padding: 0 2% 0 2%; /*horizontal padding*/
@@ -9,6 +25,7 @@
 @media (max-width: 48em) {
   .web {
     display: none !important;
+    
   }
 }
 
