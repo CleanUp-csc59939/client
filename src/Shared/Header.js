@@ -42,7 +42,7 @@ const Header = (props) => {
       ghost={false}
       title={[
         <Button className='homeButton' href='/home' key='1'>
-          <h2>CleanUp</h2>
+          <h2 className='headerTitle'>CleanUp</h2>
         </Button>,
       ]}
       subTitle="Let's clean up our home"
