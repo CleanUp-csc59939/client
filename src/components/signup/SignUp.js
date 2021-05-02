@@ -1,21 +1,26 @@
 import React from 'react';
 import '../../Shared/Header.css';
 import { FormWeb, FormMobile } from './Form';
+import AuthService from '../../services/auth.service';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    fetch('http://localhost:8080/api/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
-  };
-
+  const history = useHistory();
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
+  };
+
+  const onFinish = (values) => {
+    AuthService.register(values.email, values.password).then(
+      () => {
+        console.log('Success:', values);
+        history.push('/login');
+        window.location.reload();
+      },
+      () => {
+        onFinishFailed('not a valid email');
+      },
+    );
   };
 
   return (

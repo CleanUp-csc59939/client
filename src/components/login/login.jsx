@@ -1,46 +1,45 @@
-import { useState, useRef } from "react";
+import { useState, useRef } from 'react';
 import './login.css';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
-import AuthService from "../../services/auth.service";
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import CheckButton from 'react-validation/build/button';
+import { isEmail } from 'validator';
+import AuthService from '../../services/auth.service';
 
-
-const required = value => {
+const required = (value) => {
   if (!value) {
     return (
-      <div className="alert" role="alert">
+      <div className='alert' role='alert'>
         This field is required!
       </div>
     );
   }
-  return(null);
+  return null;
 };
 
-const checkemail = value => {
+const checkemail = (value) => {
   if (!isEmail(value)) {
     return (
-      <div className="alert" role="alert">
+      <div className='alert' role='alert'>
         This is not a valid email.
       </div>
     );
   }
-  return(null);
+  return null;
 };
 
 export default function Login() {
   const form = useRef();
   const checkBtn = useRef();
   const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
 
-  const onChangeEmail= (e) => {
+  const onChangeEmail = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
   };
@@ -53,78 +52,65 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    setMessage("");
+    setMessage('');
     setLoading(true);
 
     form.current.validateAll();
 
-    
-      AuthService.login(email, password).then(
-        () => {
-          history.push("/home");
-          window.location.reload();
-        },
-        () => {
-          const resMessage = "invalid Credentials"
-            
+    AuthService.login(email, password).then(
+      () => {
+        history.push('/home');
+        window.location.reload();
+      },
+      () => {
+        const resMessage = 'invalid Credentials';
 
-          setLoading(false);
-          setMessage(resMessage);
-        }
-      );
-    
+        setLoading(false);
+        setMessage(resMessage);
+      },
+    );
   };
 
-  
   return (
     <div className='loginBody'>
       <div className='login-page'>
-      <div className='form'>
-          <Form className='login-form'
-          onSubmit={handleLogin}
-          ref={form}>
-
-            <Input   
-            validations={[required, checkemail]} 
-            type='text' 
-            placeholder='email' 
-            name="email"
-            value={email}
-            onChange={onChangeEmail}
+        <div className='form'>
+          <Form className='login-form' onSubmit={handleLogin} ref={form}>
+            <Input
+              validations={[required, checkemail]}
+              type='text'
+              placeholder='email'
+              name='email'
+              value={email}
+              onChange={onChangeEmail}
             />
 
-            <Input type='password' 
-            placeholder='password' 
-           
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-            validations={[required]}
+            <Input
+              type='password'
+              placeholder='password'
+              name='password'
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
             />
 
             <button disabled={loading} type='submit'>
-              {loading && (
-                <span className="spinner-border spinner-border-sm" ></span>
-              )}
+              {loading && <span className='spinner-border spinner-border-sm'></span>}
               <span>Login</span>
             </button>
 
-
             {message && (
-              <div className="alert" role="alert">
+              <div className='alert' role='alert'>
                 {message}
               </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            )}
+            <CheckButton style={{ display: 'none' }} ref={checkBtn} />
             <p className='message'>
               Not registered? <a href='/signup'>Create an account</a>
             </p>
-
-            
-
           </Form>
         </div>
-        </div>
       </div>
+    </div>
   );
 }

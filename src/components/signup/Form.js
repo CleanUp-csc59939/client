@@ -69,7 +69,7 @@ export const FormWeb = (props) => {
         <Input.Password />
       </Form.Item>
       <Form.Item {...tailLayout}>
-        <Button type='primary' htmlType='submit'>
+        <Button type='submit' htmlType='submit'>
           Submit
         </Button>
       </Form.Item>
