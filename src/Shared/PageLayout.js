@@ -1,22 +1,31 @@
 import 'antd/dist/antd.css';
 import './PageLayout.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import { TeamOutlined, UserOutlined, ClearOutlined, AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import Header from './Header';
+import AuthService from '../services/auth.service';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 const PageLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const loggedIn = true;
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
+
   const pageTitle = 'Home';
   function onCollapse() {
     console.log(collapsed);
     setCollapsed(!collapsed);
   }
-  if (loggedIn) {
+  if (currentUser) {
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
@@ -60,7 +69,7 @@ const PageLayout = () => {
           </Menu>
         </Sider>
         <Layout className='site-layout'>
-          <Header loggedIn={loggedIn} pageTitle={pageTitle} />
+          <Header currentUser={currentUser} pageTitle={pageTitle} />
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
@@ -76,7 +85,7 @@ const PageLayout = () => {
     );
   }
 
-  return <Header loggedIn={loggedIn} pageTitle={pageTitle} />;
+  return <Header currentUser={currentUser} pageTitle={pageTitle} />;
 };
 
 export default PageLayout;

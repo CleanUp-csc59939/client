@@ -1,18 +1,22 @@
 import React from 'react';
 import { PageHeader, Button } from 'antd';
 import './Header.css';
+import AuthService from '../services/auth.service';
 
-const Header = ({ loggedIn, pageTitle }) => {
+const Header = ({ currentUser, pageTitle }) => {
   // logic to check if logged in goes here to switch between 2 different headers
+  const logOut = () => {
+    AuthService.logout();
+  };
 
-  if (loggedIn) {
+  if (currentUser) {
     return (
       <PageHeader
         className='site-page-header'
         ghost={false}
         title={pageTitle}
         extra={[
-          <Button className='homeButton' href='/logout' key='3'>
+          <Button className='homeButton' href='/login' onClick={logOut} key='3'>
             <h4 className='headerOther'>Logout</h4>
           </Button>,
         ]}

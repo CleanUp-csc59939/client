@@ -5,6 +5,7 @@ import Home from './components/homepage/home';
 import Login from './components/login/login';
 import SignUp from './components/signup/SignUp';
 import PageLayout from './Shared/PageLayout';
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   // const loggedIn = false;

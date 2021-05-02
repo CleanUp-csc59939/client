@@ -1,30 +1,130 @@
-import React from 'react';
+import { useState, useRef } from "react";
 import './login.css';
+import { useHistory } from "react-router-dom";
+
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { isEmail } from "validator";
+import AuthService from "../../services/auth.service";
+
+
+const required = value => {
+  if (!value) {
+    return (
+      <div className="alert" role="alert">
+        This field is required!
+      </div>
+    );
+  }
+  return(null);
+};
+
+const checkemail = value => {
+  if (!isEmail(value)) {
+    return (
+      <div className="alert" role="alert">
+        This is not a valid email.
+      </div>
+    );
+  }
+  return(null);
+};
 
 export default function Login() {
+  const form = useRef();
+  const checkBtn = useRef();
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const onChangeEmail= (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+  };
+
+  const onChangePassword = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    setLoading(true);
+
+    form.current.validateAll();
+
+    
+      AuthService.login(email, password).then(
+        () => {
+          history.push("/home");
+          window.location.reload();
+        },
+        () => {
+          const resMessage = "invalid Credentials"
+            
+
+          setLoading(false);
+          setMessage(resMessage);
+        }
+      );
+    
+  };
+
+  
   return (
     <div className='loginBody'>
       <div className='login-page'>
-        <div className='form'>
-          <form className='register-form'>
-            <input type='text' placeholder='name' />
-            <input type='password' placeholder='password' />
-            <input type='text' placeholder='email address' />
-            <button type='submit'>create</button>
-            <p className='message'>
-              Already registered? <a href='/'>Sign In</a>
-            </p>
-          </form>
-          <form className='login-form'>
-            <input type='text' placeholder='username' />
-            <input type='password' placeholder='password' />
-            <button type='submit'>login</button>
+      <div className='form'>
+          <Form className='login-form'
+          onSubmit={handleLogin}
+          ref={form}>
+
+            <Input   
+            validations={[required, checkemail]} 
+            type='text' 
+            placeholder='email' 
+            name="email"
+            value={email}
+            onChange={onChangeEmail}
+            />
+
+            <Input type='password' 
+            placeholder='password' 
+           
+            name="password"
+            value={password}
+            onChange={onChangePassword}
+            validations={[required]}
+            />
+
+            <button disabled={loading} type='submit'>
+              {loading && (
+                <span className="spinner-border spinner-border-sm" ></span>
+              )}
+              <span>Login</span>
+            </button>
+
+
+            {message && (
+              <div className="alert" role="alert">
+                {message}
+              </div>
+          )}
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
             <p className='message'>
               Not registered? <a href='/signup'>Create an account</a>
             </p>
-          </form>
+
+            
+
+          </Form>
+        </div>
         </div>
       </div>
-    </div>
   );
 }

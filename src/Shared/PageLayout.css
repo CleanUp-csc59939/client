@@ -1,22 +1,21 @@
 .logo {
-    height: 32px;
-    margin: 16px;
-    
-  }
-  
-  .site-layout .site-layout-background {
-    background: #fff;
-  }
-    [data-theme="dark"] .site-layout .site-layout-background {
-      background: #141414;
-    }
+  height: 32px;
+  margin: 16px;
+}
 
-    .menuImg{
-        width: 50px;
-        margin-bottom: 15px;
-        margin-left: 5px;
-    }
-.menuImg:hover{
-    background-color: rgb(103, 75, 155);
-    margin-left: 1px;
+.site-layout .site-layout-background {
+  background: #fff;
+}
+[data-theme='dark'] .site-layout .site-layout-background {
+  background: #141414;
+}
+
+.menuImg {
+  width: 50px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+}
+.menuImg:hover {
+  background-color: rgb(103, 75, 155);
+  margin-left: 1px;
 }
