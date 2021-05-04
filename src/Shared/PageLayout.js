@@ -45,7 +45,7 @@ const PageLayout = () => {
               <img className='menuImg' src='./logo.png' alt='' />
             </a>
           </div>
-
+          <h4 className='headerOther'>Welcome {currentUser.email}</h4>
           <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
             <Menu.Item key='1' icon={<ClearOutlined />}>
               MeetUps
