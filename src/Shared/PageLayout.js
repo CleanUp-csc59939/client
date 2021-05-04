@@ -5,6 +5,7 @@ import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import { TeamOutlined, UserOutlined, ClearOutlined, AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import Header from './Header';
 import AuthService from '../services/auth.service';
+import Home from '../components/homepage/home';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -76,10 +77,10 @@ const PageLayout = () => {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div className='site-layout-background' style={{ padding: 24, minHeight: 360 }}>
-              Bill is a cat.
+              <Home />
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+          <Footer style={{ textAlign: 'center' }}>CleanUp App ©2021</Footer>
         </Layout>
       </Layout>
     );

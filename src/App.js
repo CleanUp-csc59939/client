@@ -23,7 +23,7 @@ function App() {
             <SignUp />
           </Route>
 
-          <Route path='/'>
+          <Route path='/home'>
             <Home />
           </Route>
         </Switch>
