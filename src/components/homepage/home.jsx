@@ -18,10 +18,8 @@ const EventData = {
   "attending": [{"name": "John Kim", "userID": 2}, {"name": "Riley Adams", "userID": 3}, {"name": "Julio Carlos", "userID": 4}]
 }
 
-export default function Home(props) {
+export default function Home({currentUser}) {
 
-  const {currentUser} = props
-  console.log(JSON.stringify(currentUser))
   return (
     <div>
       <Banner event={EventData} currentUser={currentUser}/>
@@ -36,7 +34,7 @@ const Banner = (props) => {
     <div style={{backgroundColor: '#208970', paddingTop: '5%', paddingBottom: '5%'}}>
       <Row>
         <Col span={12} offset={4}>
-          <h1 style={{color: 'white'}}>Hi {`${currentUser}`}, get ready for your next cleanup!</h1>
+          <h1 style={{color: 'white'}}>Hi {`${currentUser.email}`}, get ready for your next cleanup!</h1>
           <div style={{height: 1, backgroundColor: '#3EFFD1', width: '70%'}}/>
             <br/>
             <h1 style={{color: 'white', fontSize: 24}}>{event.name}</h1>

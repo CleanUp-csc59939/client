@@ -46,7 +46,6 @@ const PageLayout = () => {
               <img className='menuImg' src='./logo.png' alt='' />
             </a>
           </div>
-          <h4 className='headerOther'>Welcome {currentUser.email}</h4>
           <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
             <Menu.Item key='1' icon={<ClearOutlined />}>
               MeetUps
@@ -77,7 +76,7 @@ const PageLayout = () => {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div className='site-layout-background' style={{ padding: 24, minHeight: 360 }}>
-              <Home />
+              <Home currentUser={currentUser} />
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>CleanUp App ©2021</Footer>
