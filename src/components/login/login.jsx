@@ -59,8 +59,10 @@ export default function Login() {
 
     AuthService.login(email, password).then(
       () => {
-        history.push('/home');
-        window.location.reload();
+    
+          history.push('/home');
+          window.location.reload();
+
       },
       () => {
         const resMessage = 'invalid Credentials';

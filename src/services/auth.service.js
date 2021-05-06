@@ -20,6 +20,7 @@ const login = (email, password) => {
     .then((response) => {
       if (response.data.token) {
         decoded = jwtDecode(response.data.token);
+        console.log(decoded);
         const userdata = {
           token: response.data.token,
           id: decoded.id,
