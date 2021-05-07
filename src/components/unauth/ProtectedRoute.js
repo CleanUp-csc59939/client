@@ -6,10 +6,12 @@ const ProtectedRoute = ({ component: Component, user, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        console.log(user);
+        console.log('Im in protected');
         if (user) {
+          console.log('Im in authorized');
           return <Component currentUser={user} {...rest} {...props} />;
         }
+        console.log('Im in unauthorized');
         return (
           <Redirect
             to={{

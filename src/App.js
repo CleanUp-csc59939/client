@@ -12,6 +12,7 @@ import AuthService from './services/auth.service';
 // import ProtectedRoute from './components/unauth/ProtectedRoute'
 import Header from './Shared/Header';
 import ProtectedRoute from './components/unauth/ProtectedRoute';
+import Profile from './components/profile/profile';
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 const getUser = () => {
@@ -31,11 +32,12 @@ function App() {
   return (
     <div>
       <Layout style={{ minHeight: '100vh' }}>
-        <SideMenu currentUser={currentUser} />
-        <Layout className='site-layout'>
-          <Header currentUser={currentUser} pageTitle={pageTitle} />
-          <Content style={{ margin: '0 0' }}>
-            <BrowserRouter>
+        <BrowserRouter>
+          <SideMenu currentUser={currentUser} />
+          <Layout className='site-layout'>
+            <Header currentUser={currentUser} pageTitle={pageTitle} />
+
+            <Content style={{ margin: '0 0' }}>
               <Switch>
                 <Route exact path='/login'>
                   <Login />
@@ -43,15 +45,19 @@ function App() {
                 <Route exact path='/signup'>
                   <SignUp />
                 </Route>
-
+                <Route exact path='/home'>
+                  <Home currentUser={currentUser} />
+                </Route>
                 <Route exact path='/unauthorized' component={Unauthorized} />
+                <ProtectedRoute exact path='/profile' component={Profile} user={currentUser} />
 
                 <ProtectedRoute path='/' component={Home} user={currentUser} />
               </Switch>
-            </BrowserRouter>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>CleanUp App ©2021</Footer>
-        </Layout>
+            </Content>
+
+            <Footer style={{ textAlign: 'center' }}>CleanUp App ©2021</Footer>
+          </Layout>
+        </BrowserRouter>
       </Layout>
     </div>
   );

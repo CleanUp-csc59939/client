@@ -1,11 +1,10 @@
-import { React} from 'react';
+import { React } from 'react';
 // import Loading from './my-loading-component';
 import './home.css';
 import { Row, Col, Space, Image, Button } from 'antd';
 
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 // import AuthService from '../../services/auth.service';
-
 
 const EventData = {
   userID: 1,
@@ -26,10 +25,8 @@ const EventData = {
   ],
 };
 
-
-
 export default function Home(props) {
-  const {currentUser}= props;
+  const { currentUser } = props;
   return (
     <div>
       <Banner event={EventData} currentUser={currentUser} />
@@ -38,9 +35,9 @@ export default function Home(props) {
 }
 
 const Banner = (props) => {
-  const {event} = props;
-  const {currentUser} = props;
-  if (currentUser && currentUser.email){
+  const { event } = props;
+  const { currentUser } = props;
+  if (currentUser && currentUser.email) {
     return (
       <div style={{ backgroundColor: '#208970', paddingTop: '5%', paddingBottom: '5%' }}>
         <Row>
@@ -101,6 +98,8 @@ const Banner = (props) => {
     );
   }
   return (
-   <div>hello</div>
-  )
+  <div id="loading">
+  <img id="loading-image" src="loading/loading-gif.gif" alt="Loading..." />
+  </div>
+  );
 };

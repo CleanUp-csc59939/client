@@ -3,7 +3,7 @@ import './SideMenu.css';
 import { useState } from 'react';
 import { Layout, Menu, Button } from 'antd';
 import { TeamOutlined, UserOutlined, ClearOutlined, AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
-
+import { NavLink } from 'react-router-dom';
 // import Loadable from 'react-loadable';
 
 // const LoadableBar = Loadable({
@@ -42,6 +42,7 @@ const SideMenu = ({ currentUser }) => {
             <img className='menuImg' src='./logo.png' alt='' />
           </a>
         </div>
+
         <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
           <Menu.Item key='1' icon={<ClearOutlined />}>
             MeetUps
@@ -50,7 +51,9 @@ const SideMenu = ({ currentUser }) => {
             My MeetUps
           </Menu.Item>
           <SubMenu key='sub1' icon={<UserOutlined />} title='User'>
-            <Menu.Item key='3'>profile</Menu.Item>
+            <Menu.Item key='3'>
+              <NavLink to='/profile'>profile</NavLink>
+            </Menu.Item>
             <Menu.Item key='4'>friends</Menu.Item>
             <Menu.Item key='5'>user settings</Menu.Item>
           </SubMenu>
