@@ -1,5 +1,5 @@
 import './App.css';
-// import  {useState, useEffect} from 'react'
+import { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import Header from './Shared/Header';
 import { Layout } from 'antd';
@@ -9,10 +9,12 @@ import Login from './components/login/login';
 import SignUp from './components/signup/SignUp';
 import SideMenu from './Shared/SideMenu';
 import AuthService from './services/auth.service';
-// import ProtectedRoute from './components/unauth/ProtectedRoute'
 import Header from './Shared/Header';
 import ProtectedRoute from './components/unauth/ProtectedRoute';
 import Profile from './components/profile/profile';
+import EditProfile from './components/profile/editProfile';
+import MyMeetups from './components/meetings/myMeetups';
+import CreateMeetUp from './components/meetings/createMeetUp';
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 const getUser = () => {
@@ -22,13 +24,12 @@ const getUser = () => {
 };
 
 const { Content, Footer } = Layout;
-const pageTitle = 'Home';
 function App() {
   const currentUser = getUser();
-  //  const [currentUser, setCurrentUser] = useState(undefined);
-  // const loggedIn = false;
+  const [pageTitle, setTitle] = useState(window.location.pathname.slice(1));
 
-  // console.log(currentUser)
+  if (pageTitle !== window.location.pathname.slice(1)) setTitle(window.location.pathname.slice(1)); // Updating the header title, needs work
+
   return (
     <div>
       <Layout style={{ minHeight: '100vh' }}>
@@ -50,6 +51,21 @@ function App() {
                 </Route>
                 <Route exact path='/unauthorized' component={Unauthorized} />
                 <ProtectedRoute exact path='/profile' component={Profile} user={currentUser} />
+                <ProtectedRoute
+                  exact
+                  path='/myMeetUps'
+                  component={MyMeetups}
+                  user={currentUser}
+                  currentUser={currentUser}
+                />
+                <ProtectedRoute
+                  exact
+                  path='/myMeetUps/create'
+                  component={CreateMeetUp}
+                  user={currentUser}
+                  currentUser={currentUser}
+                />
+                <ProtectedRoute exact path='/profile/edit' component={EditProfile} user={currentUser} />
 
                 <ProtectedRoute path='/' component={Home} user={currentUser} />
               </Switch>

@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 // import Loading from './my-loading-component';
-import './home.css';
 import { Row, Col, Space, Image, Button } from 'antd';
 
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
@@ -31,28 +30,44 @@ const getEvents = async () => {
   return a;
 };
 
-export default function Home(props) {
+export default function MyMeetups(props) {
   const [events, setEvents] = useState("");
+  
    
   if (events===""){  
+      
     getEvents().then((response) => {setEvents(response.data);}); // the [1] is showing only that single event
     }
 
   const { currentUser } = props; 
-  
+
   if (currentUser && currentUser.email && events!=="") {
 
     return (
+    <div>
+        <a href='/myMeetUps/create' alt="" type='submit'>
+      <Button
+              shape='round'
+              style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
+            >
+              <Col>
+                <Space>
+                Create An Event
+                  <AiOutlineArrowRight size={20} />
+                </Space>
+              </Col>
+            </Button>
+            </a>
       <>
       {Object.keys(events).map((index)=>{
-
+          
         return <div key={events[index].id} style={{ backgroundColor: '#208970', paddingTop: '80px', paddingBottom: '100px', marginBottom:'50px', marginTop:'50px' }}>
         <Row>
           <Col span={12} offset={4}>
-          <h1 style={{ color: 'white', fontSize: 24 }}>{events[index].name}</h1>
+            <h1 style={{ color: 'white' }}>Hi {currentUser.email}, get ready for your next cleanup!</h1>
             <div style={{ height: 1, backgroundColor: '#3EFFD1', width: '70%' }} />
             <br />
-            <h1 style={{ color: 'white', fontSize: 18 }}>{events[index].desc}</h1>
+            <h1 style={{ color: 'white', fontSize: 24 }}>{events[index].name}</h1>
             <Row>
               <Space>
                 <AiOutlineCalendar color='#3EFFD1' size={24} />
@@ -104,8 +119,11 @@ export default function Home(props) {
       </div>
 
         
-      })}
+      }).filter((_, index) => (events[index].userID === currentUser.id))}
       </>
+      
+      </div>
+      
     );
 
   }
