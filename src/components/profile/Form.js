@@ -48,7 +48,7 @@ export const FormWeb = (props) => {
         name='name'
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Please input your name!',
           },
         ]}
@@ -61,7 +61,7 @@ export const FormWeb = (props) => {
         name='location'
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Please input the location!',
           },
         ]}
@@ -74,7 +74,7 @@ export const FormWeb = (props) => {
         name='bio'
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Please type in your Bio!',
           },
         ]}
@@ -87,7 +87,7 @@ export const FormWeb = (props) => {
         name='number'
         rules={[
           {
-            required: true,
+            required: false,
             message: 'Please input your best contact number!',
           },
         ]}

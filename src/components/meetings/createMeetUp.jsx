@@ -1,8 +1,7 @@
 import React from 'react';
-import { FormWeb} from './Form';
+import { FormWeb } from './Form';
 import eventsService from '../../services/events.service';
 import { useHistory } from 'react-router-dom';
-
 
 export default function CreateMeetUp({ currentUser }) {
   const history = useHistory();
@@ -12,26 +11,28 @@ export default function CreateMeetUp({ currentUser }) {
   };
 
   const onFinish = (values) => {
-    eventsService.createEvent(
+    eventsService
+      .createEvent(
         currentUser.id,
         values.name, // name
         values.desc, // description
-        values.location, 
+        values.location,
         values.img,
         values.date,
         values.type,
-        values.amount).then(
-      () => {
-        console.log('Success:', values);
-        history.push('/myMeetUps');
-        window.location.reload();
-      },
-      () => {
-        onFinishFailed('Form unable to submit');
-      },
-    );
+        values.amount,
+      )
+      .then(
+        () => {
+          console.log('Success:', values);
+          history.push('/myMeetUps');
+          window.location.reload();
+        },
+        () => {
+          onFinishFailed('Form unable to submit');
+        },
+      );
   };
-
 
   return (
     <div>
