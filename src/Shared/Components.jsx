@@ -1,15 +1,15 @@
 const Divider = (props) => {
-    const {height, color, width} = props
-    return (
-        <div style={{ 
-            height, 
-            backgroundColor: color,
-            width
-        }}
+  const { height, color, width } = props;
+  return (
+    <div
+      style={{
+        height,
+        backgroundColor: color,
+        width,
+      }}
     />
-    )
-    
-}
+  );
+};
 
 export default Divider;
-// remove default once we add more reuseable components 
+// remove default once we add more reuseable components

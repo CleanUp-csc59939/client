@@ -2,8 +2,7 @@ import { React } from 'react';
 // import Loading from './my-loading-component';
 import './home.less';
 import { Row, Col, Space, Image, Button, Carousel } from 'antd';
-import Divider from '../../Shared/Components'
-
+import Divider from '../../Shared/Components';
 
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 // import AuthService from '../../services/auth.service';
@@ -29,68 +28,72 @@ const EventData = {
 
 const MultiEvents = [
   {
-    "id": 1,
-    "userID": 1,
-    "name": '1st event',
-    "desc": null,
-    "location": null,
-    "img": null,
-    "date": null,
-    "type": null,
-    "amount": 2,
-    "createdAt": "2021-05-08T19:26:06.300Z",
-    "updatedAt": "2021-05-08T23:49:14.162Z"
+    id: 1,
+    userID: 1,
+    name: '1st event',
+    desc: null,
+    location: null,
+    img: null,
+    date: null,
+    type: null,
+    amount: 2,
+    createdAt: '2021-05-08T19:26:06.300Z',
+    updatedAt: '2021-05-08T23:49:14.162Z',
   },
   {
-    "id": 2,
-    "userID": 1,
-    "name": '2nd event',
-    "desc": null,
-    "location": null,
-    "img": null,
-    "date": null,
-    "type": null,
-    "amount": 2,
-    "createdAt": "2021-05-08T19:26:06.300Z",
-    "updatedAt": "2021-05-08T23:49:14.162Z"
+    id: 2,
+    userID: 1,
+    name: '2nd event',
+    desc: null,
+    location: null,
+    img: null,
+    date: null,
+    type: null,
+    amount: 2,
+    createdAt: '2021-05-08T19:26:06.300Z',
+    updatedAt: '2021-05-08T23:49:14.162Z',
   },
   {
-    "id": 3,
-    "userID": 1,
-    "name": '3rd event',
-    "desc": null,
-    "location": null,
-    "img": null,
-    "date": null,
-    "type": null,
-    "amount": 2,
-    "createdAt": "2021-05-08T19:26:06.300Z",
-    "updatedAt": "2021-05-08T23:49:14.162Z"
+    id: 3,
+    userID: 1,
+    name: '3rd event',
+    desc: null,
+    location: null,
+    img: null,
+    date: null,
+    type: null,
+    amount: 2,
+    createdAt: '2021-05-08T19:26:06.300Z',
+    updatedAt: '2021-05-08T23:49:14.162Z',
   },
   {
-    "id": 4,
-    "userID": 1,
-    "name": '4th event',
-    "desc": null,
-    "location": null,
-    "img": null,
-    "date": null,
-    "type": null,
-    "amount": 2,
-    "createdAt": "2021-05-08T19:26:06.300Z",
-    "updatedAt": "2021-05-08T23:49:14.162Z"
-  }
-]
+    id: 4,
+    userID: 1,
+    name: '4th event',
+    desc: null,
+    location: null,
+    img: null,
+    date: null,
+    type: null,
+    amount: 2,
+    createdAt: '2021-05-08T19:26:06.300Z',
+    updatedAt: '2021-05-08T23:49:14.162Z',
+  },
+];
 
 export default function Home(props) {
   const { currentUser } = props;
   return (
     <div>
       <Banner event={EventData} currentUser={currentUser} />
-      <div style={{fontWeight: 'bold', fontFamily: 'Nunito', fontSize: 24, paddingLeft: '5%', paddingTop: '2%'}}>Your Upcoming Events</div>
-      <Upcoming events={MultiEvents} event={EventData}/>
-      <div style={{fontWeight: 'bold', fontFamily: 'Nunito', fontSize: 24, paddingLeft: '5%', paddingTop: '2%'}}>Browse nearby events</div>
-      <Upcoming events={MultiEvents} event={EventData}/>
+      <div style={{ fontWeight: 'bold', fontFamily: 'Nunito', fontSize: 24, paddingLeft: '5%', paddingTop: '2%' }}>
+        Your Upcoming Events
+      </div>
+      <Upcoming events={MultiEvents} event={EventData} />
+      <div style={{ fontWeight: 'bold', fontFamily: 'Nunito', fontSize: 24, paddingLeft: '5%', paddingTop: '2%' }}>
+        Browse nearby events
+      </div>
+      <Upcoming events={MultiEvents} event={EventData} />
     </div>
   );
 }
@@ -99,23 +102,20 @@ function onChange(a, b, c) {
 }
 
 const Upcoming = (props) => {
-  const {events, event} = props
+  const { events, event } = props;
   return (
-    <Carousel afterChange={onChange} style={{paddingLeft: '5%', paddingRight: '5%', backgroundColor: '#f9f9f9'}}>
+    <Carousel afterChange={onChange} style={{ paddingLeft: '5%', paddingRight: '5%', backgroundColor: '#f9f9f9' }}>
       {events.map((e) => {
         return (
           <Row>
-            <img style={{height: '10%', width: '20%'}} src={event.img} alt="event"/>
+            <img style={{ height: '10%', width: '20%' }} src={event.img} alt='event' />
             <Col span={6}>{e.name} placeholder</Col>
           </Row>
-
-        )
+        );
       })}
-
-    
-  </Carousel>
-  )
-}
+    </Carousel>
+  );
+};
 
 const Banner = (props) => {
   const { event } = props;
@@ -126,7 +126,7 @@ const Banner = (props) => {
         <Row>
           <Col span={12} offset={4}>
             <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
-            <Divider height={1} width='70%' color='#3EFFD1'/>
+            <Divider height={1} width='70%' color='#3EFFD1' />
             <br />
             <div className='banner-subheader banner-text'>{event.name}</div>
             <Row>
@@ -179,8 +179,8 @@ const Banner = (props) => {
     );
   }
   return (
-  <div id="loading">
-  <img id="loading-image" src="loading/loading-gif.gif" alt="Loading..." />
-  </div>
+    <div id='loading'>
+      <img id='loading-image' src='loading/loading-gif.gif' alt='Loading...' />
+    </div>
   );
 };
