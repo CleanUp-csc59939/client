@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
+import { Avatar } from 'antd';
 import userService from '../../services/user.service';
 import AuthService from '../../services/auth.service';
+
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 const getUserID = () => {
@@ -26,7 +28,7 @@ export default function Profile() {
 
   return (
     <div>
-      <img src={content.img} alt='' />
+      <Avatar src={content.img} size={128}  alt='' />
       <p>{content.name}</p>
       <p>{currentUser.email}</p>
       <p>{content.bio}</p>

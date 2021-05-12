@@ -3,6 +3,8 @@ import { FormWeb } from './Form';
 import userService from '../../services/user.service';
 import AuthService from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
+import ProfilePic from './profilePic';
+import './editProfile.css'
 // import { useHistory } from 'react-router-dom';
 // import { Button } from 'antd';
 
@@ -58,7 +60,6 @@ export default function EditProfile() {
 
   return (
     <div>
-      <img src={content.img} alt='' />
       <p>{content.name}</p>
       <p>{currentUser.email}</p>
       <p>{content.bio}</p>
@@ -67,6 +68,7 @@ export default function EditProfile() {
 
       <h1 style={{ textAlign: 'center' }}>Update Profile</h1>
       <div className='web'>
+      { content.img && currentUser ? <ProfilePic currentImg={content.img} id={currentUser.id} /> : <ProfilePic currentImg='/blank_profile.png' id={currentUser.id} /> }
         <FormWeb onFinish={onFinish} onFinishFailed={onFinishFailed} />
       </div>
     </div>
