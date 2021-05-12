@@ -10,8 +10,26 @@ const getEvents = () => {
   return axios.get(`${API_URL}/event/`, { headers: authHeader() });
 };
 
+const getSingleEvent = (eventID) => {
+  return axios.get(`${API_URL}/event/${eventID}`, { headers: authHeader() });
+};
+
 const createEvent = (EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType, EvAmount) => {
   return axios.post(`${API_URL}/event/`, {
+    headers: authHeader(),
+    userID: EvUserID,
+    name: EvName,
+    location: EvLocation,
+    desc: EvDesc,
+    img: EvImg,
+    date: EvDate,
+    type: EvType,
+    amount: EvAmount,
+  });
+};
+
+const editEvent = (eventID, EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType, EvAmount) => {
+  return axios.patch(`${API_URL}/event/${eventID}`, {
     headers: authHeader(),
     userID: EvUserID,
     name: EvName,
@@ -27,4 +45,6 @@ const createEvent = (EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType
 export default {
   getEvents,
   createEvent,
+  getSingleEvent,
+  editEvent,
 };

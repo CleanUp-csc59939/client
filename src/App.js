@@ -15,7 +15,7 @@ import Profile from './components/profile/profile';
 import EditProfile from './components/profile/editProfile';
 import MyMeetups from './components/meetings/myMeetups';
 import CreateMeetUp from './components/meetings/createMeetUp';
-
+import SingleEvent from './components/meetings/event';
 // import "bootstrap/dist/css/bootstrap.min.css";
 const getUser = () => {
   const user = AuthService.getCurrentUser();
@@ -62,6 +62,13 @@ function App() {
                   exact
                   path='/myMeetUps/create'
                   component={CreateMeetUp}
+                  user={currentUser}
+                  currentUser={currentUser}
+                />
+                <ProtectedRoute
+                  exact
+                  path='/event/:id'
+                  component={SingleEvent}
                   user={currentUser}
                   currentUser={currentUser}
                 />
