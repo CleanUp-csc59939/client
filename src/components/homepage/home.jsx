@@ -1,143 +1,57 @@
-import { React } from 'react';
-// import Loading from './my-loading-component';
+import { React, useState } from 'react';
 import './home.less';
-import { Row, Col, Space, Image, Button, Carousel } from 'antd';
-import Divider from '../../Shared/Components';
-
+import { Row, Col, Space, Image, Button } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
-// import AuthService from '../../services/auth.service';
+import eventsService from '../../services/events.service';
+import Divider from '../../Shared/Components'
 
-const EventData = {
-  userID: 1,
-  name: 'Bi-Weekly Clean Up at Prospect Park',
-  desc:
-    'Lorem ipsum Messenger bag chartreuse craft beer, affogato tacos fashion axe palo santo kinfolk meditation austin skateboard green juice. Sriracha mustache ',
-  locationName: 'Prospect Park',
-  location: '123 Smith Street, Brooklyn, NY 10434',
-  img: 'https://patersontimes.com/wp-content/uploads/2015/04/paterson-students-cleaning-great-falls.jpg',
-  date: 'Tuesday, May 4th, 2021',
-  time: '5:30-8:30pm',
-  type: 'Park',
-  amount: '8',
-  attending: [
-    { name: 'John Kim', userID: 2 },
-    { name: 'Riley Adams', userID: 3 },
-    { name: 'Julio Carlos', userID: 4 },
-  ],
+
+const getEvents = async () => {
+  const a = await eventsService.getEvents();
+  return a;
 };
-
-const MultiEvents = [
-  {
-    id: 1,
-    userID: 1,
-    name: '1st event',
-    desc: null,
-    location: null,
-    img: null,
-    date: null,
-    type: null,
-    amount: 2,
-    createdAt: '2021-05-08T19:26:06.300Z',
-    updatedAt: '2021-05-08T23:49:14.162Z',
-  },
-  {
-    id: 2,
-    userID: 1,
-    name: '2nd event',
-    desc: null,
-    location: null,
-    img: null,
-    date: null,
-    type: null,
-    amount: 2,
-    createdAt: '2021-05-08T19:26:06.300Z',
-    updatedAt: '2021-05-08T23:49:14.162Z',
-  },
-  {
-    id: 3,
-    userID: 1,
-    name: '3rd event',
-    desc: null,
-    location: null,
-    img: null,
-    date: null,
-    type: null,
-    amount: 2,
-    createdAt: '2021-05-08T19:26:06.300Z',
-    updatedAt: '2021-05-08T23:49:14.162Z',
-  },
-  {
-    id: 4,
-    userID: 1,
-    name: '4th event',
-    desc: null,
-    location: null,
-    img: null,
-    date: null,
-    type: null,
-    amount: 2,
-    createdAt: '2021-05-08T19:26:06.300Z',
-    updatedAt: '2021-05-08T23:49:14.162Z',
-  },
-];
 
 export default function Home(props) {
-  const { currentUser } = props;
-  return (
-    <div>
-      <Banner event={EventData} currentUser={currentUser} />
-      <div style={{ fontWeight: 'bold', fontFamily: 'Nunito', fontSize: 24, paddingLeft: '5%', paddingTop: '2%' }}>
-        Your Upcoming Events
-      </div>
-      <Upcoming events={MultiEvents} event={EventData} />
-      <div style={{ fontWeight: 'bold', fontFamily: 'Nunito', fontSize: 24, paddingLeft: '5%', paddingTop: '2%' }}>
-        Browse nearby events
-      </div>
-      <Upcoming events={MultiEvents} event={EventData} />
-    </div>
-  );
-}
-function onChange(a, b, c) {
-  console.log(a, b, c);
-}
+  const [events, setEvents] = useState('');
 
-const Upcoming = (props) => {
-  const { events, event } = props;
-  return (
-    <Carousel afterChange={onChange} style={{ paddingLeft: '5%', paddingRight: '5%', backgroundColor: '#f9f9f9' }}>
-      {events.map((e) => {
-        return (
-          <Row>
-            <img style={{ height: '10%', width: '20%' }} src={event.img} alt='event' />
-            <Col span={6}>{e.name} placeholder</Col>
-          </Row>
-        );
-      })}
-    </Carousel>
-  );
-};
+  if (events === '') {
+    getEvents().then((response) => {
+      setEvents(response.data);
+    }); // the [1] is showing only that single event
+  }
 
-const Banner = (props) => {
-  const { event } = props;
   const { currentUser } = props;
-  if (currentUser && currentUser.email) {
+
+  if (currentUser && currentUser.email && events !== '') {
     return (
-      <div className='background'>
-        <Row>
-          <Col span={12} offset={4}>
+      <>
+        {Object.keys(events).map((index) => {
+          return (
+            <div
+              key={events[index].id}
+              style={{
+                backgroundColor: '#208970',
+                paddingTop: '80px',
+                paddingBottom: '100px',
+                marginBottom: '50px',
+                marginTop: '50px',
+              }}
+            >
+            <Row>
+            <Col span={12} offset={4}>
             <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
-            <Divider height={1} width='70%' color='#3EFFD1' />
+            <Divider height={1} width='70%' color='#3EFFD1'/>
             <br />
-            <div className='banner-subheader banner-text'>{event.name}</div>
+            <div className='banner-subheader banner-text'>{events[index].name}</div>
             <Row>
               <Space>
                 <AiOutlineCalendar color='#3EFFD1' size={24} />
                 <Row gutter={24}>
                   <Col>
-                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{event.date}</h4>
+                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[index].date}</h4>
                   </Col>
                   <Col>
-                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{event.time}</h4>
+                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[index].time}</h4>
                   </Col>
                 </Row>
               </Space>
@@ -149,17 +63,17 @@ const Banner = (props) => {
                   <text className='banner-text'>{event.locationName}</text>
                 </Col>
                 <Col>
-                  <text className='banner-text'>{event.location}</text>
+                  <text className='banner-text'>{events[index].location}</text>
                 </Col>
               </Row>
             </Space>
             <Row>
               <AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
-              <text className='banner-text'>{`${event.amount} people attending`}</text>
+              <text className='banner-text'>{`${events[index].amount} people attending`}</text>
             </Row>
           </Col>
           <Col span={6}>
-            <Image className='image' src={event.img} />
+            <Image className='image' src={events[index].img} />
           </Col>
           <Col span={12} offset={4}>
             <Button
@@ -174,8 +88,11 @@ const Banner = (props) => {
               </Col>
             </Button>
           </Col>
-        </Row>
-      </div>
+          </Row>
+            </div>
+          );
+        })}
+      </>
     );
   }
   return (
@@ -183,4 +100,4 @@ const Banner = (props) => {
       <img id='loading-image' src='loading/loading-gif.gif' alt='Loading...' />
     </div>
   );
-};
+}

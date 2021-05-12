@@ -1,6 +1,8 @@
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-const API_URL = 'http://localhost:8080/api/user/';
+const API_URL = 'https://cleanup-312620-ve6aqjr5zq-ue.a.run.app/api/user/';
+let decoded = {};
 
 const register = (email, password) => {
   return axios.post(`${API_URL}register`, {
@@ -17,7 +19,13 @@ const login = (email, password) => {
     })
     .then((response) => {
       if (response.data.token) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+        decoded = jwtDecode(response.data.token);
+        const userdata = {
+          token: response.data.token,
+          id: decoded.id,
+          email: decoded.email,
+        };
+        localStorage.setItem('user', JSON.stringify(userdata));
       }
 
       return response.data;
