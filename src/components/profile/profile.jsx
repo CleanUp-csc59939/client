@@ -3,7 +3,6 @@ import { Avatar } from 'antd';
 import userService from '../../services/user.service';
 import AuthService from '../../services/auth.service';
 
-
 // import "bootstrap/dist/css/bootstrap.min.css";
 const getUserID = () => {
   const user = AuthService.getCurrentUser();
@@ -28,7 +27,7 @@ export default function Profile() {
 
   return (
     <div>
-      <Avatar src={content.img} size={128}  alt='' />
+      <Avatar src={content.img} size={128} alt='' />
       <p>{content.name}</p>
       <p>{currentUser.email}</p>
       <p>{content.bio}</p>

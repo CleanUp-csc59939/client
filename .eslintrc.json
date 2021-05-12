@@ -29,7 +29,8 @@
       "arrow-body-style": "off",
       "react/self-closing-comp": "off",
       "import/no-unresolved": "off",
-      "no-restricted-globals": "off"
+      "no-restricted-globals": "off",
+      "no-nested-ternary" : "off"
     },
     "env": {
       "jest": true

@@ -32,7 +32,8 @@ export default function EditProfile() {
   const currentUser = getUserID();
   // const history = useHistory();
   if (currentUser && content === '') {
-    getProfile(currentUser.id).then((response) => setContent(response.data));
+    getProfile(currentUser.id).then((response) => {setContent(response.data); console.log(response.data.img) });
+  
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -68,7 +69,7 @@ export default function EditProfile() {
 
       <h1 style={{ textAlign: 'center' }}>Update Profile</h1>
       <div className='web'>
-      { content.img && currentUser ? <ProfilePic currentImg={content.img} id={currentUser.id} /> : <ProfilePic currentImg='/blank_profile.png' id={currentUser.id} /> }
+      { content && currentUser ? <ProfilePic currentImg={content.img} id={currentUser.id} /> : null }
         <FormWeb onFinish={onFinish} onFinishFailed={onFinishFailed} />
       </div>
     </div>
