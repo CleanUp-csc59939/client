@@ -11,7 +11,6 @@ module.exports = {
               '@primary-color': '#208970',
               '@primary-6': '#3EFFD1',
               '@font-family': 'Nunito',
-              '@font-size-base': 32,
             },
             javascriptEnabled: true,
           },
@@ -20,3 +19,5 @@ module.exports = {
     },
   ],
 };
+
+// MODIFY VARS: https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less

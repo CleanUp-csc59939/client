@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import './home.less';
-import { Row, Col, Space, Image, Button } from 'antd';
+import '../../Shared/shared.less'
+import { Row, Col, Space, Image, Button, Carousel, Card} from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 import eventsService from '../../services/events.service';
 import Divider from '../../Shared/Components';
@@ -21,83 +22,109 @@ export default function Home(props) {
 
   const { currentUser } = props;
 
-  if (currentUser && currentUser.email && events !== '') {
+  const EventCarousel = () => {
     return (
-      <>
-        {Object.keys(events).map((index) => {
-          return (
-            <div
-              key={events[index].id}
-              style={{
-                backgroundColor: '#208970',
-                paddingTop: '80px',
-                paddingBottom: '100px',
-                marginBottom: '50px',
-                marginTop: '50px',
-              }}
-            >
+      <div className='horizontal-pad'>
+        <div className='page-title v-title-pad' >Your Upcoming Events</div>
+        <Carousel slidesToShow={3} style={{height: '350px'}}>
+          {Object.keys(events).map((index) => {
+            return (
               <Row>
-                <Col span={12} offset={4}>
-                  <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
-                  <Divider height={1} width='70%' color='#3EFFD1' />
-                  <br />
-                  <div className='banner-subheader banner-text'>{events[index].name}</div>
-                  <Row>
-                    <Space>
-                      <AiOutlineCalendar color='#3EFFD1' size={24} />
-                      <Row gutter={24}>
-                        <Col>
-                          <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[index].date}</h4>
-                        </Col>
-                        <Col>
-                          <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[index].time}</h4>
-                        </Col>
-                      </Row>
-                    </Space>
-                  </Row>
-                  <Space>
-                    <AiOutlineEnvironment color='#3EFFD1' size={24} />
-                    <Row gutter={24}>
-                      <Col>
-                        <text className='banner-text'>{events[index].locationName}</text>
-                      </Col>
-                      <Col>
-                        <text className='banner-text'>{events[index].location}</text>
-                      </Col>
-                    </Row>
-                  </Space>
-                  <Row>
-                    <AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
-                    <text className='banner-text'>{`${events[index].amount} people attending`}</text>
-                  </Row>
+                <Card
+                  cover={<img src={events[index].img} alt="event" style={{height: '180px'}}/>}
+                  style={{width: '90%'}}
+                >
+                  <h1>{events[index].name}</h1>
+                  <p className='accent'>{events[index].date}</p>
+                </Card>
+            </Row>
+            );
+          })}
+      </Carousel>
+    </div>
+    )
+  }
+
+  const Banner = () => {
+    return (
+      <div
+      // key={events[0].id}
+      style={{
+        backgroundColor: '#208970',
+        paddingTop: '80px',
+        paddingBottom: '100px',
+        marginBottom: '50px',
+        marginTop: '50px',
+       }}
+     >
+      <Row>
+        <Col span={12} offset={4}>
+          <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
+          <Divider height={1} width='70%' color='#3EFFD1' />
+          <br />
+          <div className='banner-subheader banner-text'>{events[0].name}</div>
+          <Row>
+            <Space>
+              <AiOutlineCalendar color='#3EFFD1' size={24} />
+              <Row gutter={24}>
+                <Col>
+                  <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[0].date}</h4>
                 </Col>
-                <Col span={6}>
-                  <Image className='image' src={events[index].img} />
-                </Col>
-                <Col span={12} offset={4}>
-                  <Button
-                    shape='round'
-                    style={{
-                      height: 40,
-                      width: 200,
-                      backgroundColor: '#3EFFD1',
-                      borderRadius: 30,
-                      borderColor: '#3EFFD1',
-                    }}
-                  >
-                    <Col>
-                      <Space>
-                        More details
-                        <AiOutlineArrowRight size={20} />
-                      </Space>
-                    </Col>
-                  </Button>
+                <Col>
+                  <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[0].time}</h4>
                 </Col>
               </Row>
-            </div>
-          );
-        })}
-      </>
+            </Space>
+          </Row>
+          <Space>
+            <AiOutlineEnvironment color='#3EFFD1' size={24} />
+            <Row gutter={24}>
+              <Col>
+                <text className='banner-text'>{events[0].locationName}</text>
+              </Col>
+              <Col>
+                <text className='banner-text'>{events[0].location}</text>
+              </Col>
+            </Row>
+          </Space>
+          <Row>
+            <AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
+            <text className='banner-text'>{`${events[0].amount} people attending`}</text>
+          </Row>
+        </Col>
+        <Col span={6}>
+          <Image className='image' src={events[0].img} />
+        </Col>
+        <Col span={12} offset={4}>
+          <Button
+            shape='round'
+            style={{
+              height: 40,
+              width: 200,
+              backgroundColor: '#3EFFD1',
+              borderRadius: 30,
+              borderColor: '#3EFFD1',
+            }}
+          >
+            <Col>
+              <Space>
+                More details
+                <AiOutlineArrowRight size={20} />
+              </Space>
+            </Col>
+          </Button>
+        </Col>
+      </Row>
+    </div>
+    )
+  }
+
+  if (currentUser && currentUser.email && events !== '') {
+    return (
+      <div>
+         <Banner/>
+         <EventCarousel/>
+      </div>
     );
   }
   return (
