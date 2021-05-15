@@ -22,10 +22,9 @@ export default function SingleEvent(props) {
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);
-    }); 
+    });
   }
 
- 
   if (event == null) {
     return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
   }
@@ -33,7 +32,6 @@ export default function SingleEvent(props) {
   if (event !== '') {
     return (
       <div>
-        
         <div
           style={{
             backgroundColor: '#208970',
@@ -85,26 +83,27 @@ export default function SingleEvent(props) {
           </Row>
 
           <a href={editUrl} alt='' type='submit'>
-          <Button
-            shape='round'
-            style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
-          >
-            <Col>
-              <Space>
-                Edit This Event
-                <AiOutlineArrowRight size={20} />
-              </Space>
-            </Col>
-          </Button>
-        </a>
+            <Button
+              shape='round'
+              style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
+            >
+              <Col>
+                <Space>
+                  Edit This Event
+                  <AiOutlineArrowRight size={20} />
+                </Space>
+              </Col>
+            </Button>
+          </a>
 
-          
           <Button
-          key='delete'
-            onClick={() => {deleteEvent(event.id).then(() => {
-              history.push(`/myMeetUps`);
-              window.location.reload();
-            })}}
+            key='delete'
+            onClick={() => {
+              deleteEvent(event.id).then(() => {
+                history.push(`/myMeetUps`);
+                window.location.reload();
+              });
+            }}
             shape='round'
             style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
           >
@@ -115,11 +114,8 @@ export default function SingleEvent(props) {
               </Space>
             </Col>
           </Button>
-       
-
         </div>
         );
-
       </div>
     );
   }

@@ -122,7 +122,6 @@ export default function MyMeetups(props) {
                           borderRadius: 30,
                           borderColor: '#3EFFD1',
                         }}
-            
                         href={eventUrl}
                       >
                         <Col>

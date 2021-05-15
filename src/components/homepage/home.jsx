@@ -47,6 +47,7 @@ export default function Home(props) {
   };
 
   const Banner = () => {
+    const eventUrl = `/event/${events[0].id}`;
     return (
       <div
         // key={events[0].id}
@@ -106,6 +107,7 @@ export default function Home(props) {
                 borderRadius: 30,
                 borderColor: '#3EFFD1',
               }}
+              href={eventUrl}
             >
               <Col>
                 <Space>

@@ -13,20 +13,19 @@ const updateEvent = async (eventID, Name, Desc, Location, Img, Date, Type, Amoun
 };
 
 const getEvent = async (userID) => {
-    const a = await eventsService.getSingleEvent(userID);
-    return a;
-  };
+  const a = await eventsService.getSingleEvent(userID);
+  return a;
+};
 
 export default function EditEvent(props) {
-    const [event, setEvent] = useState('');
-    const history = useHistory();
- 
+  const [event, setEvent] = useState('');
+  const history = useHistory();
+
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);
     }); // the [1] is showing only that single event
   }
-
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -58,16 +57,16 @@ export default function EditEvent(props) {
     <div>
       <h1 style={{ textAlign: 'center' }}>Create MeetUp</h1>
       <div className='web'>
-        <FormWebEdit 
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        name={event.name}
-        location={event.location}
-        desc = {event.desc}
-        type = {event.type}
-        amount = {event.amount}
-        date = {event.date}
-        img = {event.img}
+        <FormWebEdit
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          name={event.name}
+          location={event.location}
+          desc={event.desc}
+          type={event.type}
+          amount={event.amount}
+          date={event.date}
+          img={event.img}
         />
       </div>
     </div>
