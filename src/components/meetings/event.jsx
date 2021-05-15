@@ -12,10 +12,12 @@ const getEvent = async (userID) => {
   return a;
 };
 
-
 export default function SingleEvent(props) {
+  
   const [event, setEvent] = useState('');
-  // const { currentUser } = props;
+  // console.log(event)
+  console.log(props)
+  const { currentUser } = props;
     
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
@@ -27,19 +29,45 @@ export default function SingleEvent(props) {
       return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>
     }
   
-  const EditButton = () => {
-    return (
-      <a href='/myMeetUps/create' alt='' type='submit'>
-          <div className='round-button-lg' >
-            <Col>
-              <Space>
-                <div>Edit This Event</div>
-                <AiOutlineEdit size={24} />
-              </Space>
-            </Col>
-          </div>
-        </a>
-    )
+  const EditOrJoin = () => {
+    let button;
+    if ( event.user ===  currentUser.id) {
+      button =  (
+        <Col span={12} offset={4}>
+                <Button
+                  shape='round'
+                  style={{
+                    height: 40,
+                    width: 200,
+                    backgroundColor: '#AEFFCF',
+                    borderRadius: 30,
+                    borderColor: '#AEFFCF',
+                  }}
+                >
+              <Col>
+                <Space>
+                  Join Event 
+                  <AiOutlinePlus color='#208970' size={20} />
+                </Space>
+              </Col>
+            </Button>
+           </Col>
+      )
+    } else {
+       button = (
+        <a href='/myMeetUps/create' alt='' type='submit'>
+            <div className='round-button-lg' >
+                <Col className='round-button-lg'>
+                  <Space>
+                    <div>Edit This Event</div>
+                    <AiOutlineEdit size={24} />
+                  </Space>
+                </Col>
+            </div>
+          </a>
+      )
+    }
+      return button;
   }
 
   if (event !== '') {
@@ -59,43 +87,21 @@ export default function SingleEvent(props) {
                 <AiOutlineEnvironment color='#208970' size={24}/>
                 <div>{event.location}</div>
               </Row>
-              <Col span={12} offset={4}>
-                <Button
-                  shape='round'
-                  style={{
-                    height: 40,
-                    width: 200,
-                    backgroundColor: '#AEFFCF',
-                    borderRadius: 30,
-                    borderColor: '#AEFFCF',
-                  }}
-                >
-              <Col>
-                <Space>
-                  Join Event 
-                  <AiOutlinePlus color='#208970' size={20} />
-                </Space>
-              </Col>
-            </Button>
-           </Col>
-           
+              <EditOrJoin/>
           </Col>
-          
           <Col style={{paddingLeft: '2%', paddingRight: '2%'}}>
             <div className="banner-subheader">{event.name}</div>
             <div>{event.description} Description of event! Join us for a community bi-weekly cleanup here at Prospect Park. Gloves and trashbags are provided. Bring a friend or 2!</div>
-            
             <Divider height={1} color='#C4C4C4'/>
             <Row>
               <AiOutlineUsergroupAdd/>
               <div>{`${event.amount} attending`}</div>
             </Row>
-            
           </Col>
          
           </Row>
         </div>
-        <EditButton/>
+       
       </div>
     );
   }
