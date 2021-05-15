@@ -28,10 +28,9 @@ const createEvent = (EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType
   });
 };
 
-const editEvent = (eventID, EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType, EvAmount) => {
+const editEvent = (eventID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType, EvAmount) => {
   return axios.patch(`${API_URL}/event/${eventID}`, {
     headers: authHeader(),
-    userID: EvUserID,
     name: EvName,
     location: EvLocation,
     desc: EvDesc,
@@ -42,9 +41,14 @@ const editEvent = (eventID, EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate,
   });
 };
 
+const deleteEvent = (eventID) => {
+  return axios.delete(`${API_URL}/event/${eventID}`, { headers: authHeader() });
+};
+
 export default {
   getEvents,
   createEvent,
   getSingleEvent,
   editEvent,
+  deleteEvent,
 };

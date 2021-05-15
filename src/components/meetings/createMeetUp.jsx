@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormWeb } from './Form';
+import { FormWeb } from './meetingForm';
 import eventsService from '../../services/events.service';
 import { useHistory } from 'react-router-dom';
 

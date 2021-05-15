@@ -41,6 +41,7 @@ export default function MyMeetups(props) {
   const { currentUser } = props;
 
   if (currentUser && currentUser.email && events !== '') {
+    let eventUrl = ``;
     return (
       <div>
         <a href='/myMeetUps/create' alt='' type='submit'>
@@ -59,6 +60,7 @@ export default function MyMeetups(props) {
         <>
           {Object.keys(events)
             .map((index) => {
+              eventUrl = `/event/${events[index].id}`;
               return (
                 <div
                   key={events[index].id}
@@ -120,6 +122,8 @@ export default function MyMeetups(props) {
                           borderRadius: 30,
                           borderColor: '#3EFFD1',
                         }}
+            
+                        href={eventUrl}
                       >
                         <Col>
                           <Space>

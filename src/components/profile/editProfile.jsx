@@ -4,7 +4,7 @@ import userService from '../../services/user.service';
 import AuthService from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import ProfilePic from './profilePic';
-import './editProfile.css'
+import './editProfile.css';
 // import { useHistory } from 'react-router-dom';
 // import { Button } from 'antd';
 
@@ -32,8 +32,10 @@ export default function EditProfile() {
   const currentUser = getUserID();
   // const history = useHistory();
   if (currentUser && content === '') {
-    getProfile(currentUser.id).then((response) => {setContent(response.data); console.log(response.data.img) });
-  
+    getProfile(currentUser.id).then((response) => {
+      setContent(response.data);
+      console.log(response.data.img);
+    });
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -69,7 +71,7 @@ export default function EditProfile() {
 
       <h1 style={{ textAlign: 'center' }}>Update Profile</h1>
       <div className='web'>
-      { content && currentUser ? <ProfilePic currentImg={content.img} id={currentUser.id} /> : null }
+        {content && currentUser ? <ProfilePic currentImg={content.img} id={currentUser.id} /> : null}
         <FormWeb onFinish={onFinish} onFinishFailed={onFinishFailed} />
       </div>
     </div>
