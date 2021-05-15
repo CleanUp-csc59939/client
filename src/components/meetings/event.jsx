@@ -1,9 +1,12 @@
 import { React, useState } from 'react';
-import { Row, Col, Space, Image, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-
-import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 import eventsService from '../../services/events.service';
+import { Row, Col, Space,  Image,  Button } from 'antd';
+import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlinePlus, AiOutlineEdit, AiFillDelete} from 'react-icons/ai';
+import ConvertDate from '../../Shared/Functions';
+import Divider from '../../Shared/Components';
+import '../../Shared/shared.less';
+import '../homepage/home.less';
 
 const getEvent = async (userID) => {
   const a = await eventsService.getSingleEvent(userID);
@@ -18,104 +21,109 @@ const deleteEvent = async (userID) => {
 export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const history = useHistory();
-  const editUrl = `${window.location.pathname}/edit`;
+  const editUrl = `${window.location.pathname}/edit`;;
+    
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);
     });
   }
 
-  if (event == null) {
-    return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
+  if (event==null)  {
+      return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>
+    }
+  
+  const EditButton = () => {
+    return (
+      <Button href={editUrl} alt='' type='submit'>
+          <div className='round-button-lg' >
+            <Col>
+              <Space>
+                <div>Edit This Event</div>
+                <AiOutlineEdit size={24} />
+              </Space>
+            </Col>
+          </div>
+        </Button>
+    )
+  }
+
+  const DeleteButton = () => {
+    return (
+      <Button onClick={() => {
+        deleteEvent(event.id).then(() => {
+          history.push(`/myMeetUps`);
+          window.location.reload();
+        });
+      }} 
+      alt='' type='submit'>
+          <div className='round-button-lg' >
+            <Col>
+              <Space>
+                <div>Delete This Event</div>
+                <AiFillDelete size={24} />
+              </Space>
+            </Col>
+          </div>
+        </Button>
+    )
   }
 
   if (event !== '') {
     return (
       <div>
-        <div
-          style={{
-            backgroundColor: '#208970',
-            paddingTop: '80px',
-            paddingBottom: '100px',
-            marginBottom: '50px',
-            marginTop: '50px',
-          }}
-        >
+        <div style={{margin: '5%', padding: '5%', backgroundColor: 'white'}}>
           <Row>
-            <Col span={12} offset={4}>
-              <div style={{ height: 1, backgroundColor: '#3EFFD1', width: '70%' }} />
-              <br />
-              <h1 style={{ color: 'white', fontSize: 24 }}>{event.name}</h1>
-              <Row>
-                <Space>
-                  <AiOutlineCalendar color='#3EFFD1' size={24} />
-                  <Row gutter={24}>
-                    <Col>
-                      <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{event.date}</h4>
-                    </Col>
-                    <Col>
-                      <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{event.time}</h4>
-                    </Col>
-                  </Row>
-                </Space>
-              </Row>
-              <Space>
-                <AiOutlineEnvironment color='#3EFFD1' size={24} />
-                <Row gutter={24}>
-                  <Col>
-                    {' '}
-                    <h4 style={{ color: 'white' }}>Location:</h4>{' '}
-                  </Col>
-                  <Col>
-                    {' '}
-                    <h4 style={{ color: 'white' }}>{event.location}</h4>{' '}
-                  </Col>
-                </Row>
-              </Space>
-              <Row>
-                <AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
-                <h4 style={{ color: 'white' }}>{`${event.amount} people attending`}</h4>
-              </Row>
+            <Col span={12}>
+              <Image src={event.img} style={{borderTopLeftRadius: 10, height: '210px'}}/>
             </Col>
-            <Col span={6} style={{ paddingTop: '3%' }}>
-              <Image src={event.img} style={{ height: '100%', width: '100%' }} />
-            </Col>
-          </Row>
-
-          <a href={editUrl} alt='' type='submit'>
-            <Button
-              shape='round'
-              style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
-            >
+            <Col span={12} style={{borderTopRightRadius: 10, backgroundColor: '#F3F2F2', padding: '5%', height: '210px'}}>
+              <Row>
+                <AiOutlineCalendar color='#208970' size={24} style={{marginTop: '1.5%', marginRight: '1%'}}/>
+                <div className="banner-subheader">Someday, {ConvertDate(event.date)}</div>
+              </Row>
+              <Row> 
+                <AiOutlineEnvironment color='#208970' size={24}/>
+                <div>{event.location}</div>
+              </Row>
+              <Col span={12} offset={4}>
+                <Button
+                  shape='round'
+                  style={{
+                    height: 40,
+                    width: 200,
+                    backgroundColor: '#AEFFCF',
+                    borderRadius: 30,
+                    borderColor: '#AEFFCF',
+                  }}
+                >
               <Col>
                 <Space>
-                  Edit This Event
-                  <AiOutlineArrowRight size={20} />
+                  Join Event 
+                  <AiOutlinePlus color='#208970' size={20} />
                 </Space>
               </Col>
             </Button>
-          </a>
-
-          <Button
-            key='delete'
-            onClick={() => {
-              deleteEvent(event.id).then(() => {
-                history.push(`/myMeetUps`);
-                window.location.reload();
-              });
-            }}
-            shape='round'
-            style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
-          >
-            <Col>
-              <Space>
-                Delete This Event
-                <AiOutlineArrowRight size={20} />
-              </Space>
-            </Col>
-          </Button>
+           </Col>
+           
+          </Col>
+          
+          <Col style={{paddingLeft: '2%', paddingRight: '2%'}}>
+            <div className="banner-subheader">{event.name}</div>
+            <div>{event.description} Description of event! Join us for a community bi-weekly cleanup here at Prospect Park. Gloves and trashbags are provided. Bring a friend or 2!</div>
+            
+            <Divider height={1} color='#C4C4C4'/>
+            <Row>
+              <AiOutlineUsergroupAdd/>
+              <div>{`${event.amount} attending`}</div>
+            </Row>
+            
+          </Col>
+         
+          </Row>
         </div>
-        );
+        <EditButton/>
+        <DeleteButton />
       </div>
     );
   }
