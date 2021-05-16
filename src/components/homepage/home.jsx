@@ -45,9 +45,9 @@ export default function Home(props) {
     );
   };
 
- console.log(events[0]);
+  console.log(events[0]);
 
-  if (currentUser && currentUser.email && events !== '' && events.length >0) {
+  if (currentUser && currentUser.email && events !== '' && events.length > 0) {
     return (
       <div>
         <Banner currentUser={currentUser} event={events[0]} />
@@ -56,8 +56,8 @@ export default function Home(props) {
     );
   }
 
-  if (events !== '' && events.length ===0){
-    return <div>There are no events to show</div>
+  if (events !== '' && events.length === 0) {
+    return <div>There are no events to show</div>;
   }
   return (
     <div id='loading'>

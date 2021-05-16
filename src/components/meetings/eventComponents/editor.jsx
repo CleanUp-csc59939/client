@@ -10,7 +10,7 @@ function getBase64(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -61,7 +61,7 @@ class PicturesWall extends React.Component {
 
   handleCancel = () => this.setState({ previewVisible: false });
 
-  handlePreview = async file => {
+  handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
@@ -88,20 +88,15 @@ class PicturesWall extends React.Component {
         <Upload
           customRequest={uploadRequest}
           action={id}
-          listType="picture-card"
+          listType='picture-card'
           fileList={fileList}
           onPreview={handlePreview}
           onChange={handleChange}
         >
           {fileList.length >= 8 ? null : uploadButton}
         </Upload>
-        <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={this.handleCancel}
-        >
-          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={this.handleCancel}>
+          <img alt='example' style={{ width: '100%' }} src={previewImage} />
         </Modal>
       </>
     );

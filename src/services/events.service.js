@@ -53,6 +53,10 @@ const deleteEvent = (eventID) => {
   return axios.delete(`${API_URL}/event/${eventID}`, { headers: authHeader() });
 };
 
+const joinEvent = (eventID, user) => {
+  return axios.patch(`${API_URL}/event/${eventID}/register`, { headers: authHeader(), userID: user });
+};
+
 export default {
   getEvents,
   createEvent,
@@ -60,4 +64,5 @@ export default {
   editEvent,
   deleteEvent,
   uploadEventPic,
+  joinEvent,
 };
