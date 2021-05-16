@@ -17,10 +17,8 @@ export default function CreateMeetUp({ currentUser }) {
         values.name, // name
         values.desc, // description
         values.location,
-        values.img,
         values.date,
         values.type,
-        values.amount,
       )
       .then(
         () => {

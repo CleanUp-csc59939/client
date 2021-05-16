@@ -83,19 +83,6 @@ export const FormWeb = (props) => {
       </Form.Item>
 
       <Form.Item
-        label='amount of people'
-        name='amount'
-        rules={[
-          {
-            required: true,
-            message: 'Please input the amount!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
         label='date'
         name='date'
         rules={[
@@ -121,19 +108,6 @@ export const FormWeb = (props) => {
         <Input />
       </Form.Item>
 
-      <Form.Item
-        label='image URL'
-        name='img'
-        rules={[
-          {
-            required: true,
-            message: 'Please input the image url!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
       <Form.Item {...tailLayout}>
         <Button type='submit' htmlType='submit'>
           Submit
@@ -144,7 +118,7 @@ export const FormWeb = (props) => {
 };
 
 export const FormWebEdit = (props) => {
-  const { onFinish, onFinishFailed, name, location, desc, amount, date, type, img } = props;
+  const { onFinish, onFinishFailed, name, location, desc, date, type, img } = props;
   return (
     <Form
       {...layout}
@@ -192,19 +166,6 @@ export const FormWebEdit = (props) => {
         ]}
       >
         <AutoComplete placeholder={desc}></AutoComplete>
-      </Form.Item>
-
-      <Form.Item
-        label='amount of people'
-        name='amount'
-        rules={[
-          {
-            required: false,
-            message: 'Please input the amount!',
-          },
-        ]}
-      >
-        <AutoComplete placeholder={amount}></AutoComplete>
       </Form.Item>
 
       <Form.Item

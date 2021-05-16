@@ -2,13 +2,14 @@ import { React, useState } from 'react';
 import { FormWebEdit } from './meetingForm';
 import eventsService from '../../services/events.service';
 import { useHistory } from 'react-router-dom';
+import EventPics from './eventComponents/eventPics'
 // import { useHistory } from 'react-router-dom';
 // import { Button } from 'antd';
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-const updateEvent = async (eventID, Name, Desc, Location, Img, Date, Type, Amount) => {
-  const a = await eventsService.editEvent(eventID, Name, Desc, Location, Img, Date, Type, Amount);
+const updateEvent = async (eventID, Name, Desc, Location, Date, Type,) => {
+  const a = await eventsService.editEvent(eventID, Name, Desc, Location, Date, Type, );
   return a;
 };
 
@@ -21,6 +22,10 @@ export default function EditEvent(props) {
   const [event, setEvent] = useState('');
   const history = useHistory();
 
+  const getID = () => {
+      return props.match.params.id;
+  }
+  
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);
@@ -37,10 +42,8 @@ export default function EditEvent(props) {
       values.name ? values.name : event.name, // name
       values.desc ? values.desc : event.desc, // bio
       values.location ? values.location : event.location,
-      values.img ? values.img : event.img,
       values.date ? values.date : event.date,
       values.type ? values.type : event.type,
-      values.amount ? values.amount : event.amount,
     ).then(
       () => {
         console.log('Success:', values);
@@ -64,10 +67,9 @@ export default function EditEvent(props) {
           location={event.location}
           desc={event.desc}
           type={event.type}
-          amount={event.amount}
           date={event.date}
-          img={event.img}
         />
+        <EventPics id={getID}/>
       </div>
     </div>
   );

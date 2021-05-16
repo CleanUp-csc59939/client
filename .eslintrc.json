@@ -30,7 +30,7 @@
       "react/self-closing-comp": "off",
       "import/no-unresolved": "off",
       "no-restricted-globals": "off",
-      "no-nested-ternary" : "off"
+      "no-param-reassign": "off"
     },
     "env": {
       "jest": true
