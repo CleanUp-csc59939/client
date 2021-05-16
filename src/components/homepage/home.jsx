@@ -4,7 +4,7 @@ import '../../Shared/shared.less';
 import { Row, Carousel, Card } from 'antd';
 import eventsService from '../../services/events.service';
 import ConvertDate from '../../Shared/Functions';
-import Banner from '../meetings/eventComponents/Banner'
+import Banner from '../meetings/eventComponents/Banner';
 
 const getEvents = async () => {
   const a = await eventsService.getEvents();
@@ -45,12 +45,12 @@ export default function Home(props) {
     );
   };
 
- console.log(events);
+ console.log(events[0]);
 
   if (currentUser && currentUser.email && events !== '' && events.length >0) {
     return (
       <div>
-        <Banner currentUser={currentUser} events={events} />
+        <Banner currentUser={currentUser} event={events[0]} />
         <EventCarousel />
       </div>
     );

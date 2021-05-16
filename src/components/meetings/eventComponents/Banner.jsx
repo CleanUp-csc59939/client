@@ -1,15 +1,20 @@
 import { React } from 'react';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 import Divider from '../../../Shared/Components';
-import { Row, Col, Space, Image, Button,} from 'antd';
+import ConvertDate from '../../../Shared/Functions';
+import { Row, Col, Space, Image, Button, Carousel } from 'antd';
 
 
 const Banner = (props) => {
-    const { currentUser, events } = props;
-    const eventUrl = `/event/${events[0].id}`;
+    const { currentUser, event } = props;
+        let eventUrl = '';
+        let eventImgs='';
+    if (event){
+         eventUrl = `/event/${event.id}`;
+         eventImgs = event.img;
     return (
       <div
-        // key={events[0].id}
+        // key={event.id}
         style={{
           backgroundColor: '#208970',
           paddingTop: '80px',
@@ -23,16 +28,16 @@ const Banner = (props) => {
             <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
             <Divider height={1} width='70%' color='#3EFFD1' />
             <br />
-            <div className='banner-subheader banner-text'>{events[0].name}</div>
+            <div className='banner-subheader banner-text'>{event.name}</div>
             <Row>
               <Space>
                 <AiOutlineCalendar color='#3EFFD1' size={24} />
                 <Row gutter={24}>
                   <Col>
-                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{ConvertDate(events[0].date)}</h4>
+                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{ConvertDate(event.date)}</h4>
                   </Col>
                   <Col>
-                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{events[0].time}</h4>
+                    <h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{event.time}</h4>
                   </Col>
                 </Row>
               </Space>
@@ -41,20 +46,32 @@ const Banner = (props) => {
               <AiOutlineEnvironment color='#3EFFD1' size={24} />
               <Row gutter={24}>
                 <Col>
-                  <text className='banner-text'>{events[0].locationName}</text>
+                  <text className='banner-text'>{event.locationName}</text>
                 </Col>
                 <Col>
-                  <text className='banner-text'>{events[0].location}</text>
+                  <text className='banner-text'>{event.location}</text>
                 </Col>
               </Row>
             </Space>
             <Row>
               <AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
-              <text className='banner-text'>{`${events[0].amount} people attending`}</text>
+              <text className='banner-text'>{`${event.amount} people attending`}</text>
             </Row>
           </Col>
           <Col span={6}>
-            <Image className='image' src={events[0].img} />
+          <Carousel autoplay>
+          {eventImgs.map((image) => { 
+              return (
+                  <div>
+                <Image className='image' src={image} />
+                </div>
+              )
+
+          })}
+
+            </Carousel>
+
+
           </Col>
           <Col span={12} offset={4}>
             <Button
@@ -79,6 +96,9 @@ const Banner = (props) => {
         </Row>
       </div>
     );
+            }
+
+            return "no banner"
   };
 
   export default Banner;
