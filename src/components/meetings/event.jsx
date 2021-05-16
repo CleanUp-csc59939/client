@@ -45,7 +45,7 @@ export default function SingleEvent(props) {
     }
 
   if (event !== '') {
-    console.log(event)
+    console.log(event.date)
     return (
       <div>
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
