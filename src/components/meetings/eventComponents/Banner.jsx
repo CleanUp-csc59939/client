@@ -4,14 +4,13 @@ import Divider from '../../../Shared/Components';
 import ConvertDate from '../../../Shared/Functions';
 import { Row, Col, Space, Image, Button, Carousel } from 'antd';
 
-
 const Banner = (props) => {
-    const { currentUser, event } = props;
-        let eventUrl = '';
-        let eventImgs='';
-    if (event){
-         eventUrl = `/event/${event.id}`;
-         eventImgs = event.img;
+  const { currentUser, event } = props;
+  let eventUrl = '';
+  let eventImgs = '';
+  if (event) {
+    eventUrl = `/event/${event.id}`;
+    eventImgs = event.img;
     return (
       <div
         // key={event.id}
@@ -59,19 +58,15 @@ const Banner = (props) => {
             </Row>
           </Col>
           <Col span={6}>
-          <Carousel autoplay>
-          {eventImgs.map((image) => { 
-              return (
+            <Carousel autoplay>
+              {eventImgs.map((image) => {
+                return (
                   <div>
-                <Image className='image' src={image} />
-                </div>
-              )
-
-          })}
-
+                    <Image className='image' src={image} />
+                  </div>
+                );
+              })}
             </Carousel>
-
-
           </Col>
           <Col span={12} offset={4}>
             <Button
@@ -96,9 +91,9 @@ const Banner = (props) => {
         </Row>
       </div>
     );
-            }
+  }
 
-            return "no banner"
-  };
+  return 'no banner';
+};
 
-  export default Banner;
+export default Banner;
