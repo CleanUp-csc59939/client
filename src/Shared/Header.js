@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageHeader, Button, Row, Col, Space } from 'antd';
 import { AiOutlinePlus } from 'react-icons/ai';
+import AuthService from '../services/auth.service';
 
 import './Header.css';
 // import AuthService from '../services/auth.service';
@@ -8,6 +9,7 @@ import './Header.css';
 const Header = ({ currentUser /* pageTitle  */ }) => {
   // logic to check if logged in goes here to switch between 2 different headers
   const logOut = () => {
+    console.log('log out');
     AuthService.logout();
   };
 
@@ -21,7 +23,6 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
             backgroundColor: '#AEFFCF',
             borderRadius: 60,
             borderColor: '#AEFFCF',
-            marginBottom: '5%',
           }}
         >
           <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -38,29 +39,29 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
     return (
       <div className='site-page-header'>
         <Row className='web' style={{ padding: '2%' }}>
-          <Col span={3}>
-            <a href='/home'>
-              <h2 style={{ fontWeight: 'bold', color: '#4F4F4F', paddingTop: '2%' }}>Clean Up</h2>
-            </a>
+          <Col span={3} style={{ paddingTop: '10px' }}>
+            <Button type='link' href='/home'>
+              <h2 style={{ fontWeight: 'bold', color: '#4F4F4F' }}>Clean Up</h2>
+            </Button>
           </Col>
           <Col span={12} offset={9}>
             <Row>
-              <Space size='large'>
+              <Space size='small'>
                 <CreateEvent />
                 <Col>
-                  <a href='/home'>
+                  <Button type='link' href='/home'>
                     <h2>Home</h2>
-                  </a>
+                  </Button>
                 </Col>
                 <Col>
-                  <a href='/myMeetups'>
-                    <h2>My MeetUps</h2>
-                  </a>
+                  <Button type='link' href='/myMeetups'>
+                    <h2>My Meet Ups</h2>
+                  </Button>
                 </Col>
                 <Col>
-                  <a href='/login' onClick={logOut}>
-                    <h2>Log Out</h2>
-                  </a>
+                  <Button type='link' href='/login' onClick={logOut}>
+                    <h2>Logout</h2>
+                  </Button>
                 </Col>
               </Space>
             </Row>
