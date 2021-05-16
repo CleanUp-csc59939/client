@@ -22,7 +22,7 @@ export const Edit = (props) => {
 };
 
 export const Delete = (props) => {
-  const { event /* deleteEvent */, history } = props;
+  const { event, deleteEvent, history } = props;
   return (
     <Button
       onClick={() => {

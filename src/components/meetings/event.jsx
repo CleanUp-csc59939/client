@@ -9,10 +9,10 @@ import {
 } from 'react-icons/ai';
 import ConvertDate from '../../Shared/Functions';
 import Divider from '../../Shared/Components';
-import {Delete, Edit, Join} from './components/Buttons'
+import {Delete, Edit, Join} from './eventComponents/Buttons'
 import '../../Shared/shared.less';
 import '../homepage/home.less';
-import RegisteredUsers from './components/RegisteredUsers';
+import RegisteredUsers from './eventComponents/RegisteredUsers';
 
 const getEvent = async (userID) => {
   const a = await eventsService.getSingleEvent(userID);
