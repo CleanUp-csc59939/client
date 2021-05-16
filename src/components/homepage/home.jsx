@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import './home.less';
 import '../../Shared/shared.less';
 import { Row, Carousel, Card } from 'antd';
+import { Link } from 'react-router-dom';
 import eventsService from '../../services/events.service';
 import ConvertDate from '../../Shared/Functions';
 import Banner from '../meetings/eventComponents/Banner';
@@ -29,15 +30,17 @@ export default function Home(props) {
         <Carousel slidesToShow={3} style={{ height: '350px' }}>
           {Object.keys(events).map((index) => {
             return (
-              <Row>
-                <Card
-                  cover={<img src={events[index].img} alt='event' style={{ height: '180px' }} />}
-                  style={{ width: '90%' }}
-                >
-                  <h1>{events[index].name}</h1>
-                  <p className='accent'>{ConvertDate(events[index].date)}</p>
-                </Card>
-              </Row>
+              <Link to={`/event/${events[index].id}`}>
+                <Row>
+                  <Card
+                    cover={<img src={events[index].img} alt='event' style={{ height: '180px' }} />}
+                    style={{ width: '90%' }}
+                  >
+                    <h1>{events[index].name}</h1>
+                    <p className='accent'>{ConvertDate(events[index].date)}</p>
+                  </Card>
+                </Row>
+              </Link>
             );
           })}
         </Carousel>

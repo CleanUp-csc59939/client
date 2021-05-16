@@ -48,6 +48,7 @@ export default function EventPics({ id }) {
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
+      /* eslint-disable no-param-reassign */
       file.preview = await getBase64(file.originFileObj);
     }
     setPreviewImage(file.url || file.preview);
