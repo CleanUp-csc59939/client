@@ -24,6 +24,11 @@ const deleteEvent = async (userID) => {
   return a;
 };
 
+const joinEvent = async (userID) => {
+  const a = await eventsService.joinEvent(eventID, userID);
+  return a;
+}
+
 export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const history = useHistory();

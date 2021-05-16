@@ -22,7 +22,7 @@ export const Edit = (props) => {
 };
 
 export const Delete = (props) => {
-  const { event /* deleteEvent */, history } = props;
+  const { event, deleteEvent, history } = props;
   return (
     <Button
       onClick={() => {
@@ -48,10 +48,14 @@ export const Delete = (props) => {
   );
 };
 
-export const Join = () => {
+export const Join = (props) => {
+  const { eventID, userID } = props;
   return (
     <Col span={12} offset={4}>
       <Button
+      onClick = {()=>{
+        
+      }}
         shape='round'
         style={{
           height: 40,
