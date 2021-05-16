@@ -1,12 +1,10 @@
-import { Row, Col, Avatar } from 'antd';
+import { Row, Col, Avatar, Space } from 'antd';
 
 const RegisteredUsers = (props) => {
   const { registered } = props;
   // console.log(registered)
   const registers = registered.map((user) => {
     return (
-      <Row>
-        <Col>
           <div style={{ backgroundColor: '#F3F2F2', height: 150, width: 100 }}>
             <Col style={{ padding: '5%' }}>
               <Avatar source={user.img} size={50} />
@@ -16,11 +14,15 @@ const RegisteredUsers = (props) => {
               </div>
             </Col>
           </div>
-        </Col>
-      </Row>
     );
   });
-  return registers;
+  return (
+      <Row>
+          <Space>
+          {registers}
+          </Space>
+      </Row>
+  )
 };
 
 export default RegisteredUsers;
