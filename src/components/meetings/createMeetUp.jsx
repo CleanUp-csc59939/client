@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormWeb } from './Form';
+import { FormWeb } from './meetingForm';
 import eventsService from '../../services/events.service';
 import { useHistory } from 'react-router-dom';
 
@@ -17,10 +17,8 @@ export default function CreateMeetUp({ currentUser }) {
         values.name, // name
         values.desc, // description
         values.location,
-        values.img,
         values.date,
         values.type,
-        values.amount,
       )
       .then(
         () => {

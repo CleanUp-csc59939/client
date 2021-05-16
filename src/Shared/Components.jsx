@@ -1,4 +1,4 @@
-import './shared.less'
+import './shared.less';
 
 const Divider = (props) => {
   const { height, color, width } = props;
@@ -23,7 +23,7 @@ const Divider = (props) => {
 //             <div>{text}</div>
 //             {icon}
 //             {/* <AiOutlineArrowRight size={20} /> */}
-            
+
 //           </Space>
 //         </Col>
 //       </div>

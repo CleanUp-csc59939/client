@@ -14,32 +14,43 @@ const getSingleEvent = (eventID) => {
   return axios.get(`${API_URL}/event/${eventID}`, { headers: authHeader() });
 };
 
-const createEvent = (EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType, EvAmount) => {
+const createEvent = (EvUserID, EvName, EvDesc, EvLocation, EvDate, EvType) => {
   return axios.post(`${API_URL}/event/`, {
     headers: authHeader(),
     userID: EvUserID,
     name: EvName,
     location: EvLocation,
     desc: EvDesc,
-    img: EvImg,
     date: EvDate,
     type: EvType,
-    amount: EvAmount,
   });
 };
 
-const editEvent = (eventID, EvUserID, EvName, EvDesc, EvLocation, EvImg, EvDate, EvType, EvAmount) => {
+const editEvent = (eventID, EvName, EvDesc, EvLocation, EvDate, EvType) => {
   return axios.patch(`${API_URL}/event/${eventID}`, {
     headers: authHeader(),
-    userID: EvUserID,
     name: EvName,
     location: EvLocation,
     desc: EvDesc,
-    img: EvImg,
     date: EvDate,
     type: EvType,
-    amount: EvAmount,
   });
+};
+
+const uploadEventPic = (inputFile, eventID) => {
+  console.log(`service id ${eventID}`);
+  const data = new FormData();
+  data.append('file', inputFile);
+
+  return axios.patch(`${API_URL}/event/${eventID}/addimage`, data, {
+    headers: {
+      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundaryqTqJIxvkWFYqvP5s',
+    },
+  });
+};
+
+const deleteEvent = (eventID) => {
+  return axios.delete(`${API_URL}/event/${eventID}`, { headers: authHeader() });
 };
 
 export default {
@@ -47,4 +58,6 @@ export default {
   createEvent,
   getSingleEvent,
   editEvent,
+  deleteEvent,
+  uploadEventPic,
 };
