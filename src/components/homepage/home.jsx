@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import './home.less';
 import '../../Shared/shared.less';
 import { Row, Carousel, Card } from 'antd';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import eventsService from '../../services/events.service';
 import ConvertDate from '../../Shared/Functions';
 import Banner from '../meetings/eventComponents/Banner';
@@ -48,9 +48,9 @@ export default function Home(props) {
     );
   };
 
- console.log(events[0]);
+  console.log(events[0]);
 
-  if (currentUser && currentUser.email && events !== '' && events.length >0) {
+  if (currentUser && currentUser.email && events !== '' && events.length > 0) {
     return (
       <div>
         <Banner currentUser={currentUser} event={events[0]} />
@@ -59,8 +59,8 @@ export default function Home(props) {
     );
   }
 
-  if (events !== '' && events.length ===0){
-    return <div>There are no events to show</div>
+  if (events !== '' && events.length === 0) {
+    return <div>There are no events to show</div>;
   }
   return (
     <div id='loading'>

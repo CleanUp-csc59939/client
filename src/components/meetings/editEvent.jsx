@@ -2,14 +2,14 @@ import { React, useState } from 'react';
 import { FormWebEdit } from './meetingForm';
 import eventsService from '../../services/events.service';
 import { useHistory } from 'react-router-dom';
-import EventPics from './eventComponents/eventPics'
+import EventPics from './eventComponents/eventPics';
 // import { useHistory } from 'react-router-dom';
 // import { Button } from 'antd';
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-const updateEvent = async (eventID, Name, Desc, Location, Date, Type,) => {
-  const a = await eventsService.editEvent(eventID, Name, Desc, Location, Date, Type, );
+const updateEvent = async (eventID, Name, Desc, Location, Date, Type) => {
+  const a = await eventsService.editEvent(eventID, Name, Desc, Location, Date, Type);
   return a;
 };
 
@@ -23,9 +23,9 @@ export default function EditEvent(props) {
   const history = useHistory();
 
   const getID = () => {
-      return props.match.params.id;
-  }
-  
+    return props.match.params.id;
+  };
+
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);
@@ -69,7 +69,7 @@ export default function EditEvent(props) {
           type={event.type}
           date={event.date}
         />
-        <EventPics id={getID}/>
+        <EventPics id={getID} />
       </div>
     </div>
   );
