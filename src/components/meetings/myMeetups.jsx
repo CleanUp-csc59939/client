@@ -36,7 +36,6 @@ export default function MyMeetups(props) {
   if (currentUser && currentUser.email && events !== '') {
     const myEvents = []
     const eventsAttending = userProfile.events
-    console.log("CURRENT USER EVENTS ", userProfile.events)
     
     // get a user's events
     Object.keys(events).forEach((event => {
@@ -50,9 +49,9 @@ export default function MyMeetups(props) {
       if (myEvents.length === 0) {
         e = <div>You are not organizing any upcoming events</div> 
       } else if (myEvents.length === 1) {
-        e =  <EventCarousel titleText="Your Upcoming Event" events={myEvents} slidesToShow={1}/>  
+        e =  <EventCarousel titleText="Event Organized By You" events={myEvents} slidesToShow={1}/>  
       } else {
-        e = <EventCarousel titleText="Your Upcoming Events" events={myEvents} slidesToShow={3}/>
+        e = <EventCarousel titleText="Events Organized By You" events={myEvents} slidesToShow={3}/>
       }
       return e
     }

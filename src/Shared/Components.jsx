@@ -19,11 +19,10 @@ export const Divider = (props) => {
 
 export const EventCarousel = (props) => {
   const {titleText, events, slidesToShow} = props
-  console.log("event carousel")
   return (
-    <div className='horizontal-pad'>
-      <h2 className='big-title v-title-pad'>{titleText}</h2>
-      <Carousel slidesToShow={slidesToShow} >
+    <div>
+      <h2 className='big-title v-title-pad horizontal-pad'>{titleText}</h2>
+      <Carousel slidesToShow={slidesToShow} className={slidesToShow === 1 ? 'xtra-horizontal-pad' : 'horizontal-pad'} >
         {Object.keys(events).map((index) => {
           return (
             <Link to={`/event/${events[index].id}`} key={index}>
