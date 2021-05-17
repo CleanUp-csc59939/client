@@ -5,7 +5,7 @@ import AuthService from '../services/auth.service';
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import SearchHits from './SearchHits';
-import env from 'react-dotenv';
+// import env from 'react-dotenv';
 import './Header.css';
 
 const Header = ({ currentUser /* pageTitle  */ }) => {
@@ -15,7 +15,9 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
     AuthService.logout();
   };
 
-  const searchClient = instantMeiliSearch('http://3.139.65.222/', env.MEILI);
+  const searchClient = instantMeiliSearch('http://3.139.65.222/', 'NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1', {
+    primaryKey: 'id',
+  });
 
   const CreateEvent = () => {
     return (
@@ -52,6 +54,7 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
           <Col span={9}>
             <InstantSearch indexName='events' searchClient={searchClient}>
               <SearchBox />
+
               <Hits hitComponent={SearchHits} />
             </InstantSearch>
           </Col>

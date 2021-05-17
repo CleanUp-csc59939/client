@@ -78,7 +78,7 @@ const Banner = (props) => {
               {eventImgs.map((image) => {
                 return (
                   <div>
-                    <Image  width="600" height='350'  src={image} />
+                    <Image width='600' height='350' src={image} />
                   </div>
                 );
               })}

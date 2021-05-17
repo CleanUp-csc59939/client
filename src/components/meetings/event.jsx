@@ -73,7 +73,7 @@ export default function SingleEvent(props) {
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
           <Row>
             <Col span={12}>
-              <Image src={event.img[0]} style={{ borderTopLeftRadius: 10, height:'350px', width: '600px' }} />
+              <Image src={event.img[0]} style={{ borderTopLeftRadius: 10, height: '350px', width: '600px' }} />
             </Col>
             <Col
               span={12}

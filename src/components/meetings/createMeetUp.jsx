@@ -25,7 +25,7 @@ export default function CreateMeetUp({ currentUser }) {
           console.log('Success:', values);
           eventsService.updateSearch(values);
           history.push('/myMeetUps');
-          window.location.reload();
+          // window.location.reload();
         },
         () => {
           onFinishFailed('Form unable to submit');

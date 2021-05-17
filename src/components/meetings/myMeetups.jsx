@@ -10,7 +10,6 @@ import { EventCarousel } from '../../Shared/Components';
 //   return a;
 // };
 
-
 export default function MyMeetups(props) {
   const { currentUser } = props;
   const [events, setEvents] = useState('');
