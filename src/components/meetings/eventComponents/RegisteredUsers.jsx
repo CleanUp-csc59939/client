@@ -8,7 +8,7 @@ const RegisteredUsers = (props) => {
     return (
       <div style={{ backgroundColor: '#F3F2F2', height: 150, width: 100, paddingTop: '10%' }}>
         <Col>
-          <Avatar source={user.img} size={50} style={{ marginLeft: 25 }} />
+          <Avatar src={user.img} size={50} style={{ marginLeft: 25 }} />
           <div
             style={{ paddingTop: '15%', marginLeft: 8, marginRight: 8, justifyItems: 'center', flexDirection: 'row' }}
           >

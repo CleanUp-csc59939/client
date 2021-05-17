@@ -3,6 +3,7 @@ import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutli
 import { Divider } from '../../../Shared/Components';
 import { ConvertDate } from '../../../Shared/Functions';
 import { Row, Col, Space, Image, Button, Carousel } from 'antd';
+import './Banner.css';
 
 const Banner = (props) => {
   const { currentUser, event } = props;
@@ -62,7 +63,7 @@ const Banner = (props) => {
               {eventImgs.map((image) => {
                 return (
                   <div>
-                    <Image className='image' src={image} />
+                    <Image  width="600" height='350'  src={image} />
                   </div>
                 );
               })}
