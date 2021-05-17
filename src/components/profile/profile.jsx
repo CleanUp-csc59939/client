@@ -27,23 +27,34 @@ export default function Profile() {
   }
 
   return (
-    <div className="main">
-    <div className="row">
-      <div className="card">
-        <a href="image.html"><img id="i1" alt=""  src={content.img}  width="200" /> </a>
-        <br/><h3>Name: {content.name}</h3><br/><br/>
-        <h3>Bio: {content.bio}</h3><br/><br/>
-        <h3>Email: {currentUser.email}</h3><br/><br/>
-        <h3>Phone: {content.number}</h3><br/><br/>
-        <h3>Location: {content.location}</h3><br/>
-        <h1><a href='/profile/edit' className="myButton">Update Information</a></h1>
-        
+    <div className='main'>
+      <div className='row'>
+        <div className='card'>
+          <a href='image.html'>
+            <img id='i1' alt='' src={content.img} width='200' />{' '}
+          </a>
+          <br />
+          <h3>Name: {content.name}</h3>
+          <br />
+          <br />
+          <h3>Bio: {content.bio}</h3>
+          <br />
+          <br />
+          <h3>Email: {currentUser.email}</h3>
+          <br />
+          <br />
+          <h3>Phone: {content.number}</h3>
+          <br />
+          <br />
+          <h3>Location: {content.location}</h3>
+          <br />
+          <h1>
+            <a href='/profile/edit' className='myButton'>
+              Update Information
+            </a>
+          </h1>
+        </div>
       </div>
-      </div>
-      </div>
-      
-
-
-
+    </div>
   );
 }

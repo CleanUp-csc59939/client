@@ -69,10 +69,9 @@ export default function EditEvent(props) {
           desc={event.desc}
           type={event.type}
           date={event.date}
-        >
-        </FormWebEdit>
+        ></FormWebEdit>
         <div style={{ textAlign: 'center' }}>
-        <EventPics id={getID} />
+          <EventPics id={getID} />
         </div>
       </div>
     </div>

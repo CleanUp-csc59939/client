@@ -59,7 +59,6 @@ export default function EditProfile() {
         onFinishFailed('Form unable to submit');
         console.log(values);
       },
-      
     );
   };
 

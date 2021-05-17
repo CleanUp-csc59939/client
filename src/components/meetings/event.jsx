@@ -62,10 +62,10 @@ export default function SingleEvent(props) {
       });
 
       if (isUserReg) {
-        return <Leave leaveEvent={leaveEvent} eventID={event.userID} userID={currentUser.id} />;
+        return <Leave leaveEvent={leaveEvent} eventID={event.id} userID={currentUser.id} />;
       }
 
-      return <Join joinEvent={joinEvent} eventID={event.userID} userID={currentUser.id} />;
+      return <Join joinEvent={joinEvent} eventID={event.id} userID={currentUser.id} />;
     };
 
     return (
@@ -73,17 +73,15 @@ export default function SingleEvent(props) {
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
           <Row>
             <Col span={12}>
-
-            <Carousel autoplay>
-              {event.img.map((image) => {
-                return (
-                  <div>
-                    <Image  width="600" height='350'  src={image} style={{ borderTopLeftRadius: 10}} />
-                  </div>
-                );
-              })}
-            </Carousel>
-          
+              <Carousel autoplay>
+                {event.img.map((image) => {
+                  return (
+                    <div>
+                      <Image width='600' height='350' src={image} style={{ borderTopLeftRadius: 10 }} />
+                    </div>
+                  );
+                })}
+              </Carousel>
             </Col>
             <Col
               span={12}
