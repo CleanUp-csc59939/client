@@ -10,6 +10,17 @@ export default function CreateMeetUp({ currentUser }) {
     console.log('Failed:', errorInfo);
   };
 
+  const updateSearch = async () => {
+    console.log("in update search")
+    const events = await eventsService.getEvents()
+    if (events === '') {
+      getEvents().then((response) => {
+        setEvents(response.data);
+        eventsService.updateSearch(response.data)
+      }); // the [1] is showing only that single event
+    }
+  }
+
   const onFinish = (values) => {
     eventsService
       .createEvent(
@@ -21,17 +32,19 @@ export default function CreateMeetUp({ currentUser }) {
         values.type,
       )
       .then(
-        () => {
+         () => {
           console.log('Success:', values);
-          eventsService.updateSearch(values);
+          updateSearch()
           history.push('/myMeetUps');
-          // window.location.reload();
+          window.location.reload();
         },
         () => {
           onFinishFailed('Form unable to submit');
         },
       );
   };
+
+  
 
   return (
     <div>

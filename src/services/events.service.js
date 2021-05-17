@@ -68,8 +68,9 @@ const client = new MeiliSearch({
 });
 
 const updateSearch = (eventObject) => {
-  console.log('EVENT OBJECT ', eventObject);
-  client.index('events').addDocuments([eventObject]);
+  console.log('EVENT OBJECT ', JSON.stringify(eventObject));
+  client.index('events').addDocuments(eventObject);
+  console.log(client.index('events').addDocuments(eventObject));
 };
 
 export default {
