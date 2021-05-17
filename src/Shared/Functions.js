@@ -18,8 +18,10 @@ export const GetProfile = async (id) => {
 export const matchEventAndUser = (event, profile) => {
   for (let i = 0; i < event.registered.length; i += 1) {
     if (event.registered[i].userID === profile.userID) {
+      console.log('user matches');
       return true;
     }
   }
+  console.log('user not matches');
   return false;
 };

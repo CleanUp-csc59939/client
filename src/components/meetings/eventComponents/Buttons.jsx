@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { Col, Space, Button } from 'antd';
-import { AiOutlinePlus, AiOutlineEdit, AiFillDelete } from 'react-icons/ai';
+import { AiOutlinePlus, AiOutlineEdit, AiFillDelete, AiOutlineCloseCircle } from 'react-icons/ai';
 
 import '../../../Shared/shared.less';
 import '../../homepage/home.less';
@@ -55,7 +55,7 @@ export const Join = (props) => {
       <Button
         onClick={() => {
           joinEvent(eventID, userID).then(() => {
-            // window.location.reload();
+            window.location.reload();
             console.log('event joined');
           });
         }}
@@ -72,6 +72,37 @@ export const Join = (props) => {
           <Space>
             Join Event
             <AiOutlinePlus color='#208970' size={20} />
+          </Space>
+        </Col>
+      </Button>
+    </Col>
+  );
+};
+
+export const Leave = (props) => {
+  const { eventID, userID, leaveEvent } = props;
+  return (
+    <Col span={12} offset={4}>
+      <Button
+        onClick={() => {
+          leaveEvent(eventID, userID).then(() => {
+            window.location.reload();
+            console.log('left event');
+          });
+        }}
+        shape='round'
+        style={{
+          height: 40,
+          width: 200,
+          backgroundColor: '#AEFFCF',
+          borderRadius: 30,
+          borderColor: '#AEFFCF',
+        }}
+      >
+        <Col>
+          <Space>
+            Leave Event
+            <AiOutlineCloseCircle color='#208970' size={20} />
           </Space>
         </Col>
       </Button>

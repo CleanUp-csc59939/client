@@ -5,7 +5,7 @@ import { Row, Col, Image } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { ConvertDate, GetProfile, matchEventAndUser } from '../../Shared/Functions';
 import Divider from '../../Shared/Components';
-import { Delete, Edit, Join } from './eventComponents/Buttons';
+import { Delete, Edit, Join, Leave } from './eventComponents/Buttons';
 import '../../Shared/shared.less';
 import '../homepage/home.less';
 import RegisteredUsers from './eventComponents/RegisteredUsers';
@@ -25,25 +25,16 @@ const joinEvent = async (eventID, userID) => {
   return a;
 };
 
-const renderEventActions = (event, currentUser, editURL) => {
-  console.log(currentUser);
-  if (event.userID === currentUser.id) {
-    return <Edit editUrl={editURL} />;
-  }
-
-  const isUserReg = GetProfile(currentUser.id).then((response) => {
-    return matchEventAndUser(event, response.data);
-  });
-
-  if (isUserReg) {
-    return <p>Leave event</p>;
-  }
-
-  return <Join joinEvent={joinEvent} eventID={event.userID} userID={currentUser.id} />;
+const leaveEvent = async (eventID, userID) => {
+  const a = await eventsService.leaveEvent(eventID, userID);
+  return a;
 };
+
+
 
 export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
+  const [isUserReg, setUserReg] = useState('');
   const history = useHistory();
   const editUrl = `${window.location.pathname}/edit`;
   const { currentUser } = props;
@@ -60,6 +51,24 @@ export default function SingleEvent(props) {
 
   if (event !== '') {
     console.log(event);
+
+    const renderEventActions = (editURL) => {
+      
+      console.log(currentUser);
+      if (event.userID === currentUser.id) {
+        return <Edit editUrl={editURL} />;
+      }
+      GetProfile(currentUser.id).then((response) => {
+        setUserReg(matchEventAndUser(event, response.data));
+      });
+    
+      if (isUserReg) {
+        return <Leave leaveEvent={leaveEvent} eventID={event.userID} userID={currentUser.id} /> ;
+      };
+    
+      return <Join joinEvent={joinEvent} eventID={event.userID} userID={currentUser.id} />;
+    };
+
     return (
       <div>
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
