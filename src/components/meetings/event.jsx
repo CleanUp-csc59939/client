@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import eventsService from '../../services/events.service';
 import { Row, Col, Image } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
-import ConvertDate from '../../Shared/Functions';
+import { ConvertDate, GetProfile, matchEventAndUser } from '../../Shared/Functions';
 import Divider from '../../Shared/Components';
-import { Delete, Edit, Join } from './eventComponents/Buttons';
+import { Delete, Edit, Join, Leave } from './eventComponents/Buttons';
 import '../../Shared/shared.less';
 import '../homepage/home.less';
 import RegisteredUsers from './eventComponents/RegisteredUsers';
@@ -20,8 +20,21 @@ const deleteEvent = async (userID) => {
   return a;
 };
 
+const joinEvent = async (eventID, userID) => {
+  const a = await eventsService.joinEvent(eventID, userID);
+  return a;
+};
+
+const leaveEvent = async (eventID, userID) => {
+  const a = await eventsService.leaveEvent(eventID, userID);
+  return a;
+};
+
+
+
 export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
+  const [isUserReg, setUserReg] = useState('');
   const history = useHistory();
   const editUrl = `${window.location.pathname}/edit`;
   const { currentUser } = props;
@@ -36,12 +49,26 @@ export default function SingleEvent(props) {
     return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
   }
 
-  if (event == null) {
-    return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
-  }
-
   if (event !== '') {
-    console.log(event.date);
+    console.log(event);
+
+    const renderEventActions = (editURL) => {
+      
+      console.log(currentUser);
+      if (event.userID === currentUser.id) {
+        return <Edit editUrl={editURL} />;
+      }
+      GetProfile(currentUser.id).then((response) => {
+        setUserReg(matchEventAndUser(event, response.data));
+      });
+    
+      if (isUserReg) {
+        return <Leave leaveEvent={leaveEvent} eventID={event.userID} userID={currentUser.id} /> ;
+      };
+    
+      return <Join joinEvent={joinEvent} eventID={event.userID} userID={currentUser.id} />;
+    };
+
     return (
       <div>
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
@@ -61,11 +88,15 @@ export default function SingleEvent(props) {
                 <AiOutlineEnvironment color='#208970' size={24} />
                 <div>{event.location}</div>
               </Row>
-              {event.userID === currentUser.id ? <Edit editUrl={editUrl} /> : <Join />}
+
+              {currentUser && renderEventActions(event, currentUser, editUrl)}
             </Col>
             <Col style={{ paddingLeft: '2%', paddingRight: '2%' }}>
               <div className='banner-subheader'>{event.name}</div>
-              <div>{event.description} Description of event! Placeholder</div>
+              <div>
+                {event.description} Description of event! Join us for a community bi-weekly cleanup here at Prospect
+                Park. Gloves and trashbags are provided. Bring a friend or 2!
+              </div>
               <Divider height={1} color='#C4C4C4' />
               <Row>
                 <AiOutlineUsergroupAdd />
