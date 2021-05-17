@@ -1,6 +1,5 @@
 import { React, useState } from 'react';
 // import { Row, Col, Space, Image, Button } from 'antd';
-
 // import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 import eventsService from '../../services/events.service';
 import userService  from '../../services/user.service';

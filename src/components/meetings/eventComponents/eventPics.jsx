@@ -2,6 +2,7 @@ import { Upload, Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { React, useState } from 'react';
 import eventsService from '../../../services/events.service';
+import ImgCrop from 'antd-img-crop';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -70,6 +71,7 @@ export default function EventPics({ id }) {
 
   return (
     <>
+    <ImgCrop grid aspect={100/60}>
       <Upload
         customRequest={uploadRequest}
         action={id}
@@ -80,6 +82,7 @@ export default function EventPics({ id }) {
       >
         {fileList.length >= 8 ? null : uploadButton}
       </Upload>
+      </ImgCrop>
       <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img alt='example' style={{ width: '100%' }} src={previewImage} />
       </Modal>

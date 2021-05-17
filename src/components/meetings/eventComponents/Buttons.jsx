@@ -94,15 +94,15 @@ export const Leave = (props) => {
         style={{
           height: 40,
           width: 200,
-          backgroundColor: '#AEFFCF',
+          backgroundColor: '#eb4242',
           borderRadius: 30,
-          borderColor: '#AEFFCF',
+          borderColor: '#eb4242',
         }}
       >
         <Col>
           <Space>
             Leave Event
-            <AiOutlineCloseCircle color='#208970' size={20} />
+            <AiOutlineCloseCircle color='#ffffff' size={20} />
           </Space>
         </Col>
       </Button>

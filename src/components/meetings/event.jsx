@@ -34,7 +34,9 @@ export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const [isUserReg, setUserReg] = useState('');
   const history = useHistory();
+  
   const editUrl = `${window.location.pathname}/edit`;
+  console.log(editUrl);
   const { currentUser } = props;
 
   if (event === '') {
@@ -50,10 +52,10 @@ export default function SingleEvent(props) {
   if (event !== '') {
     console.log(event);
 
-    const renderEventActions = (editURL) => {
+    const renderEventActions = () => {
       console.log(currentUser);
       if (event.userID === currentUser.id) {
-        return <Edit editUrl={editURL} />;
+        return <Edit editUrl={editUrl} />;
       }
       GetProfile(currentUser.id).then((response) => {
         setUserReg(matchEventAndUser(event, response.data));
@@ -86,7 +88,7 @@ export default function SingleEvent(props) {
                 <div>{event.location}</div>
               </Row>
 
-              {currentUser && renderEventActions(event, currentUser, editUrl)}
+              {currentUser && renderEventActions()}
             </Col>
             <Col style={{ paddingLeft: '2%', paddingRight: '2%' }}>
               <div className='banner-subheader'>{event.name}</div>
