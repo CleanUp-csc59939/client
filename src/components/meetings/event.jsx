@@ -2,14 +2,10 @@ import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import eventsService from '../../services/events.service';
 import { Row, Col, Image } from 'antd';
-import {
-  AiOutlineCalendar,
-  AiOutlineEnvironment,
-  AiOutlineUsergroupAdd,
-} from 'react-icons/ai';
+import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import ConvertDate from '../../Shared/Functions';
 import Divider from '../../Shared/Components';
-import {Delete, Edit, Join} from './eventComponents/Buttons'
+import { Delete, Edit, Join } from './eventComponents/Buttons';
 import '../../Shared/shared.less';
 import '../homepage/home.less';
 import RegisteredUsers from './eventComponents/RegisteredUsers';
@@ -28,8 +24,8 @@ export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const history = useHistory();
   const editUrl = `${window.location.pathname}/edit`;
-  const {currentUser} = props
-    
+  const { currentUser } = props;
+
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);
@@ -40,12 +36,12 @@ export default function SingleEvent(props) {
     return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
   }
 
-  if (event==null)  {
-      return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>
-    }
+  if (event == null) {
+    return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
+  }
 
   if (event !== '') {
-    console.log(event)
+    console.log(event.date);
     return (
       <div>
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
@@ -65,21 +61,21 @@ export default function SingleEvent(props) {
                 <AiOutlineEnvironment color='#208970' size={24} />
                 <div>{event.location}</div>
               </Row>
-              {(event.userID ===  currentUser.id) ? <Edit editUrl={editUrl}/> : <Join/>}
+              {event.userID === currentUser.id ? <Edit editUrl={editUrl} /> : <Join />}
             </Col>
-          <Col style={{paddingLeft: '2%', paddingRight: '2%'}}>
-            <div className="banner-subheader">{event.name}</div>
-            <div>{event.description} Description of event! Join us for a community bi-weekly cleanup here at Prospect Park. Gloves and trashbags are provided. Bring a friend or 2!</div>
-            <Divider height={1} color='#C4C4C4'/>
-            <Row>
-              <AiOutlineUsergroupAdd/>
-              <div>{`${event.amount} attending`}</div>
-            </Row>
-            <RegisteredUsers registered={event.registered}/>
-          </Col>
+            <Col style={{ paddingLeft: '2%', paddingRight: '2%' }}>
+              <div className='banner-subheader'>{event.name}</div>
+              <div>{event.description} Description of event! Placeholder</div>
+              <Divider height={1} color='#C4C4C4' />
+              <Row>
+                <AiOutlineUsergroupAdd />
+                <div>{`${event.amount} attending`}</div>
+              </Row>
+              <RegisteredUsers registered={event.registered} />
+            </Col>
           </Row>
         </div>
-        {(event.userID ===  currentUser.id) ?  <Delete event={event} deleteEvent={deleteEvent} history={history}/> : null}
+        {event.userID === currentUser.id ? <Delete event={event} deleteEvent={deleteEvent} history={history} /> : null}
       </div>
     );
   }
