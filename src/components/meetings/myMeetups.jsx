@@ -1,28 +1,8 @@
 import { React, useState } from 'react';
-// import Loading from './my-loading-component';
 import { Row, Col, Space, Image, Button } from 'antd';
 
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 import eventsService from '../../services/events.service';
-
-// const EventData = {
-//   userID: 1,
-//   name: 'Bi-Weekly Clean Up at Prospect Park',
-//   desc:
-//     'Lorem ipsum Messenger bag chartreuse craft beer, affogato tacos fashion axe palo santo kinfolk meditation austin skateboard green juice. Sriracha mustache ',
-//   locationName: 'Prospect Park',
-//   location: '123 Smith Street, Brooklyn, NY 10434',
-//   img: 'https://patersontimes.com/wp-content/uploads/2015/04/paterson-students-cleaning-great-falls.jpg',
-//   date: 'Tuesday, May 4th, 2021',
-//   time: '5:30-8:30pm',
-//   type: 'Park',
-//   amount: '8',
-//   attending: [
-//     { name: 'John Kim', userID: 2 },
-//     { name: 'Riley Adams', userID: 3 },
-//     { name: 'Julio Carlos', userID: 4 },
-//   ],
-//  };
 
 const getEvents = async () => {
   const a = await eventsService.getEvents();

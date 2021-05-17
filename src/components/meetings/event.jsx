@@ -4,7 +4,6 @@ import eventsService from '../../services/events.service';
 import { Row, Col, Image } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { ConvertDate, GetProfile, matchEventAndUser } from '../../Shared/Functions';
-
 import Divider from '../../Shared/Components';
 import { Delete, Edit, Join } from './eventComponents/Buttons';
 import '../../Shared/shared.less';
