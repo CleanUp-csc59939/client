@@ -42,10 +42,11 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
   if (currentUser) {
     return (
       <div className='site-page-header'>
+        <img className='headerImg' src='/logo.png' alt='' />
         <Row className='web' style={{ padding: '2%' }}>
           <Col span={3} style={{ paddingTop: '10px' }}>
-            <Button type='link' href='/home'>
-              <h2 style={{ fontWeight: 'bold', color: '#4F4F4F' }}>Clean Up</h2>
+            <Button className='homeButton' type='link' href='/home'>
+              <h2 style={{ fontWeight: 'bold', color: '#4F4F4F' }}>CleanUp</h2>
             </Button>
           </Col>
           <Col span={9}>

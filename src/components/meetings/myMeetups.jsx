@@ -5,6 +5,12 @@ import eventsService from '../../services/events.service';
 import userService from '../../services/user.service';
 import { EventCarousel } from '../../Shared/Components';
 
+// const getEvents = async () => {
+//   const a = await eventsService.getEvents();
+//   return a;
+// };
+
+
 export default function MyMeetups(props) {
   const { currentUser } = props;
   const [events, setEvents] = useState('');

@@ -28,7 +28,7 @@ export const EventCarousel = (props) => {
             <Link to={`/event/${events[index].id}`} key={index}>
               <Row>
                 <Card
-                  cover={<img src={events[index].img} alt='event' style={{ height: '180px' }} />}
+                  cover={<img src={events[index].img[0]} alt='event' style={{ height: '180px' }} />}
                   style={{ width: '90%' }}
                 >
                   <h1>{events[index].name}</h1>

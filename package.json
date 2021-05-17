@@ -30,6 +30,7 @@
     "algoliasearch": "^4.9.1",
     "antd": "^4.15.1",
     "antd-img-crop": "^3.14.1",
+    "anymatch": "^3.1.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "craco-less": "^1.17.1",
@@ -92,5 +93,9 @@
     "whitelist": [
       "MEILI"
     ]
+  },
+  "resolutions": {
+    "**/react": "17.0.2",
+    "**/react-dom": "17.0.2"
   }
 }

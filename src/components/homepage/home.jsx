@@ -33,8 +33,8 @@ export default function Home(props) {
               <Link to={`/event/${events[index].id}`}>
                 <Row>
                   <Card
-                    cover={<img src={events[index].img} alt='event' style={{ height: '180px' }} />}
-                    style={{ width: '90%' }}
+                    cover={<img src={events[index].img[0]} alt='event' style={{ height: '230px' }} />}
+                    style={{ width: '75%' }}
                   >
                     <h1>{events[index].name}</h1>
                     <p className='accent'>{ConvertDate(events[index].date)}</p>
