@@ -88,18 +88,18 @@ const Banner = (props) => {
             <Button
               shape='round'
               style={{
-                height: 40,
+                height: 50,
                 width: 200,
-                backgroundColor: '#3EFFD1',
+                backgroundColor: '#AEFFCF',
                 borderRadius: 30,
-                borderColor: '#3EFFD1',
+                borderColor: '#AEFFCF',
               }}
               href={eventUrl}
             >
-              <Col>
+              <Col style={{paddingTop: '5%'}}>
                 <Space>
-                  More Details
-                  <AiOutlineArrowRight size={28} style={{paddingTop: 8}} />
+                  <h3>More Details</h3>
+                  <AiOutlineArrowRight size={22}  />
                 </Space>
               </Col>
             </Button>
