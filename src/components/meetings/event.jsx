@@ -4,7 +4,7 @@ import eventsService from '../../services/events.service';
 import { Row, Col, Image } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { ConvertDate, GetProfile, matchEventAndUser } from '../../Shared/Functions';
-import Divider from '../../Shared/Components';
+import { Divider } from '../../Shared/Components';
 import { Delete, Edit, Join, Leave } from './eventComponents/Buttons';
 import '../../Shared/shared.less';
 import '../homepage/home.less';
@@ -81,7 +81,7 @@ export default function SingleEvent(props) {
             >
               <Row>
                 <AiOutlineCalendar color='#208970' size={24} style={{ marginTop: '1.5%', marginRight: '1%' }} />
-                <div className='banner-subheader'>Someday, {ConvertDate(event.date)}</div>
+                <div className='banner-subheader'>{ConvertDate(event.date)}</div>
               </Row>
               <Row>
                 <AiOutlineEnvironment color='#208970' size={24} />

@@ -26,7 +26,7 @@
 .headerImg {
   height: 75px;
   width: 75px;
-  margin-top: calc((2%-75px) /2);
+  margin-top: calc((2%-75px) / 2);
   display: block;
   position: absolute;
   left: calc((20% - 75px) / 2);

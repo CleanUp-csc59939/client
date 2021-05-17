@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
-import Divider from '../../../Shared/Components';
+import { Divider } from '../../../Shared/Components';
 import { ConvertDate } from '../../../Shared/Functions';
 import { Row, Col, Space, Image, Button, Carousel } from 'antd';
 
