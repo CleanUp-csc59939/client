@@ -65,9 +65,7 @@ export default function SingleEvent(props) {
             </Col>
             <Col style={{ paddingLeft: '2%', paddingRight: '2%' }}>
               <div className='banner-subheader'>{event.name}</div>
-              <div>
-                {event.description} Description of event! Placeholder
-              </div>
+              <div>{event.description} Description of event! Placeholder</div>
               <Divider height={1} color='#C4C4C4' />
               <Row>
                 <AiOutlineUsergroupAdd />
