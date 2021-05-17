@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form, Input, Button, AutoComplete } from 'antd';
+import { Form, Input, Button, AutoComplete, DatePicker } from 'antd';
+import moment from 'moment';
 
 const layout = {
   labelCol: {
@@ -92,7 +93,7 @@ export const FormWeb = (props) => {
           },
         ]}
       >
-        <Input />
+        <DatePicker format='YYYY-MM-DD h:mm a' showTime={{ defaultValue: moment('00:00', 'HH:mm') }} />
       </Form.Item>
 
       <Form.Item
@@ -118,7 +119,7 @@ export const FormWeb = (props) => {
 };
 
 export const FormWebEdit = (props) => {
-  const { onFinish, onFinishFailed, name, location, desc, date, type, img } = props;
+  const { onFinish, onFinishFailed, name, location, desc, type } = props;
   return (
     <Form
       {...layout}
@@ -169,7 +170,7 @@ export const FormWebEdit = (props) => {
       </Form.Item>
 
       <Form.Item
-        label='date'
+        label='Change Date'
         name='date'
         rules={[
           {
@@ -178,7 +179,7 @@ export const FormWebEdit = (props) => {
           },
         ]}
       >
-        <AutoComplete placeholder={date}></AutoComplete>
+        <DatePicker format='YYYY-MM-DD h:mm a' showTime={{ defaultValue: moment('00:00', 'HH:mm') }} />
       </Form.Item>
 
       <Form.Item
@@ -192,19 +193,6 @@ export const FormWebEdit = (props) => {
         ]}
       >
         <AutoComplete placeholder={type}></AutoComplete>
-      </Form.Item>
-
-      <Form.Item
-        label='image URL'
-        name='img'
-        rules={[
-          {
-            required: false,
-            message: 'Please input the image url!',
-          },
-        ]}
-      >
-        <AutoComplete placeholder={img}></AutoComplete>
       </Form.Item>
 
       <Form.Item {...tailLayout}>

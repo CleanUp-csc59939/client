@@ -37,6 +37,7 @@ export default function EditEvent(props) {
   };
 
   const onFinish = (values) => {
+    console.log(values.date);
     updateEvent(
       props.match.params.id,
       values.name ? values.name : event.name, // name
