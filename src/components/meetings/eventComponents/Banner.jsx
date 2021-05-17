@@ -1,11 +1,27 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
+import { Row, Col, Space, Image, Button, Carousel } from 'antd';
 import { Divider } from '../../../Shared/Components';
 import { ConvertDate } from '../../../Shared/Functions';
-import { Row, Col, Space, Image, Button, Carousel } from 'antd';
+import userService from '../../../services/user.service';
 
 const Banner = (props) => {
   const { currentUser, event } = props;
+  const [userProfile, setUserProfile] = useState('');
+
+  const getUserProfile = async () => {
+    const a = await userService.getUserProfile(currentUser.id);
+    return a;
+  };
+
+  if (userProfile === '') {
+    getUserProfile().then((response) => {
+      setUserProfile(response.data);
+    });
+  }
+  console.log(userProfile)
+
+
   let eventUrl = '';
   let eventImgs = '';
   if (event) {
@@ -24,7 +40,7 @@ const Banner = (props) => {
       >
         <Row>
           <Col span={12} offset={4}>
-            <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
+            <h1 className='banner-text'>Hi {userProfile.name}, get ready for your next cleanup!</h1>
             <Divider height={1} width='70%' color='#3EFFD1' />
             <br />
             <div className='banner-subheader banner-text'>{event.name}</div>
@@ -82,8 +98,8 @@ const Banner = (props) => {
             >
               <Col>
                 <Space>
-                  More details
-                  <AiOutlineArrowRight size={20} />
+                  More Details
+                  <AiOutlineArrowRight size={28} style={{paddingTop: 8}} />
                 </Space>
               </Col>
             </Button>
