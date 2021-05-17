@@ -15,9 +15,9 @@ export const ConvertDate = (date) => {
   const month = dateObj.getUTCMonth() + 1; // months from 1-12
   const day = dateObj.getUTCDate();
   const weekday = dateObj.getUTCDay();
-  // const localTime = dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const localTime = dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   // const newdate = `${month}/${day}, ${localTime}`;
-  const newdate = `${weekdayMap[weekday]}, ${month}/${day}`;
+  const newdate = `${weekdayMap[weekday]}, ${month}/${day} ${localTime}`;
   return newdate;
 };
 
