@@ -4,7 +4,7 @@ import eventsService from '../../services/events.service';
 import { Row, Col, Image } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { ConvertDate, GetProfile, matchEventAndUser } from '../../Shared/Functions';
-import Divider from '../../Shared/Components';
+import {Divider} from '../../Shared/Components';
 import { Delete, Edit, Join, Leave } from './eventComponents/Buttons';
 import '../../Shared/shared.less';
 import '../homepage/home.less';
@@ -30,8 +30,6 @@ const leaveEvent = async (eventID, userID) => {
   return a;
 };
 
-
-
 export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const [isUserReg, setUserReg] = useState('');
@@ -53,7 +51,6 @@ export default function SingleEvent(props) {
     console.log(event);
 
     const renderEventActions = (editURL) => {
-      
       console.log(currentUser);
       if (event.userID === currentUser.id) {
         return <Edit editUrl={editURL} />;
@@ -61,11 +58,11 @@ export default function SingleEvent(props) {
       GetProfile(currentUser.id).then((response) => {
         setUserReg(matchEventAndUser(event, response.data));
       });
-    
+
       if (isUserReg) {
-        return <Leave leaveEvent={leaveEvent} eventID={event.userID} userID={currentUser.id} /> ;
-      };
-    
+        return <Leave leaveEvent={leaveEvent} eventID={event.userID} userID={currentUser.id} />;
+      }
+
       return <Join joinEvent={joinEvent} eventID={event.userID} userID={currentUser.id} />;
     };
 
@@ -82,7 +79,7 @@ export default function SingleEvent(props) {
             >
               <Row>
                 <AiOutlineCalendar color='#208970' size={24} style={{ marginTop: '1.5%', marginRight: '1%' }} />
-                <div className='banner-subheader'>Someday, {ConvertDate(event.date)}</div>
+                <div className='banner-subheader'>{ConvertDate(event.date)}</div>
               </Row>
               <Row>
                 <AiOutlineEnvironment color='#208970' size={24} />
