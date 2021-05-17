@@ -1,7 +1,8 @@
 import { React, useState } from 'react';
-import { Avatar } from 'antd';
+// import { Avatar } from 'antd';
 import userService from '../../services/user.service';
 import AuthService from '../../services/auth.service';
+import './profile.css';
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 const getUserID = () => {
@@ -26,15 +27,23 @@ export default function Profile() {
   }
 
   return (
-    <div>
-      <Avatar src={content.img} size={128} alt='' />
-      <p>{content.name}</p>
-      <p>{currentUser.email}</p>
-      <p>{content.bio}</p>
-      <p>{content.location}</p>
-      <p>{content.number}</p>
+    <div className="main">
+    <div className="row">
+      <div className="card">
+        <a href="image.html"><img id="i1" alt=""  src={content.img}  width="200" /> </a>
+        <br/><h3>Name: {content.name}</h3><br/><br/>
+        <h3>Bio: {content.bio}</h3><br/><br/>
+        <h3>Email: {currentUser.email}</h3><br/><br/>
+        <h3>Phone: {content.number}</h3><br/><br/>
+        <h3>Location: {content.location}</h3><br/>
+        <h1><a href='/profile/edit' className="myButton">Update Information</a></h1>
+        
+      </div>
+      </div>
+      </div>
+      
 
-      <a href='/profile/edit'>Edit Profile</a>
-    </div>
+
+
   );
 }

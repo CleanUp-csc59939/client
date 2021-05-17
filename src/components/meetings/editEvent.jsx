@@ -59,7 +59,7 @@ export default function EditEvent(props) {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Create MeetUp</h1>
+      <h1 style={{ textAlign: 'center' }}>Edit MeetUp</h1>
       <div className='web'>
         <FormWebEdit
           onFinish={onFinish}
@@ -69,8 +69,11 @@ export default function EditEvent(props) {
           desc={event.desc}
           type={event.type}
           date={event.date}
-        />
+        >
+        </FormWebEdit>
+        <div style={{ textAlign: 'center' }}>
         <EventPics id={getID} />
+        </div>
       </div>
     </div>
   );

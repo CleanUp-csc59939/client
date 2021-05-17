@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import eventsService from '../../services/events.service';
-import { Row, Col, Image } from 'antd';
+import { Row, Col, Image, Carousel } from 'antd';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd } from 'react-icons/ai';
 import { ConvertDate, GetProfile, matchEventAndUser } from '../../Shared/Functions';
 import { Divider } from '../../Shared/Components';
@@ -73,7 +73,17 @@ export default function SingleEvent(props) {
         <div style={{ margin: '5%', padding: '5%', backgroundColor: 'white' }}>
           <Row>
             <Col span={12}>
-              <Image src={event.img[0]} style={{ borderTopLeftRadius: 10, height:'350px', width: '600px' }} />
+
+            <Carousel autoplay>
+              {event.img.map((image) => {
+                return (
+                  <div>
+                    <Image  width="600" height='350'  src={image} style={{ borderTopLeftRadius: 10}} />
+                  </div>
+                );
+              })}
+            </Carousel>
+          
             </Col>
             <Col
               span={12}
