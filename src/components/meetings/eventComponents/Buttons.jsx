@@ -53,13 +53,12 @@ export const Join = (props) => {
   return (
     <Col span={12} offset={4}>
       <Button
-      onClick = {() => {
-        joinEvent(eventID, userID).then(() => {
-          // window.location.reload();
-          console.log('event joined');
-        });
-       
-      }}
+        onClick={() => {
+          joinEvent(eventID, userID).then(() => {
+            // window.location.reload();
+            console.log('event joined');
+          });
+        }}
         shape='round'
         style={{
           height: 40,

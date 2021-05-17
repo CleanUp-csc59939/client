@@ -4,7 +4,7 @@ import '../../Shared/shared.less';
 import { Row, Carousel, Card } from 'antd';
 import { Link } from 'react-router-dom';
 import eventsService from '../../services/events.service';
-import {ConvertDate} from '../../Shared/Functions';
+import { ConvertDate } from '../../Shared/Functions';
 import Banner from '../meetings/eventComponents/Banner';
 
 const getEvents = async () => {
