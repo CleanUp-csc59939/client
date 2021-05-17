@@ -24,19 +24,6 @@ export default function MyMeetups(props) {
     let eventUrl = ``;
     return (
       <div>
-        <a href='/myMeetUps/create' alt='' type='submit'>
-          <Button
-            shape='round'
-            style={{ height: 60, width: 240, backgroundColor: '#3EFFD1', borderRadius: 60, borderColor: '#3EFFD1' }}
-          >
-            <Col>
-              <Space>
-                Create An Event
-                <AiOutlineArrowRight size={20} />
-              </Space>
-            </Col>
-          </Button>
-        </a>
         <>
           {Object.keys(events)
             .map((index) => {
