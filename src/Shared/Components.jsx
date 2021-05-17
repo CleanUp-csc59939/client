@@ -1,8 +1,8 @@
 import { Row, Carousel, Card } from 'antd';
 import { Link } from 'react-router-dom';
-import {ConvertDate} from './Functions';
+import { ConvertDate } from './Functions';
 import './shared.less';
-import '../components/homepage/home.less'
+import '../components/homepage/home.less';
 
 export const Divider = (props) => {
   const { height, color, width } = props;
@@ -18,11 +18,11 @@ export const Divider = (props) => {
 };
 
 export const EventCarousel = (props) => {
-  const {titleText, events, slidesToShow} = props
+  const { titleText, events, slidesToShow } = props;
   return (
     <div>
       <h2 className='big-title v-title-pad horizontal-pad'>{titleText}</h2>
-      <Carousel slidesToShow={slidesToShow} className={slidesToShow === 1 ? 'xtra-horizontal-pad' : 'horizontal-pad'} >
+      <Carousel slidesToShow={slidesToShow} className={slidesToShow === 1 ? 'xtra-horizontal-pad' : 'horizontal-pad'}>
         {Object.keys(events).map((index) => {
           return (
             <Link to={`/event/${events[index].id}`} key={index}>

@@ -71,17 +71,17 @@ export default function EventPics({ id }) {
 
   return (
     <>
-    <ImgCrop grid aspect={100/60}>
-      <Upload
-        customRequest={uploadRequest}
-        action={id}
-        listType='picture-card'
-        fileList={fileList}
-        onPreview={handlePreview}
-        onChange={handleChange}
-      >
-        {fileList.length >= 8 ? null : uploadButton}
-      </Upload>
+      <ImgCrop grid aspect={100 / 60}>
+        <Upload
+          customRequest={uploadRequest}
+          action={id}
+          listType='picture-card'
+          fileList={fileList}
+          onPreview={handlePreview}
+          onChange={handleChange}
+        >
+          {fileList.length >= 8 ? null : uploadButton}
+        </Upload>
       </ImgCrop>
       <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img alt='example' style={{ width: '100%' }} src={previewImage} />
