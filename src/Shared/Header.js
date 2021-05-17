@@ -59,7 +59,7 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
                   </Button>
                 </Col>
                 <Col>
-                  <Button type='link' href='/profile' onClick={logOut}>
+                  <Button type='link' href='/profile'>
                     <h2>Profile</h2>
                   </Button>
                 </Col>
