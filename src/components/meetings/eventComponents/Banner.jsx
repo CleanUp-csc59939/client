@@ -1,12 +1,27 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
+import { Row, Col, Space, Image, Button, Carousel } from 'antd';
 import { Divider } from '../../../Shared/Components';
 import { ConvertDate } from '../../../Shared/Functions';
-import { Row, Col, Space, Image, Button, Carousel } from 'antd';
+import userService from '../../../services/user.service';
 import './Banner.css';
 
 const Banner = (props) => {
   const { currentUser, event } = props;
+  const [userProfile, setUserProfile] = useState('');
+
+  const getUserProfile = async () => {
+    const a = await userService.getUserProfile(currentUser.id);
+    return a;
+  };
+
+  if (userProfile === '') {
+    getUserProfile().then((response) => {
+      setUserProfile(response.data);
+    });
+  }
+  console.log(userProfile);
+
   let eventUrl = '';
   let eventImgs = '';
   if (event) {
@@ -19,13 +34,13 @@ const Banner = (props) => {
           backgroundColor: '#208970',
           paddingTop: '80px',
           paddingBottom: '100px',
-          marginBottom: '50px',
-          marginTop: '50px',
+          margin: '60px',
+          borderRadius: '20px',
         }}
       >
         <Row>
           <Col span={12} offset={4}>
-            <h1 className='banner-text'>Hi {currentUser.email}, get ready for your next cleanup!</h1>
+            <h1 className='banner-text'>Hi {userProfile.name}, get ready for your next cleanup!</h1>
             <Divider height={1} width='70%' color='#3EFFD1' />
             <br />
             <div className='banner-subheader banner-text'>{event.name}</div>
@@ -63,7 +78,7 @@ const Banner = (props) => {
               {eventImgs.map((image) => {
                 return (
                   <div>
-                    <Image  width="600" height='350'  src={image} />
+                    <Image width='600' height='350' src={image} />
                   </div>
                 );
               })}
@@ -73,18 +88,18 @@ const Banner = (props) => {
             <Button
               shape='round'
               style={{
-                height: 40,
+                height: 50,
                 width: 200,
-                backgroundColor: '#3EFFD1',
+                backgroundColor: '#AEFFCF',
                 borderRadius: 30,
-                borderColor: '#3EFFD1',
+                borderColor: '#AEFFCF',
               }}
               href={eventUrl}
             >
-              <Col>
+              <Col style={{ paddingTop: '5%' }}>
                 <Space>
-                  More details
-                  <AiOutlineArrowRight size={20} />
+                  <h3>More Details</h3>
+                  <AiOutlineArrowRight size={22} />
                 </Space>
               </Col>
             </Button>

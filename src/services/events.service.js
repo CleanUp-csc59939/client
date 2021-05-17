@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+import { MeiliSearch } from 'meilisearch';
 
 const API_URL = 'https://cleanup-312620-ve6aqjr5zq-ue.a.run.app/api';
 
@@ -61,6 +62,16 @@ const leaveEvent = (eventID, user) => {
   return axios.patch(`${API_URL}/event/${eventID}/unregister`, { headers: authHeader(), userID: user });
 };
 
+const client = new MeiliSearch({
+  host: 'http://3.139.65.222/',
+  apiKey: 'NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1',
+});
+
+const updateSearch = (eventObject) => {
+  console.log('EVENT OBJECT ', eventObject);
+  client.index('events').addDocuments([eventObject]);
+};
+
 export default {
   getEvents,
   createEvent,
@@ -70,4 +81,5 @@ export default {
   uploadEventPic,
   joinEvent,
   leaveEvent,
+  updateSearch,
 };
