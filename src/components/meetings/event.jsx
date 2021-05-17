@@ -34,7 +34,7 @@ export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const [isUserReg, setUserReg] = useState('');
   const history = useHistory();
-  
+
   const editUrl = `${window.location.pathname}/edit`;
   console.log(editUrl);
   const { currentUser } = props;

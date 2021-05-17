@@ -2,7 +2,6 @@ import { React, useState } from 'react';
 import eventsService from '../../services/events.service';
 import Banner from './eventComponents/Banner';
 
-
 const getEvents = async () => {
   const a = await eventsService.getEvents();
   return a;
@@ -20,18 +19,12 @@ export default function MyMeetups(props) {
   const { currentUser } = props;
 
   if (currentUser && currentUser.email && events !== '') {
-    
     return (
       <div>
-        
         <>
           {Object.keys(events)
             .map((index) => {
-              
-              return (
-                  <Banner event={events[index]} currentUser = {currentUser} />
-                
-              );
+              return <Banner event={events[index]} currentUser={currentUser} />;
             })
             .filter((_, index) => events[index].registered.includes(currentUser.id))}
         </>

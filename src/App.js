@@ -7,7 +7,6 @@ import Unauthorized from './components/unauth/Unauthorized';
 import Home from './components/homepage/home';
 import Login from './components/login/login';
 import SignUp from './components/signup/SignUp';
-import SideMenu from './Shared/SideMenu';
 import AuthService from './services/auth.service';
 import Header from './Shared/Header';
 import ProtectedRoute from './components/unauth/ProtectedRoute';
@@ -35,7 +34,6 @@ function App() {
     <div>
       <Layout style={{ minHeight: '100vh' }}>
         <BrowserRouter>
-          <SideMenu currentUser={currentUser} />
           <Layout className='site-layout'>
             <Header currentUser={currentUser} pageTitle={pageTitle} />
 
