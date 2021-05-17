@@ -1,4 +1,6 @@
-const ConvertDate = (date) => {
+import userService from '../services/user.service';
+
+export const ConvertDate = (date) => {
   const dateObj = new Date(date);
   const month = dateObj.getUTCMonth() + 1; // months from 1-12
   const day = dateObj.getUTCDate();
@@ -7,4 +9,16 @@ const ConvertDate = (date) => {
   return newdate;
 };
 
-export default ConvertDate;
+export const GetProfile = async (id) => {
+  const a = await userService.getUserProfile(id);
+  return a;
+};
+
+export const matchEventAndUser = (event, profile) => {
+  for (let i = 0; i < event.registered.length; i += 1) {
+    if (event.registered[i].userID === profile.userID) {
+      return true;
+    }
+  }
+  return false;
+};

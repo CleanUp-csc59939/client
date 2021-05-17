@@ -7,7 +7,8 @@ import {
   AiOutlineEnvironment,
   AiOutlineUsergroupAdd,
 } from 'react-icons/ai';
-import ConvertDate from '../../Shared/Functions';
+import {ConvertDate, GetProfile, matchEventAndUser} from  '../../Shared/Functions';
+
 import Divider from '../../Shared/Components';
 import {Delete, Edit, Join} from './eventComponents/Buttons'
 import '../../Shared/shared.less';
@@ -24,16 +25,43 @@ const deleteEvent = async (userID) => {
   return a;
 };
 
-const joinEvent = async (userID) => {
+const joinEvent = async (eventID, userID) => {
   const a = await eventsService.joinEvent(eventID, userID);
   return a;
 }
+
+const renderEventActions = (event, currentUser, editURL) => 
+  {
+    console.log(currentUser);
+    if (event.userID ===  currentUser.id)
+    {
+      return <Edit editUrl={editURL}/> 
+    } 
+    
+    
+      
+
+       const isUserReg =  GetProfile(currentUser.id).then((response) => {
+          return matchEventAndUser(event,response.data);
+          
+      });
+      
+      if (isUserReg){
+        
+      return <p>Leave event</p>
+      }
+
+      return <Join joinEvent={joinEvent} eventID={event.userID} userID = {currentUser.id} />
+    
+  }
+
 
 export default function SingleEvent(props) {
   const [event, setEvent] = useState('');
   const history = useHistory();
   const editUrl = `${window.location.pathname}/edit`;
   const {currentUser} = props
+
     
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
@@ -44,10 +72,6 @@ export default function SingleEvent(props) {
   if (event == null) {
     return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>;
   }
-
-  if (event==null)  {
-      return <h1 style={{ color: 'Green', fontSize: 72 }}>Oops Event does not exist...</h1>
-    }
 
   if (event !== '') {
     console.log(event)
@@ -70,7 +94,8 @@ export default function SingleEvent(props) {
                 <AiOutlineEnvironment color='#208970' size={24} />
                 <div>{event.location}</div>
               </Row>
-              {(event.userID ===  currentUser.id) ? <Edit editUrl={editUrl}/> : <Join/>}
+              
+              {currentUser && renderEventActions(event, currentUser, editUrl)}
             </Col>
           <Col style={{paddingLeft: '2%', paddingRight: '2%'}}>
             <div className="banner-subheader">{event.name}</div>

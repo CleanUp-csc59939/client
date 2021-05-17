@@ -49,12 +49,16 @@ export const Delete = (props) => {
 };
 
 export const Join = (props) => {
-  const { eventID, userID } = props;
+  const { eventID, userID, joinEvent } = props;
   return (
     <Col span={12} offset={4}>
       <Button
-      onClick = {()=>{
-        
+      onClick = {() => {
+        joinEvent(eventID, userID).then(() => {
+          // window.location.reload();
+          console.log('event joined');
+        });
+       
       }}
         shape='round'
         style={{
