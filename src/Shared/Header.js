@@ -2,9 +2,11 @@ import React from 'react';
 import { PageHeader, Button, Row, Col, Space } from 'antd';
 import { AiOutlinePlus } from 'react-icons/ai';
 import AuthService from '../services/auth.service';
-
+import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import SearchHits from './SearchHits';
+import env from 'react-dotenv';
 import './Header.css';
-// import AuthService from '../services/auth.service';
 
 const Header = ({ currentUser /* pageTitle  */ }) => {
   // logic to check if logged in goes here to switch between 2 different headers
@@ -12,6 +14,8 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
     console.log('log out');
     AuthService.logout();
   };
+
+  const searchClient = instantMeiliSearch('http://3.139.65.222/', env.MEILI);
 
   const CreateEvent = () => {
     return (
@@ -44,7 +48,13 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
               <h2 style={{ fontWeight: 'bold', color: '#4F4F4F' }}>Clean Up</h2>
             </Button>
           </Col>
-          <Col span={12} offset={9}>
+          <Col span={9}>
+            <InstantSearch indexName='events' searchClient={searchClient}>
+              <SearchBox />
+              <Hits hitComponent={SearchHits} />
+            </InstantSearch>
+          </Col>
+          <Col span={12}>
             <Row>
               <Space size='small'>
                 <CreateEvent />

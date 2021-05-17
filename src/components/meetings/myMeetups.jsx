@@ -32,7 +32,7 @@ export default function MyMeetups(props) {
     }); // the [1] is showing only that single event
   }
 
-  if (currentUser && currentUser.email && events !== '') {
+  if (currentUser && currentUser.email && events !== '' && userProfile !== '') {
     const myEvents = [];
     const eventsAttending = userProfile.events;
 

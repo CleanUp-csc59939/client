@@ -23,6 +23,7 @@ export default function CreateMeetUp({ currentUser }) {
       .then(
         () => {
           console.log('Success:', values);
+          eventsService.updateSearch(values);
           history.push('/myMeetUps');
           window.location.reload();
         },

@@ -19,8 +19,7 @@ const Banner = (props) => {
       setUserProfile(response.data);
     });
   }
-  console.log(userProfile)
-
+  console.log(userProfile);
 
   let eventUrl = '';
   let eventImgs = '';
@@ -34,8 +33,8 @@ const Banner = (props) => {
           backgroundColor: '#208970',
           paddingTop: '80px',
           paddingBottom: '100px',
-          marginBottom: '50px',
-          marginTop: '50px',
+          margin: '60px',
+          borderRadius: '20px',
         }}
       >
         <Row>
@@ -96,10 +95,10 @@ const Banner = (props) => {
               }}
               href={eventUrl}
             >
-              <Col style={{paddingTop: '5%'}}>
+              <Col style={{ paddingTop: '5%' }}>
                 <Space>
                   <h3>More Details</h3>
-                  <AiOutlineArrowRight size={22}  />
+                  <AiOutlineArrowRight size={22} />
                 </Space>
               </Col>
             </Button>

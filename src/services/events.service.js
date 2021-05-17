@@ -61,6 +61,20 @@ const leaveEvent = (eventID, user) => {
   return axios.patch(`${API_URL}/event/${eventID}/unregister`, { headers: authHeader(), userID: user });
 };
 
+const updateSearch = (eventObject) => {
+  console.log('EVENT OBJECT ', eventObject);
+  fetch('http://3.139.65.222/indexes/events/documents', {
+    method: 'PUT',
+    headers: header,
+    body: JSON.stringify(eventObject),
+  }).then((res) => {
+    if (!res.ok) {
+      console.log(res.status);
+      console.log(res.message);
+    }
+  });
+};
+
 export default {
   getEvents,
   createEvent,
@@ -70,4 +84,5 @@ export default {
   uploadEventPic,
   joinEvent,
   leaveEvent,
+  updateSearch,
 };
