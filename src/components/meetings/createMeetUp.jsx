@@ -11,15 +11,15 @@ export default function CreateMeetUp({ currentUser }) {
   };
 
   const updateSearch = async () => {
-    console.log("in update search")
-    const events = await eventsService.getEvents()
+    console.log('in update search');
+    const events = await eventsService.getEvents();
     if (events === '') {
       getEvents().then((response) => {
         setEvents(response.data);
-        eventsService.updateSearch(response.data)
+        eventsService.updateSearch(response.data);
       }); // the [1] is showing only that single event
     }
-  }
+  };
 
   const onFinish = (values) => {
     eventsService
@@ -32,9 +32,9 @@ export default function CreateMeetUp({ currentUser }) {
         values.type,
       )
       .then(
-         () => {
+        () => {
           console.log('Success:', values);
-          updateSearch()
+          updateSearch();
           history.push('/myMeetUps');
           window.location.reload();
         },
@@ -43,8 +43,6 @@ export default function CreateMeetUp({ currentUser }) {
         },
       );
   };
-
-  
 
   return (
     <div>

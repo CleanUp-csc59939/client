@@ -34,7 +34,7 @@ export default function MyMeetups(props) {
   if (events === '') {
     getEvents().then((response) => {
       setEvents(response.data);
-      eventsService.updateSearch(response.data)
+      eventsService.updateSearch(response.data);
     }); // the [1] is showing only that single event
   }
 
