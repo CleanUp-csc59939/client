@@ -29,6 +29,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.15.1",
     "antd-img-crop": "^3.14.1",
+    "antd-password-input-strength": "^1.1.1",
     "anymatch": "^3.1.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
