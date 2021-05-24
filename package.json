@@ -23,16 +23,19 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@craco/craco": "^6.1.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "@meilisearch/instant-meilisearch": "^0.4.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.15.1",
     "antd-img-crop": "^3.14.1",
+    "antd-password-input-strength": "^1.1.1",
     "anymatch": "^3.1.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "craco-less": "^1.17.1",
+    "enzyme": "^3.11.0",
     "jwt-decode": "^3.1.2",
     "meilisearch": "^0.18.2",
     "moment": "^2.29.1",
@@ -79,17 +82,27 @@
     ]
   },
   "devDependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
+    "babel-jest": "^26.6.3",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "enzyme-to-json": "^3.6.2",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "husky": "^4.3.8",
+    "jest": "^26.6.0",
     "lint-staged": "^10.5.4",
     "prettier": "2.2.1"
   },
   "resolutions": {
     "**/react": "17.0.2",
     "**/react-dom": "17.0.2"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }

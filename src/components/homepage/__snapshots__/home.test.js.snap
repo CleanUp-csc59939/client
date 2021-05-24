@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Event should render correctly in "debug" mode 1`] = `
+<div
+  id="loading"
+>
+  <img
+    alt="Loading..."
+    id="loading-image"
+    src="loading/loading-gif.gif"
+  />
+</div>
+`;
