@@ -9,7 +9,11 @@ const weekdayMap = {
   5: 'Friday',
   6: 'Saturday',
 };
-
+/**
+ *
+ * @param {date} date date object
+ * @returns {string} date date in the format of "weekday, month/day, local time"
+ */
 export const ConvertDate = (date) => {
   const dateObj = new Date(date);
   const month = dateObj.getUTCMonth() + 1; // months from 1-12

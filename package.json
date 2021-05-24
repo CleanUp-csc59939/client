@@ -23,19 +23,21 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@craco/craco": "^6.1.2",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "@meilisearch/instant-meilisearch": "^0.4.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.1",
     "antd": "^4.15.1",
     "antd-img-crop": "^3.14.1",
     "antd-password-input-strength": "^1.1.1",
     "anymatch": "^3.1.2",
     "axios": "^0.21.1",
+    "better-docs": "^2.3.2",
     "bootstrap": "^4.6.0",
     "craco-less": "^1.17.1",
     "enzyme": "^3.11.0",
+    "jsdoc": "^3.6.7",
     "jwt-decode": "^3.1.2",
     "meilisearch": "^0.18.2",
     "moment": "^2.29.1",
@@ -45,6 +47,7 @@
     "react-icons": "^4.2.0",
     "react-instantsearch-dom": "^6.11.0",
     "react-loadable": "^5.5.0",
+    "react-onclickout": "^2.0.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-text-truncate": "^0.16.0",
@@ -60,7 +63,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "eslintConfig": {
     "extends": [
