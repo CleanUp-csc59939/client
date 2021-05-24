@@ -18,6 +18,11 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
     AuthService.logout();
   };
 
+  /**
+   * sets search value to '' and sets overlay in App.js and modal to false
+   * @param none
+   * @return none
+   */
   const onClickOut = () => {
     document.getElementsByClassName('ais-SearchBox-input')[0].value = ''; // set search value to ''
     setOverlay(false);
@@ -33,6 +38,10 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
     primaryKey: 'id',
   });
 
+  /**
+   * Component for showing button to create an event
+   * @component
+   */
   const CreateEvent = () => {
     return (
       <a href='/myMeetUps/create' alt='' type='submit'>
