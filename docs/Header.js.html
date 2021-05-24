@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Header.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Header.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import { PageHeader, Button, Row, Col, Space } from 'antd';
+import { AiOutlinePlus } from 'react-icons/ai';
+import AuthService from '../services/auth.service';
+import { InstantSearch, SearchBox, Hits /* connectSearchBox */ } from 'react-instantsearch-dom';
+import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
+import SearchHits from './SearchHits';
+// import env from 'react-dotenv';
+import './Header.css';
+
+const ClickOutHandler = require('react-onclickout');
+
+const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
+  const [showModal, setShowModal] = useState(false);
+  // logic to check if logged in goes here to switch between 2 different headers
+  const logOut = () => {
+    console.log('log out');
+    AuthService.logout();
+  };
+
+  /**
+   * sets search value to '' and sets overlay in App.js and modal to false
+   * @param none
+   * @return none
+   */
+  const onClickOut = () => {
+    document.getElementsByClassName('ais-SearchBox-input')[0].value = ''; // set search value to ''
+    setOverlay(false);
+    setShowModal(false);
+  };
+
+  const triggerModal = () => {
+    setOverlay(true);
+    setShowModal(true);
+  };
+
+  const searchClient = instantMeiliSearch('http://3.139.65.222/', 'NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1', {
+    primaryKey: 'id',
+  });
+  
+  /**
+   * Component for showing button to create an event
+   * @component
+   */
+  const CreateEvent = () => {
+    return (
+      &lt;a href='/myMeetUps/create' alt='' type='submit'>
+        &lt;div
+          style={{
+            height: 50,
+            width: 200,
+            backgroundColor: '#AEFFCF',
+            borderRadius: 60,
+            borderColor: '#AEFFCF',
+          }}
+        >
+          &lt;Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+            &lt;Space size='small'>
+              &lt;h2 style={{ paddingTop: '5%' }}>Create Event&lt;/h2>
+              &lt;AiOutlinePlus size={20} style={{ paddingBottom: '2%' }} />
+            &lt;/Space>
+          &lt;/Row>
+        &lt;/div>
+      &lt;/a>
+    );
+  };
+  if (currentUser) {
+    return (
+      &lt;div className='site-page-header'>
+        &lt;img className='headerImg' src='/logo.png' alt='' />
+        &lt;Row className='web' style={{ padding: '2%' }}>
+          &lt;Col span={3} style={{ paddingTop: '10px' }}>
+            &lt;Button className='homeButton' type='link' href='/home'>
+              &lt;h2 style={{ fontWeight: 'bold', color: '#4F4F4F' }}>CleanUp&lt;/h2>
+            &lt;/Button>
+          &lt;/Col>
+          &lt;Col span={9}>
+            &lt;ClickOutHandler onClickOut={() => onClickOut()}>
+              &lt;InstantSearch indexName='events' searchClient={searchClient}>
+                &lt;SearchBox onChange={() => triggerModal()} />
+                {showModal ? (
+                  &lt;div style={{ backgroundColor: 'white' }}>
+                    &lt;SearchHits hitComponent={Hits} />
+                  &lt;/div>
+                ) : null}
+              &lt;/InstantSearch>
+            &lt;/ClickOutHandler>
+          &lt;/Col>
+          &lt;Col span={12}>
+            &lt;Row>
+              &lt;Space size='small'>
+                &lt;CreateEvent />
+                &lt;Col>
+                  &lt;Button type='link' href='/home'>
+                    &lt;h2>Home&lt;/h2>
+                  &lt;/Button>
+                &lt;/Col>
+                &lt;Col>
+                  &lt;Button type='link' href='/myMeetups'>
+                    &lt;h2>My Meet Ups&lt;/h2>
+                  &lt;/Button>
+                &lt;/Col>
+                &lt;Col>
+                  &lt;Button type='link' href='/profile'>
+                    &lt;h2>Profile&lt;/h2>
+                  &lt;/Button>
+                &lt;/Col>
+                &lt;Col>
+                  &lt;Button type='link' href='/login' onClick={logOut}>
+                    &lt;h2>Logout&lt;/h2>
+                  &lt;/Button>
+                &lt;/Col>
+              &lt;/Space>
+            &lt;/Row>
+          &lt;/Col>
+        &lt;/Row>
+        &lt;Row sm={4} className='mobile'>
+          &lt;Col span={8} offset={8}>
+            &lt;h2>Clean Up&lt;/h2>
+          &lt;/Col>
+        &lt;/Row>
+      &lt;/div>
+    );
+  }
+  return (
+    &lt;PageHeader
+      className='site-page-header'
+      ghost={false}
+      title={[
+        &lt;Button className='homeButton' href='/home' key='1'>
+          &lt;h2 className='headerTitle'>CleanUp&lt;/h2>
+        &lt;/Button>,
+      ]}
+      subTitle={[&lt;img className='headerImg' src='./logo.png' alt='' />, "Let's Clean Up Our Home"]}
+      extra={[
+        &lt;Button className='homeButton' href='/login' key='3'>
+          &lt;h4 className='headerOther'>Login&lt;/h4>
+        &lt;/Button>,
+        &lt;Button className='homeButton' href='/signup' key='2'>
+          &lt;h4 className='headerOther'>SignUp&lt;/h4>
+        &lt;/Button>,
+      ]}
+    >&lt;/PageHeader>
+  );
+};
+export default Header;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Header-CreateEvent.html">CreateEvent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ConvertDate">ConvertDate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Mon May 24 2021 04:35:18 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

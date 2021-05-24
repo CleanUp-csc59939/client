@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import Header from './Shared/Header';
 import { Layout } from 'antd';
@@ -25,15 +26,18 @@ const getUser = () => {
 const { Content, Footer } = Layout;
 function App() {
   const currentUser = getUser();
+  const [overlay, setOverlay] = useState(false);
+  const [pageTitle, setTitle] = useState(window.location.pathname.slice(1));
+
+  if (pageTitle !== window.location.pathname.slice(1)) setTitle(window.location.pathname.slice(1)); // Updating the header title, needs work
 
   return (
     <div>
       <Layout style={{ minHeight: '100vh' }}>
         <BrowserRouter>
           <Layout className='site-layout'>
-            <Header currentUser={currentUser} />
-
-            <Content style={{ margin: '0 0' }}>
+            <Header currentUser={currentUser} pageTitle={pageTitle} setOverlay={setOverlay} />
+            <Content style={{ margin: '0 0', backgroundColor: overlay ? 'rgba(52,52,52,0.3)' : null }}>
               <Switch>
                 <Route exact path='/login'>
                   <Login />

@@ -1,24 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PageHeader, Button, Row, Col, Space } from 'antd';
 import { AiOutlinePlus } from 'react-icons/ai';
 import AuthService from '../services/auth.service';
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
+import { InstantSearch, SearchBox, Hits /* connectSearchBox */ } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import SearchHits from './SearchHits';
 // import env from 'react-dotenv';
 import './Header.css';
 
-const Header = ({ currentUser }) => {
+const ClickOutHandler = require('react-onclickout');
+
+const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
+  const [showModal, setShowModal] = useState(false);
   // logic to check if logged in goes here to switch between 2 different headers
   const logOut = () => {
     console.log('log out');
     AuthService.logout();
   };
 
+  /**
+   * sets search value to '' and sets overlay in App.js and modal to false
+   * @param none
+   * @return none
+   */
+  const onClickOut = () => {
+    document.getElementsByClassName('ais-SearchBox-input')[0].value = ''; // set search value to ''
+    setOverlay(false);
+    setShowModal(false);
+  };
+
+  const triggerModal = () => {
+    setOverlay(true);
+    setShowModal(true);
+  };
+
   const searchClient = instantMeiliSearch('http://3.139.65.222/', 'NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1', {
     primaryKey: 'id',
   });
 
+  /**
+   * Component for showing button to create an event
+   * @component
+   */
   const CreateEvent = () => {
     return (
       <a href='/myMeetUps/create' alt='' type='submit'>
@@ -52,11 +75,16 @@ const Header = ({ currentUser }) => {
             </Button>
           </Col>
           <Col span={9}>
-            <InstantSearch indexName='events' searchClient={searchClient}>
-              <SearchBox />
-
-              <Hits hitComponent={SearchHits} />
-            </InstantSearch>
+            <ClickOutHandler onClickOut={() => onClickOut()}>
+              <InstantSearch indexName='events' searchClient={searchClient}>
+                <SearchBox onChange={() => triggerModal()} />
+                {showModal ? (
+                  <div style={{ backgroundColor: 'white' }}>
+                    <SearchHits hitComponent={Hits} />
+                  </div>
+                ) : null}
+              </InstantSearch>
+            </ClickOutHandler>
           </Col>
           <Col span={12}>
             <Row>
