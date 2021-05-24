@@ -4,16 +4,14 @@ import { connectHits } from 'react-instantsearch-dom';
 
 const SearchHits = (props) => {
   const { hits } = props;
-   const results = hits.map(hit => {
+  const results = hits.map((hit) => {
     return (
-        <a href={`/event/${hit.id}`}>
-             <div style={{ backgroundColor: 'white' }}>{hit.name}</div>
-        </a>
-       )
-     }   
-   );
-   return results
+      <a href={`/event/${hit.id}`}>
+        <div style={{ backgroundColor: 'white' }}>{hit.name}</div>
+      </a>
+    );
+  });
+  return results;
 };
 
 export default connectHits(SearchHits);
-

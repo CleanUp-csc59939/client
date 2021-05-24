@@ -10,7 +10,7 @@ import './Header.css';
 
 const ClickOutHandler = require('react-onclickout');
 
-const Header = ({ currentUser /* pageTitle  */ }) => {
+const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   const [showModal, setShowModal] = useState(false);
   // logic to check if logged in goes here to switch between 2 different headers
   const logOut = () => {
@@ -20,7 +20,13 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
 
   const onClickOut = () => {
     document.getElementsByClassName('ais-SearchBox-input')[0].value = ''; // set search value to ''
+    setOverlay(false);
     setShowModal(false);
+  };
+
+  const triggerModal = () => {
+    setOverlay(true);
+    setShowModal(true);
   };
 
   const searchClient = instantMeiliSearch('http://3.139.65.222/', 'NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1', {
@@ -62,7 +68,7 @@ const Header = ({ currentUser /* pageTitle  */ }) => {
           <Col span={9}>
             <ClickOutHandler onClickOut={() => onClickOut()}>
               <InstantSearch indexName='events' searchClient={searchClient}>
-                <SearchBox onChange={() => setShowModal('true')} />
+                <SearchBox onChange={() => triggerModal()} />
                 {showModal ? (
                   <div style={{ backgroundColor: 'white' }}>
                     <SearchHits hitComponent={Hits} />
