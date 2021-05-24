@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render correctly in "debug" mode 1`] = `
+<div
+  className="site-page-header"
+>
+  <img
+    alt=""
+    className="headerImg"
+    src="/logo.png"
+  />
+  <Row
+    className="web"
+    style={
+      Object {
+        "padding": "2%",
+      }
+    }
+  >
+    <Col
+      span={3}
+      style={
+        Object {
+          "paddingTop": "10px",
+        }
+      }
+    >
+      <Button
+        className="homeButton"
+        href="/home"
+        type="link"
+      >
+        <h2
+          style={
+            Object {
+              "color": "#4F4F4F",
+              "fontWeight": "bold",
+            }
+          }
+        >
+          CleanUp
+        </h2>
+      </Button>
+    </Col>
+    <Col
+      span={9}
+    >
+      <InstantSearch
+        indexName="events"
+        refresh={false}
+        searchClient={
+          Object {
+            "client": MeiliSearch {
+              "config": Object {
+                "apiKey": "NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1",
+                "host": "http://3.139.65.222/",
+              },
+              "httpRequest": HttpRequests {
+                "headers": Object {
+                  "Content-Type": "application/json",
+                  "X-Meili-API-Key": "NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1",
+                },
+                "url": "http://3.139.65.222/",
+              },
+            },
+            "getNumberPages": [Function],
+            "hitsPerPage": 20,
+            "page": 0,
+            "paginateHits": [Function],
+            "paginationTotalHits": 200,
+            "placeholderSearch": true,
+            "primaryKey": "id",
+            "search": [Function],
+            "transformToISHits": [Function],
+            "transformToISResponse": [Function],
+            "transformToMeiliSearchParams": [Function],
+          }
+        }
+        stalledSearchDelay={200}
+      >
+        <ConnectorWrapper />
+        <ConnectorWrapper
+          hitComponent={[Function]}
+        />
+      </InstantSearch>
+    </Col>
+    <Col
+      span={12}
+    >
+      <Row>
+        <Space
+          size="small"
+        >
+          <CreateEvent />
+          <Col>
+            <Button
+              href="/home"
+              type="link"
+            >
+              <h2>
+                Home
+              </h2>
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              href="/myMeetups"
+              type="link"
+            >
+              <h2>
+                My Meet Ups
+              </h2>
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              href="/profile"
+              type="link"
+            >
+              <h2>
+                Profile
+              </h2>
+            </Button>
+          </Col>
+          <Col>
+            <Button
+              href="/login"
+              onClick={[Function]}
+              type="link"
+            >
+              <h2>
+                Logout
+              </h2>
+            </Button>
+          </Col>
+        </Space>
+      </Row>
+    </Col>
+  </Row>
+  <Row
+    className="mobile"
+    sm={4}
+  >
+    <Col
+      offset={8}
+      span={8}
+    >
+      <h2>
+        Clean Up
+      </h2>
+    </Col>
+  </Row>
+</div>
+`;

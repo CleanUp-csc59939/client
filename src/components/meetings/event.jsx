@@ -36,9 +36,8 @@ export default function SingleEvent(props) {
   const history = useHistory();
 
   const editUrl = `${window.location.pathname}/edit`;
-  console.log(editUrl);
+  
   const { currentUser } = props;
-
   if (event === '') {
     getEvent(props.match.params.id).then((response) => {
       setEvent(response.data);

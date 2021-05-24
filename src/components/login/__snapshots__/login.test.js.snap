@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should render correctly in "debug" mode 1`] = `
+<div
+  className="loginBody"
+>
+  <div
+    className="login-page"
+  >
+    <div
+      className="form"
+    >
+      <Form(t)
+        className="login-form"
+        onSubmit={[Function]}
+      >
+        <Control(s)
+          name="email"
+          onChange={[Function]}
+          placeholder="email"
+          type="text"
+          validations={
+            Array [
+              [Function],
+              [Function],
+            ]
+          }
+          value=""
+        />
+        <Control(s)
+          name="password"
+          onChange={[Function]}
+          placeholder="password"
+          type="password"
+          validations={
+            Array [
+              [Function],
+            ]
+          }
+          value=""
+        />
+        <button
+          disabled={false}
+          type="submit"
+        >
+          <span>
+            Login
+          </span>
+        </button>
+        <Button(s)
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        />
+        <p
+          className="message"
+        >
+          Not registered? 
+          <a
+            href="/signup"
+          >
+            Create an account
+          </a>
+        </p>
+      </Form(t)>
+    </div>
+  </div>
+</div>
+`;

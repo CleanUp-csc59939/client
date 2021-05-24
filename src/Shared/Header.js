@@ -8,7 +8,7 @@ import SearchHits from './SearchHits';
 // import env from 'react-dotenv';
 import './Header.css';
 
-const Header = ({ currentUser /* pageTitle  */ }) => {
+const Header = ({ currentUser }) => {
   // logic to check if logged in goes here to switch between 2 different headers
   const logOut = () => {
     console.log('log out');
