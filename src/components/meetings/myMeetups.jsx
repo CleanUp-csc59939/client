@@ -3,7 +3,6 @@ import eventsService from '../../services/events.service';
 import userService from '../../services/user.service';
 import { EventCarousel } from '../../Shared/Components';
 
-
 /**
  *
  * Renders the page containing the current user's events
@@ -16,21 +15,21 @@ const MyMeetups = (props) => {
   const [events, setEvents] = useState('');
   const [userProfile, setUserProfile] = useState('');
 
-    /**
- * Gets the User profile using the user service
- * @method
- * @returns {User} The current user object
- */
+  /**
+   * Gets the User profile using the user service
+   * @method
+   * @returns {User} The current user object
+   */
   const getUserProfile = async () => {
     const a = await userService.getUserProfile(currentUser.id);
     return a;
   };
 
-   /**
- * Gets all events
- * @method
- * @returns {Events} Returns an array containing all the events
- */
+  /**
+   * Gets all events
+   * @method
+   * @returns {Events} Returns an array containing all the events
+   */
   const getEvents = async () => {
     const a = await eventsService.getEvents();
     return a;
@@ -60,11 +59,11 @@ const MyMeetups = (props) => {
       }
     });
 
-     /**
- * Renders the events that user is organizing
- * @method
- * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
- */
+    /**
+     * Renders the events that user is organizing
+     * @method
+     * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
+     */
     const renderMyEvents = () => {
       let e = <div>You are not organizing any upcoming events</div>;
       if (myEvents.length === 0) {
@@ -78,10 +77,10 @@ const MyMeetups = (props) => {
     };
 
     /**
- * Renders the events that user is attending
- * @method
- * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
- */
+     * Renders the events that user is attending
+     * @method
+     * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
+     */
     const renderAttendingEvents = () => {
       let e = <div>You are not attending any upcoming events</div>;
       if (eventsAttending.length === 0) {
@@ -107,5 +106,5 @@ const MyMeetups = (props) => {
       <img id='loading-image' src='loading/loading-gif.gif' alt='Loading...' />
     </div>
   );
-}
+};
 export default MyMeetups;

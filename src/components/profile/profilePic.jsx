@@ -3,8 +3,6 @@ import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { React, useState } from 'react';
 import userService from '../../services/user.service';
 
-
-
 /**
  *
  * Uploading Profile Picture Component
@@ -23,14 +21,14 @@ const ProfilePic = ({ currentImg, id }) => {
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(img);
   }
-  
+
   /**
- *
- * Checks if image size and type are acceptable. Images must be JPG/PNG files and less than 2MB
- * @method
- * @param {file} file the picture user uploaded
- * @returns {boolean} if the image is accepatable or not
- */
+   *
+   * Checks if image size and type are acceptable. Images must be JPG/PNG files and less than 2MB
+   * @method
+   * @param {file} file the picture user uploaded
+   * @returns {boolean} if the image is accepatable or not
+   */
 
   function beforeUpload(file) {
     // console.log(file);
@@ -44,13 +42,13 @@ const ProfilePic = ({ currentImg, id }) => {
     }
     return isJpgOrPng && isLt2M;
   }
-  
+
   /**
- *
- * Function is called to send the picture profile to the profile picture service which sends it the backend
- * @method
- * @param {object} options contains information about the object such the file uploaded and other variables
- */
+   *
+   * Function is called to send the picture profile to the profile picture service which sends it the backend
+   * @method
+   * @param {object} options contains information about the object such the file uploaded and other variables
+   */
 
   const uploadRequest = async (options) => {
     userService
@@ -63,13 +61,12 @@ const ProfilePic = ({ currentImg, id }) => {
       });
   };
 
-
   /**
- *
- * Function is called when a picture is uploaded. Also handles the loading part
- * @method
- * @param {object} info contains information about the object such the file uploaded and other variables
- */
+   *
+   * Function is called when a picture is uploaded. Also handles the loading part
+   * @method
+   * @param {object} info contains information about the object such the file uploaded and other variables
+   */
 
   const handleChange = (info) => {
     if (info.file.status === 'uploading') {
@@ -85,12 +82,12 @@ const ProfilePic = ({ currentImg, id }) => {
     }
   };
 
-    /**
- *
- * Function renders the upload button
- * @method
- * @returns loading animation or Plus sign to uplaod
- */
+  /**
+   *
+   * Function renders the upload button
+   * @method
+   * @returns loading animation or Plus sign to uplaod
+   */
 
   const uploadButton = (
     <div>
@@ -117,5 +114,5 @@ const ProfilePic = ({ currentImg, id }) => {
       )}
     </Upload>
   );
-}
+};
 export default ProfilePic;
