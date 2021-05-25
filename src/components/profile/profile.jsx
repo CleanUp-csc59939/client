@@ -16,7 +16,13 @@ const getProfile = async (id) => {
   return a;
 };
 
-export default function Profile() {
+/**
+ *
+ * return Profile page*
+ * @component
+ * @return  {Component}            Return Profile page populated with the user's details
+ */
+const Profile = () => {
   const [content, setContent] = useState('');
   const currentUser = getUserID();
   if (currentUser && content === '') {
@@ -58,3 +64,4 @@ export default function Profile() {
     </div>
   );
 }
+export default Profile;

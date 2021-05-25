@@ -14,7 +14,7 @@ const getEvents = async () => {
 
 /**
  *
- * return home page with multiple user events types* 
+ * return home page with multiple user events types*
  * @component
  * @return  {Component}            Return Home page showing the user's events
  */
@@ -30,11 +30,11 @@ const Home = (props) => {
 
   const { currentUser } = props;
 
-   /**
- * Creates a carousel of events 
- * @method
- * @returns {HTMLBodyElement} Returns the HTML code for user's event's in the carousel
- */
+  /**
+   * Creates a carousel of events
+   * @method
+   * @returns {HTMLBodyElement} Returns the HTML code for user's event's in the carousel
+   */
 
   const EventCarousel = () => {
     return (
@@ -63,13 +63,12 @@ const Home = (props) => {
 
   console.log(events[0]);
 
-  
-   /**
- * Creates a Banner with the User's top event 
- * @property checks events of current user
- * @returns {Banner} Returns the components to make the user events banner
- * @returns {EventCarousel} Returns the components to make the carousel extra user events
- */
+  /**
+   * Creates a Banner with the User's top event
+   * @property checks events of current user
+   * @returns {Banner} Returns the components to make the user events banner
+   * @returns {EventCarousel} Returns the components to make the carousel extra user events
+   */
 
   if (currentUser && currentUser.email && events !== '' && events.length > 0) {
     return (
@@ -88,5 +87,5 @@ const Home = (props) => {
       <img id='loading-image' src='loading/loading-gif.gif' alt='Loading...' />
     </div>
   );
-}
+};
 export default Home;

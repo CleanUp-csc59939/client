@@ -8,7 +8,6 @@ import CheckButton from 'react-validation/build/button';
 import { isEmail } from 'validator';
 import AuthService from '../../services/auth.service';
 
-
 const required = (value) => {
   if (!value) {
     return (
@@ -33,9 +32,9 @@ const checkemail = (value) => {
 
 /**
  *
- * return home page with multiple user events* 
+ * return Login page*
  * @component
- * @return  {Component}            Return Home page showing the user's events
+ * @return  {Component}            Return Login page where user can input their credentials
  */
 const Login = () => {
   const form = useRef();
@@ -46,36 +45,36 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  
-
-/**
- * detects changes in the email field changes in the email field
- * @param {object} e Component props
- * @param {string} e.target.value Sets the email field as current user's email input
- */
+  /**
+   * detects changes in the email field changes in the email field
+   * @method
+   * @param {object} e Component props
+   * @param {string} e.target.value Sets the email field as current user's email input
+   */
   const onChangeEmail = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
   };
 
   /**
- * detects changes in the password field changes in the password field
- * @param {object} e Component props
- * @param {string} e.target.value Sets the password field as current user's password input
- */
+   * detects changes in the password field changes in the password field
+   * @method
+   * @param {object} e Component props
+   * @param {string} e.target.value Sets the password field as current user's password input
+   */
   const onChangePassword = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
   };
 
-   /**
- * function called after user clicks login
- * @param {object} e Component props
- * @param {string} e.preventDefault
- * @property {form} form validate the form
- * @property {method} AuthService sends email and password input to the authenication service which communicates with the back end
- * @returns {HTMLBodyElement} Returns the HTML code of the Login Form
- */
+  /**
+   * function called after user clicks login
+   * @param {object} e Component props
+   * @param {string} e.preventDefault
+   * @property {form} form validate the form
+   * @property {method} AuthService sends email and password input to the authenication service which communicates with the back end
+   * @returns {HTMLBodyElement} Returns the HTML code of the Login Form
+   */
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -140,5 +139,5 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 export default Login;

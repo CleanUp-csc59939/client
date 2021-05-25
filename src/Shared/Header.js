@@ -10,6 +10,11 @@ import './Header.css';
 
 const ClickOutHandler = require('react-onclickout');
 
+/**
+ * Component for showing button to create an event
+ * @component Header Component
+ */
+
 const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   const [showModal, setShowModal] = useState(false);
   // logic to check if logged in goes here to switch between 2 different headers
@@ -21,6 +26,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   /**
    * when user clicks outside of modal, it sets overlay in App.js and modal to false
    * which then hids the modal and removes opacity background in App.js
+   * @method
    * @param none
    * @return none
    */
@@ -31,10 +37,9 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
 
   /**
    * when user clicks search, it sets overlay in App.js and modal to true
-   * which triggers modal and ropacity background in App.js and sets the search value to generate hits(refine)
    * @function
    * @param {event} input read-only from search bar input
-   * @param {function }refine prop from connectSearchBox
+   * @param {function} refine prop from connectSearchBox
    * @returns none
    */
   const triggerModal = (event, refine) => {
@@ -47,10 +52,6 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
     primaryKey: 'id',
   });
 
-  /**
-   * Component for showing button to create an event
-   * @component
-   */
   const CreateEvent = () => {
     return (
       <a href='/myMeetUps/create' alt='' type='submit'>

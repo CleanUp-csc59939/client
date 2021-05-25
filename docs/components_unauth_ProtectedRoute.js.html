@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/unauth/ProtectedRoute.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,41 +17,58 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/unauth/ProtectedRoute.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>CleanUp Client</h1>
-<h2>Steps to start client</h2>
-<ol>
-<li>Run the following command: <code>npm install</code></li>
-<li>Run the following command: <code>npm start</code></li>
-</ol></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+
+/**
+ *
+ * return a Protected Route
+ * @component
+ * @param {Component} component the component to be rendered
+ * @param {user} User the current user
+ * @param {...rest} .inputs any extra parameters provided by user in to component render 
+ * @return  {Component}            render component if user credentials are valid, otherwise return an unauthorizes page
+ */
+
+const ProtectedRoute = ({ component: Component, user, ...rest }) => {
+  return (
+    &lt;Route
+      {...rest}
+      render={(props) => {
+        console.log('Im in protected');
+        if (user) {
+          console.log('Im in authorized');
+          return &lt;Component currentUser={user} {...rest} {...props} />;
+        }
+        console.log('Im in unauthorized');
+        return (
+          &lt;Redirect
+            to={{
+              pathname: '/unauthorized',
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        );
+      }}
+    />
+  );
+};
+
+export default ProtectedRoute;
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/meetings/myMeetups.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/meetings/myMeetups.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { React, useState } from 'react';
+import eventsService from '../../services/events.service';
+import userService from '../../services/user.service';
+import { EventCarousel } from '../../Shared/Components';
+
+
+/**
+ *
+ * Renders the page containing the current user's events
+ * @component
+ * @param {User} currentUser the current User
+ * @return  {Component}            Return pages containing events organized and events attending aswell
+ */
+const MyMeetups = (props) => {
+  const { currentUser } = props;
+  const [events, setEvents] = useState('');
+  const [userProfile, setUserProfile] = useState('');
+
+    /**
+ * Gets the User profile using the user service
+ * @method
+ * @returns {User} The current user object
+ */
+  const getUserProfile = async () => {
+    const a = await userService.getUserProfile(currentUser.id);
+    return a;
+  };
+
+   /**
+ * Gets all events
+ * @method
+ * @returns {Events} Returns an array containing all the events
+ */
+  const getEvents = async () => {
+    const a = await eventsService.getEvents();
+    return a;
+  };
+
+  if (userProfile === '') {
+    getUserProfile().then((response) => {
+      setUserProfile(response.data);
+    });
+  }
+
+  if (events === '') {
+    getEvents().then((response) => {
+      setEvents(response.data);
+      eventsService.updateSearch(response.data);
+    }); // the [1] is showing only that single event
+  }
+
+  if (currentUser &amp;&amp; currentUser.email &amp;&amp; events !== '' &amp;&amp; userProfile !== '') {
+    const myEvents = [];
+    const eventsAttending = userProfile.events;
+
+    // get a user's events
+    Object.keys(events).forEach((event) => {
+      if (events[event].userID === currentUser.id) {
+        myEvents.push(events[event]);
+      }
+    });
+
+     /**
+ * Renders the events that user is organizing
+ * @method
+ * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
+ */
+    const renderMyEvents = () => {
+      let e = &lt;div>You are not organizing any upcoming events&lt;/div>;
+      if (myEvents.length === 0) {
+        e = &lt;div>You are not organizing any upcoming events&lt;/div>;
+      } else if (myEvents.length === 1) {
+        e = &lt;EventCarousel titleText='Event Organized By You' events={myEvents} slidesToShow={1} />;
+      } else {
+        e = &lt;EventCarousel titleText='Events Organized By You' events={myEvents} slidesToShow={3} />;
+      }
+      return e;
+    };
+
+    /**
+ * Renders the events that user is attending
+ * @method
+ * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
+ */
+    const renderAttendingEvents = () => {
+      let e = &lt;div>You are not attending any upcoming events&lt;/div>;
+      if (eventsAttending.length === 0) {
+        e = &lt;div>You are not organizing any upcoming events&lt;/div>;
+      } else if (eventsAttending.length === 1) {
+        e = &lt;EventCarousel titleText='Event Attending' events={eventsAttending} slidesToShow={1} />;
+      } else {
+        e = &lt;EventCarousel titleText='Events Attending' events={eventsAttending} slidesToShow={3} />;
+      }
+      return e;
+    };
+
+    return (
+      &lt;div>
+        {renderMyEvents()}
+        {renderAttendingEvents()}
+      &lt;/div>
+    );
+  }
+
+  return (
+    &lt;div id='loading'>
+      &lt;img id='loading-image' src='loading/loading-gif.gif' alt='Loading...' />
+    &lt;/div>
+  );
+}
+export default MyMeetups;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Banner.html">Banner</a></li><li><a href="CreateMeetUp.html">CreateMeetUp</a></li><li><a href="EventPics.html">EventPics</a></li><li><a href="Header.html">Header</a></li><li><a href="Home.html">Home</a></li><li><a href="Login.html">Login</a></li><li><a href="MyMeetups.html">MyMeetups</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfilePic.html">ProfilePic</a></li><li><a href="ProtectedRoute.html">ProtectedRoute</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="SingleEvent.html">SingleEvent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authHeader">authHeader</a></li><li><a href="global.html#ConvertDate">ConvertDate</a></li><li><a href="global.html#CustomSearch">CustomSearch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue May 25 2021 02:22:28 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

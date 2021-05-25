@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Shared/Functions.js</title>
+    <title>JSDoc: Source: components/signup/SignUp.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Shared/Functions.js</h1>
+    <h1 class="page-title">Source: components/signup/SignUp.js</h1>
 
     
 
@@ -26,48 +26,63 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import userService from '../services/user.service';
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import '../../Shared/Header.css';
+import { FormWeb, FormMobile } from './Form';
+import AuthService from '../../services/auth.service';
+import { useHistory } from 'react-router-dom';
+import './SignUp.css';
 
-const weekdayMap = {
-  0: 'Sunday',
-  1: 'Monday',
-  2: 'Tuesday',
-  3: 'Wednesday',
-  4: 'Thursday',
-  5: 'Friday',
-  6: 'Saturday',
-};
 /**
  *
- * @param {date} date date object
- * @returns {string} date date in the format of "weekday, month/day, local time"
+ * return Sign Up page*
+ * @component
+ * @return  {Component}            Return Home page showing the user's events
  */
-export const ConvertDate = (date) => {
-  const dateObj = new Date(date);
-  const month = dateObj.getUTCMonth() + 1; // months from 1-12
-  const day = dateObj.getUTCDate();
-  const weekday = dateObj.getUTCDay();
-  const localTime = dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  // const newdate = `${month}/${day}, ${localTime}`;
-  const newdate = `${weekdayMap[weekday]}, ${month}/${day} ${localTime}`;
-  return newdate;
+
+const SignUp = () => {
+  const [loading, setLoading] = useState(false);
+
+  const history = useHistory();
+ 
+
+  /**
+   * Calls the create user register service with user inputs
+   * @method
+   */
+  const onFinish = (values) => {
+    setLoading(true);
+    AuthService.register(values.email, values.password).then(
+      () => {
+        history.push('/login');
+        window.location.reload();
+      },
+      () => {
+        setLoading(false);
+      },
+    );
+  };
+
+  return (
+    &lt;div>
+      &lt;div className='web'>
+        &lt;div className='loginBody'>
+          &lt;div className='login-page'>
+            &lt;h1 style={{ textAlign: 'center', fontSize: '36px', color: 'whitesmoke', fontWeight: 'bold' }}>Register&lt;/h1>
+            &lt;div className='signUpForm'>
+              &lt;FormWeb onFinish={onFinish} setLoading={setLoading} loading={loading} onFinishFailed={onFinishFailed} />
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+      &lt;div className='mobile'>
+        &lt;FormMobile onFinish={onFinish} onFinishFailed={onFinishFailed} />
+      &lt;/div>
+    &lt;/div>
+  );
 };
 
-export const GetProfile = async (id) => {
-  const a = await userService.getUserProfile(id);
-  return a;
-};
-
-export const matchEventAndUser = (event, profile) => {
-  for (let i = 0; i &lt; event.registered.length; i += 1) {
-    if (event.registered[i].userID === profile.userID) {
-      console.log('user matches');
-      return true;
-    }
-  }
-  console.log('user not matches');
-  return false;
-};
+export default SignUp;
 </code></pre>
         </article>
     </section>

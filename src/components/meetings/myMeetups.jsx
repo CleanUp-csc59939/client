@@ -1,25 +1,36 @@
 import { React, useState } from 'react';
-// import { Row, Col, Space, Image, Button } from 'antd';
-// import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
 import eventsService from '../../services/events.service';
 import userService from '../../services/user.service';
 import { EventCarousel } from '../../Shared/Components';
 
-// const getEvents = async () => {
-//   const a = await eventsService.getEvents();
-//   return a;
-// };
 
-export default function MyMeetups(props) {
+/**
+ *
+ * Renders the page containing the current user's events
+ * @component
+ * @param {User} currentUser the current User
+ * @return  {Component}            Return pages containing events organized and events attending aswell
+ */
+const MyMeetups = (props) => {
   const { currentUser } = props;
   const [events, setEvents] = useState('');
   const [userProfile, setUserProfile] = useState('');
 
+    /**
+ * Gets the User profile using the user service
+ * @method
+ * @returns {User} The current user object
+ */
   const getUserProfile = async () => {
     const a = await userService.getUserProfile(currentUser.id);
     return a;
   };
 
+   /**
+ * Gets all events
+ * @method
+ * @returns {Events} Returns an array containing all the events
+ */
   const getEvents = async () => {
     const a = await eventsService.getEvents();
     return a;
@@ -49,6 +60,11 @@ export default function MyMeetups(props) {
       }
     });
 
+     /**
+ * Renders the events that user is organizing
+ * @method
+ * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
+ */
     const renderMyEvents = () => {
       let e = <div>You are not organizing any upcoming events</div>;
       if (myEvents.length === 0) {
@@ -61,6 +77,11 @@ export default function MyMeetups(props) {
       return e;
     };
 
+    /**
+ * Renders the events that user is attending
+ * @method
+ * @returns {EventCarousel} Creates a carousel from the filtered array of event(s)
+ */
     const renderAttendingEvents = () => {
       let e = <div>You are not attending any upcoming events</div>;
       if (eventsAttending.length === 0) {
@@ -87,3 +108,4 @@ export default function MyMeetups(props) {
     </div>
   );
 }
+export default MyMeetups;

@@ -32,11 +32,11 @@ const leaveEvent = async (eventID, userID) => {
 
 /**
  *
- * returns page with single event, members that have joined and options for the event* 
+ * returns page with single event, members that have joined and options for the event*
  * @component
  * @return  {Component}            Return single event component
  */
-const SingleEvent = (props)  => {
+const SingleEvent = (props) => {
   const [event, setEvent] = useState('');
   const [isUserReg, setUserReg] = useState('');
   const history = useHistory();
@@ -57,12 +57,11 @@ const SingleEvent = (props)  => {
   if (event !== '') {
     console.log(event);
 
-    
-   /**
- * Renders buttons based on different user roles 
- * @function
- * @returns {HTMLBodyElement} Returns the Join/Leave button if not owner of event, Return Edit and Delete event if the owner
- */
+    /**
+     * Renders buttons based on different user roles
+     * @function
+     * @returns {HTMLBodyElement} Returns the Join/Leave button if not owner of event, Return Edit and Delete event if the owner
+     */
     const renderEventActions = () => {
       if (event.userID === currentUser.id) {
         return <Edit editUrl={editUrl} />;
@@ -132,5 +131,5 @@ const SingleEvent = (props)  => {
       <img id='loading-image' src='loading/loading-gif.gif' alt='Loading...' />
     </div>
   );
-}
+};
 export default SingleEvent;
