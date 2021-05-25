@@ -32,7 +32,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   /**
    * when user clicks search, it sets overlay in App.js and modal to true
    * which triggers modal and ropacity background in App.js and sets the search value to generate hits(refine)
-   *
+   * @function
    * @param {event} input read-only from search bar input
    * @param {function }refine prop from connectSearchBox
    * @returns none
