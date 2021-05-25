@@ -1,6 +1,8 @@
 import React from 'react';
-import { Row, Col, Space } from 'antd';
+import { Row, Col, Space, Input } from 'antd';
 import cleanPic from './stockImage.png';
+import phoneMockup from './phonemockup.png'
+import phoneMockup2 from './events2.png'
 
 const landing = () => {
   return (
@@ -8,9 +10,29 @@ const landing = () => {
       <Covid />
       <One />
       <Two />
+      <Three />
     </div>
   );
 };
+
+const Three = () => {
+    return (
+        <Row style={{ padding: '5%', margin: '2%', backgroundColor: 'white', marginTop: '2%' }}>
+             <Col span={10}>
+                <h2 style={{ fontWeight: 'bold' }}>iOS app coming soon!</h2>
+                <h2 style={{ fontSize: 32 }}>Subscribe for updates and be the first to know</h2>
+                <Input style={{width: 300}} placeholder="Enter your email"/>
+             </Col>
+             <Col span={12} push={2}>
+                 <Space>
+                    <img src={phoneMockup} style={{height: 400, width: 220}} alt="phone"/>
+                    <img src={phoneMockup2} style={{height: 400, width: 220}} alt="phone"/>
+                 </Space>
+                
+             </Col>
+        </Row>
+    )
+}
 
 const Two = () => {
   return (
