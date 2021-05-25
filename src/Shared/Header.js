@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PageHeader, Button, Row, Col, Space, Input } from 'antd';
 import { AiOutlinePlus } from 'react-icons/ai';
 import AuthService from '../services/auth.service';
-import { InstantSearch, /* SearchBox , */ Hits, connectSearchBox } from 'react-instantsearch-dom';
+import { InstantSearch, Hits, connectSearchBox } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import SearchHits from './SearchHits';
 // import env from 'react-dotenv';
@@ -10,6 +10,10 @@ import './Header.css';
 
 const ClickOutHandler = require('react-onclickout');
 
+/**
+ * Header Component
+ * @component
+ */
 const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   const [showModal, setShowModal] = useState(false);
   // logic to check if logged in goes here to switch between 2 different headers
@@ -30,12 +34,10 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   };
 
   /**
-   * when user clicks search, it sets overlay in App.js and modal to true
-   * which triggers modal and ropacity background in App.js and sets the search value to generate hits(refine)
-   * @function
+   * Sets overlay (in App.js) and showModal to true
+   * @method
    * @param {event} input read-only from search bar input
-   * @param {function }refine prop from connectSearchBox
-   * @returns none
+   * @param {function} refine prop from connectSearchBox
    */
   const triggerModal = (event, refine) => {
     refine(event.currentTarget.value);
@@ -49,7 +51,9 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
 
   /**
    * Component for showing button to create an event
-   * @component
+   * @function
+   * @return {Component} Returns the Create Event button
+   *
    */
   const CreateEvent = () => {
     return (
@@ -156,8 +160,10 @@ export default Header;
 
 /**
  * Custom search bar component wrapped in a instant-search helper function
+ * @component
  * @param {function} triggerModal parent function to trigger search hits to show
  * @return                        search bar componennt
+ *
  */
 const CustomSearch = connectSearchBox(({ refine, currentRefinement, triggerModal }) => {
   return (

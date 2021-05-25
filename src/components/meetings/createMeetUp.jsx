@@ -18,9 +18,9 @@ const CreateMeetUp = ({ currentUser }) => {
   };
 
   /**
- * Updates the search index with the current event created 
- * @method
- */
+   * Updates the search index with the current event created
+   * @method
+   */
   const updateSearch = async () => {
     const events = await eventsService.getEvents();
     if (events === '') {
@@ -31,10 +31,10 @@ const CreateMeetUp = ({ currentUser }) => {
     }
   };
 
-   /**
- * Calls the create event service with user inputs from the form after submission
- * @method
- */
+  /**
+   * Calls the create event service with user inputs from the form after submission
+   * @method
+   */
 
   const onFinish = (values) => {
     eventsService
@@ -67,5 +67,5 @@ const CreateMeetUp = ({ currentUser }) => {
       </div>
     </div>
   );
-}
+};
 export default CreateMeetUp;

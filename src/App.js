@@ -48,6 +48,7 @@ function App() {
                   <Route exact path='/home'>
                     <Home currentUser={currentUser} />
                   </Route>
+                  <Route exact path='/landing' />
                   <Route exact path='/unauthorized' component={Unauthorized} />
                   <ProtectedRoute exact path='/profile' component={Profile} user={currentUser} />
                   <ProtectedRoute
