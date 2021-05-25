@@ -21,14 +21,14 @@ const Three = () => {
              <Col span={10}>
                 <h2 style={{ fontWeight: 'bold' }}>iOS app coming soon!</h2>
                 <h2 style={{ fontSize: 32 }}>Subscribe for updates and be the first to know</h2>
-                <Input style={{width: 300}} placeholder="Enter your email"/>
+                <Input style={{width: 300, marginBottom: '5%'}} placeholder="Enter your email"/>
+                <Register text="Submit"/>
              </Col>
              <Col span={12} push={2}>
                  <Space>
-                    <img src={phoneMockup} style={{height: 400, width: 220}} alt="phone"/>
-                    <img src={phoneMockup2} style={{height: 400, width: 220}} alt="phone"/>
+                    <img src={phoneMockup} style={{height: 400, width: 210}} alt="phone"/>
+                    <img src={phoneMockup2} style={{height: 400, width: 210}} alt="phone"/>
                  </Space>
-                
              </Col>
         </Row>
     )
@@ -76,7 +76,7 @@ const One = () => {
           <Col>
             <h2 style={{ textAlign: 'start', fontSize: 40 }}>Spring Cleaning?</h2>
             <h1 style={{ textAlign: 'start', fontSize: 32 }}>Your community could use a hand</h1>
-            <Register />
+            <Register text="Get Involved"/>
           </Col>
         </Row>
       </Col>
@@ -92,7 +92,8 @@ const Covid = () => {
   );
 };
 
-const Register = () => {
+const Register = (props) => {
+  const {text} = props
   return (
     <a href='/myMeetUps/create' alt='' type='submit'>
       <div
@@ -106,7 +107,7 @@ const Register = () => {
       >
         <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Space size='small'>
-            <h2 style={{ paddingTop: '5%' }}>Get Involved</h2>
+            <h2 style={{ paddingTop: '5%' }}>{text}</h2>
           </Space>
         </Row>
       </div>
