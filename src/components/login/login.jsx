@@ -30,6 +30,10 @@ const checkemail = (value) => {
   return null;
 };
 
+/**
+ @method
+*/
+
 export default function Login() {
   const form = useRef();
   const checkBtn = useRef();

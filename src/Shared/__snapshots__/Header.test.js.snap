@@ -45,44 +45,47 @@ exports[`Header should render correctly in "debug" mode 1`] = `
     <Col
       span={9}
     >
-      <InstantSearch
-        indexName="events"
-        refresh={false}
-        searchClient={
-          Object {
-            "client": MeiliSearch {
-              "config": Object {
-                "apiKey": "NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1",
-                "host": "http://3.139.65.222/",
-              },
-              "httpRequest": HttpRequests {
-                "headers": Object {
-                  "Content-Type": "application/json",
-                  "X-Meili-API-Key": "NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1",
-                },
-                "url": "http://3.139.65.222/",
-              },
-            },
-            "getNumberPages": [Function],
-            "hitsPerPage": 20,
-            "page": 0,
-            "paginateHits": [Function],
-            "paginationTotalHits": 200,
-            "placeholderSearch": true,
-            "primaryKey": "id",
-            "search": [Function],
-            "transformToISHits": [Function],
-            "transformToISResponse": [Function],
-            "transformToMeiliSearchParams": [Function],
-          }
-        }
-        stalledSearchDelay={200}
+      <ClickOutComponent
+        onClickOut={[Function]}
       >
-        <ConnectorWrapper />
-        <ConnectorWrapper
-          hitComponent={[Function]}
-        />
-      </InstantSearch>
+        <InstantSearch
+          indexName="events"
+          refresh={false}
+          searchClient={
+            Object {
+              "client": MeiliSearch {
+                "config": Object {
+                  "apiKey": "NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1",
+                  "host": "http://3.139.65.222/",
+                },
+                "httpRequest": HttpRequests {
+                  "headers": Object {
+                    "Content-Type": "application/json",
+                    "X-Meili-API-Key": "NWFjZGNhMGZjMThjMDgzYjY4NTcyNGY1",
+                  },
+                  "url": "http://3.139.65.222/",
+                },
+              },
+              "getNumberPages": [Function],
+              "hitsPerPage": 20,
+              "page": 0,
+              "paginateHits": [Function],
+              "paginationTotalHits": 200,
+              "placeholderSearch": true,
+              "primaryKey": "id",
+              "search": [Function],
+              "transformToISHits": [Function],
+              "transformToISResponse": [Function],
+              "transformToMeiliSearchParams": [Function],
+            }
+          }
+          stalledSearchDelay={200}
+        >
+          <ConnectorWrapper
+            onChange={[Function]}
+          />
+        </InstantSearch>
+      </ClickOutComponent>
     </Col>
     <Col
       span={12}

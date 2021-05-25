@@ -12,6 +12,12 @@ const getEvents = async () => {
   return a;
 };
 
+/**
+ * @method
+ * @param {String} str
+ * @return {String}
+*/
+
 export default function Home(props) {
   const [events, setEvents] = useState('');
 
