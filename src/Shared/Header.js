@@ -79,7 +79,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
               <InstantSearch indexName='events' searchClient={searchClient}>
                 <SearchBox onChange={() => triggerModal()} />
                 {showModal ? (
-                  <div style={{ backgroundColor: 'white' }}>
+                  <div className='hits'>
                     <SearchHits hitComponent={Hits} />
                   </div>
                 ) : null}

@@ -90,3 +90,11 @@
     transform: none;
   }
 }
+
+.overlay {
+  opacity: 0.4;
+}
+
+.overlayTop {
+  background-color: #343333;
+}
