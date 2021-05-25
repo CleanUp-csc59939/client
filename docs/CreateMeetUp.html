@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Class: CreateMeetUp</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Class: CreateMeetUp</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CreateMeetUp<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h2>
         
     
 </header>
@@ -38,135 +38,10 @@
     
         
 
-        
-
-
-<dl class="details">
-
     
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="ConvertDate"><span class="type-signature">(constant) </span>ConvertDate<span class="type-signature"></span></h4>
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Shared_Functions.js.html">Shared/Functions.js</a>, <a href="Shared_Functions.js.html#line17">line 17</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="authHeader"><span class="type-signature"></span>authHeader<span class="signature">()</span><span class="type-signature"> &rarr; {JSON}</span></h4>
+    <h4 class="name" id="CreateMeetUp"><span class="type-signature"></span>new CreateMeetUp<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
     
@@ -174,7 +49,7 @@
 
 
 <div class="description">
-    <p>Authentication Head</p>
+    <p>returns page which contains a form to create an event</p>
 </div>
 
 
@@ -218,7 +93,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="services_auth-header.js.html">services/auth-header.js</a>, <a href="services_auth-header.js.html#line8">line 8</a>
+        <a href="components_meetings_createMeetUp.jsx.html">components/meetings/createMeetUp.jsx</a>, <a href="components_meetings_createMeetUp.jsx.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -247,7 +122,7 @@
 
         
 <div class="param-desc">
-    <p>Returns User Auth token</p>
+    <p>Return single event component</p>
 </div>
 
 
@@ -258,13 +133,209 @@
     </dt>
     <dd>
         
-<span class="param-type">JSON</span>
+<span class="param-type">Component</span>
 
 
     </dd>
 </dl>
 
     
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~onFinish"><span class="type-signature">(inner) </span>onFinish<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Calls the create event service with user inputs from the form after submission</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_meetings_createMeetUp.jsx.html">components/meetings/createMeetUp.jsx</a>, <a href="components_meetings_createMeetUp.jsx.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="~updateSearch"><span class="type-signature">(async, inner) </span>updateSearch<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Updates the search index with the current event created</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_meetings_createMeetUp.jsx.html">components/meetings/createMeetUp.jsx</a>, <a href="components_meetings_createMeetUp.jsx.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/meetings/eventComponents/Banner.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/meetings/eventComponents/Banner.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { React, useState } from 'react';
+import { AiOutlineCalendar, AiOutlineEnvironment, AiOutlineUsergroupAdd, AiOutlineArrowRight } from 'react-icons/ai';
+import { Row, Col, Space, Image, Button, Carousel } from 'antd';
+import { Divider } from '../../../Shared/Components';
+import { ConvertDate } from '../../../Shared/Functions';
+import userService from '../../../services/user.service';
+import './Banner.css';
+
+/**
+ *
+ * returns a banner rendered with event
+ * @component
+ * @param {User} currentUser the user object
+ * @param {event} event the event object we will be creating the banner from
+ * @return  {Component}            Return single event component
+ */
+
+const Banner = (props) => {
+  const { currentUser, event } = props;
+  const [userProfile, setUserProfile] = useState('');
+
+  const getUserProfile = async () => {
+    const a = await userService.getUserProfile(currentUser.id);
+    return a;
+  };
+
+  if (userProfile === '') {
+    getUserProfile().then((response) => {
+      setUserProfile(response.data);
+    });
+  }
+  console.log(userProfile);
+
+  let eventUrl = '';
+  let eventImgs = '';
+  if (event) {
+    eventUrl = `/event/${event.id}`;
+    eventImgs = event.img;
+    return (
+      &lt;div
+        // key={event.id}
+        style={{
+          backgroundColor: '#208970',
+          paddingTop: '80px',
+          paddingBottom: '100px',
+          margin: '60px',
+          borderRadius: '20px',
+        }}
+      >
+        &lt;Row>
+          &lt;Col span={12} offset={4}>
+            &lt;h1 className='banner-text'>Hi {userProfile.name}, get ready for your next cleanup!&lt;/h1>
+            &lt;Divider height={1} width='70%' color='#3EFFD1' />
+            &lt;br />
+            &lt;div className='banner-subheader banner-text'>{event.name}&lt;/div>
+            &lt;Row>
+              &lt;Space>
+                &lt;AiOutlineCalendar color='#3EFFD1' size={24} />
+                &lt;Row gutter={24}>
+                  &lt;Col>
+                    &lt;h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{ConvertDate(event.date)}&lt;/h4>
+                  &lt;/Col>
+                  &lt;Col>
+                    &lt;h4 style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>{event.time}&lt;/h4>
+                  &lt;/Col>
+                &lt;/Row>
+              &lt;/Space>
+            &lt;/Row>
+            &lt;Space>
+              &lt;AiOutlineEnvironment color='#3EFFD1' size={24} />
+              &lt;Row gutter={24}>
+                &lt;Col>
+                  &lt;text className='banner-text'>{event.locationName}&lt;/text>
+                &lt;/Col>
+                &lt;Col>
+                  &lt;text className='banner-text'>{event.location}&lt;/text>
+                &lt;/Col>
+              &lt;/Row>
+            &lt;/Space>
+            &lt;Row>
+              &lt;AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
+              &lt;text className='banner-text'>{`${event.amount} people attending`}&lt;/text>
+            &lt;/Row>
+          &lt;/Col>
+          &lt;Col span={6}>
+            &lt;Carousel autoplay>
+              {eventImgs.map((image) => {
+                return (
+                  &lt;div>
+                    &lt;Image width='600' height='350' src={image} />
+                  &lt;/div>
+                );
+              })}
+            &lt;/Carousel>
+          &lt;/Col>
+          &lt;Col span={12} offset={4}>
+            &lt;Button
+              shape='round'
+              style={{
+                height: 50,
+                width: 200,
+                backgroundColor: '#AEFFCF',
+                borderRadius: 30,
+                borderColor: '#AEFFCF',
+              }}
+              href={eventUrl}
+            >
+              &lt;Col style={{ paddingTop: '5%' }}>
+                &lt;Space>
+                  &lt;h3>More Details&lt;/h3>
+                  &lt;AiOutlineArrowRight size={22} />
+                &lt;/Space>
+              &lt;/Col>
+            &lt;/Button>
+          &lt;/Col>
+        &lt;/Row>
+      &lt;/div>
+    );
+  }
+
+  return 'no banner';
+};
+
+export default Banner;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Banner.html">Banner</a></li><li><a href="CreateMeetUp.html">CreateMeetUp</a></li><li><a href="Header-CreateEvent.html">CreateEvent</a></li><li><a href="Home.html">Home</a></li><li><a href="Login.html">Login</a></li><li><a href="SingleEvent.html">SingleEvent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#authHeader">authHeader</a></li><li><a href="global.html#ConvertDate">ConvertDate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue May 25 2021 00:33:43 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

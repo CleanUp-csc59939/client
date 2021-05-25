@@ -30,7 +30,13 @@ const leaveEvent = async (eventID, userID) => {
   return a;
 };
 
-export default function SingleEvent(props) {
+/**
+ *
+ * returns page with single event, members that have joined and options for the event* 
+ * @component
+ * @return  {Component}            Return single event component
+ */
+const SingleEvent = (props)  => {
   const [event, setEvent] = useState('');
   const [isUserReg, setUserReg] = useState('');
   const history = useHistory();
@@ -51,8 +57,13 @@ export default function SingleEvent(props) {
   if (event !== '') {
     console.log(event);
 
+    
+   /**
+ * Renders buttons based on different user roles 
+ * @function
+ * @returns {HTMLBodyElement} Returns the Join/Leave button if not owner of event, Return Edit and Delete event if the owner
+ */
     const renderEventActions = () => {
-      console.log(currentUser);
       if (event.userID === currentUser.id) {
         return <Edit editUrl={editUrl} />;
       }
@@ -122,3 +133,4 @@ export default function SingleEvent(props) {
     </div>
   );
 }
+export default SingleEvent;

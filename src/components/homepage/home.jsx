@@ -13,12 +13,13 @@ const getEvents = async () => {
 };
 
 /**
- * @method
- * @param {String} str
- * @return {String}
-*/
+ *
+ * return home page with multiple user events types* 
+ * @component
+ * @return  {Component}            Return Home page showing the user's events
+ */
 
-export default function Home(props) {
+const Home = (props) => {
   const [events, setEvents] = useState('');
 
   if (events === '') {
@@ -28,6 +29,12 @@ export default function Home(props) {
   }
 
   const { currentUser } = props;
+
+   /**
+ * Creates a carousel of events 
+ * @method
+ * @returns {HTMLBodyElement} Returns the HTML code for user's event's in the carousel
+ */
 
   const EventCarousel = () => {
     return (
@@ -56,6 +63,14 @@ export default function Home(props) {
 
   console.log(events[0]);
 
+  
+   /**
+ * Creates a Banner with the User's top event 
+ * @property checks events of current user
+ * @returns {Banner} Returns the components to make the user events banner
+ * @returns {EventCarousel} Returns the components to make the carousel extra user events
+ */
+
   if (currentUser && currentUser.email && events !== '' && events.length > 0) {
     return (
       <div>
@@ -74,3 +89,4 @@ export default function Home(props) {
     </div>
   );
 }
+export default Home;
