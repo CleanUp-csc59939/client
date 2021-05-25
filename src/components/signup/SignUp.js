@@ -41,13 +41,13 @@ const SignUp = () => {
           <div className='login-page'>
             <h1 style={{ textAlign: 'center', fontSize: '36px', color: 'whitesmoke', fontWeight: 'bold' }}>Register</h1>
             <div className='signUpForm'>
-              <FormWeb onFinish={onFinish} setLoading={setLoading} loading={loading} onFinishFailed={onFinishFailed} />
+              <FormWeb onFinish={onFinish} setLoading={setLoading} loading={loading} />
             </div>
           </div>
         </div>
       </div>
       <div className='mobile'>
-        <FormMobile onFinish={onFinish} onFinishFailed={onFinishFailed} />
+        <FormMobile onFinish={onFinish} />
       </div>
     </div>
   );
