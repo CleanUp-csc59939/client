@@ -3,15 +3,25 @@ import { FormWeb } from './meetingForm';
 import eventsService from '../../services/events.service';
 import { useHistory } from 'react-router-dom';
 
-export default function CreateMeetUp({ currentUser }) {
+/**
+ *
+ * returns page which contains a form to create an event
+ * @component
+ * @return  {Component}            Return single event component
+ */
+
+const CreateMeetUp = ({ currentUser }) => {
   const history = useHistory();
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
+  /**
+ * Updates the search index with the current event created 
+ * @method
+ */
   const updateSearch = async () => {
-    console.log('in update search');
     const events = await eventsService.getEvents();
     if (events === '') {
       getEvents().then((response) => {
@@ -20,6 +30,11 @@ export default function CreateMeetUp({ currentUser }) {
       }); // the [1] is showing only that single event
     }
   };
+
+   /**
+ * Calls the create event service with user inputs from the form after submission
+ * @method
+ */
 
   const onFinish = (values) => {
     eventsService
@@ -53,3 +68,4 @@ export default function CreateMeetUp({ currentUser }) {
     </div>
   );
 }
+export default CreateMeetUp;

@@ -6,6 +6,15 @@ import { ConvertDate } from '../../../Shared/Functions';
 import userService from '../../../services/user.service';
 import './Banner.css';
 
+/**
+ *
+ * returns a banner rendered with event
+ * @component
+ * @param {User} currentUser the user object
+ * @param {event} event the event object we will be creating the banner from
+ * @return  {Component}            Return single event component
+ */
+
 const Banner = (props) => {
   const { currentUser, event } = props;
   const [userProfile, setUserProfile] = useState('');
