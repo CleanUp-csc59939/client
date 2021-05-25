@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Shared/Functions.js</title>
+    <title>JSDoc: Source: components/unauth/ProtectedRoute.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Shared/Functions.js</h1>
+    <h1 class="page-title">Source: components/unauth/ProtectedRoute.js</h1>
 
     
 
@@ -26,48 +26,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import userService from '../services/user.service';
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
-const weekdayMap = {
-  0: 'Sunday',
-  1: 'Monday',
-  2: 'Tuesday',
-  3: 'Wednesday',
-  4: 'Thursday',
-  5: 'Friday',
-  6: 'Saturday',
-};
 /**
  *
- * @param {date} date date object
- * @returns {string} date date in the format of "weekday, month/day, local time"
+ * return a Protected Route
+ * @component
+ * @param {Component} component the component to be rendered
+ * @param {user} User the current user
+ * @param {...rest} .inputs any extra parameters provided by user in to component render
+ * @return  {Component}            render component if user credentials are valid, otherwise return an unauthorizes page
  */
-export const ConvertDate = (date) => {
-  const dateObj = new Date(date);
-  const month = dateObj.getUTCMonth() + 1; // months from 1-12
-  const day = dateObj.getUTCDate();
-  const weekday = dateObj.getUTCDay();
-  const localTime = dateObj.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-  // const newdate = `${month}/${day}, ${localTime}`;
-  const newdate = `${weekdayMap[weekday]}, ${month}/${day} ${localTime}`;
-  return newdate;
+
+const ProtectedRoute = ({ component: Component, user, ...rest }) => {
+  return (
+    &lt;Route
+      {...rest}
+      render={(props) => {
+        console.log('Im in protected');
+        if (user) {
+          console.log('Im in authorized');
+          return &lt;Component currentUser={user} {...rest} {...props} />;
+        }
+        console.log('Im in unauthorized');
+        return (
+          &lt;Redirect
+            to={{
+              pathname: '/unauthorized',
+              state: {
+                from: props.location,
+              },
+            }}
+          />
+        );
+      }}
+    />
+  );
 };
 
-export const GetProfile = async (id) => {
-  const a = await userService.getUserProfile(id);
-  return a;
-};
-
-export const matchEventAndUser = (event, profile) => {
-  for (let i = 0; i &lt; event.registered.length; i += 1) {
-    if (event.registered[i].userID === profile.userID) {
-      console.log('user matches');
-      return true;
-    }
-  }
-  console.log('user not matches');
-  return false;
-};
+export default ProtectedRoute;
 </code></pre>
         </article>
     </section>

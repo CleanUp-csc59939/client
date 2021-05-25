@@ -1,6 +1,16 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
+/**
+ *
+ * return a Protected Route
+ * @component
+ * @param {Component} component the component to be rendered
+ * @param {user} User the current user
+ * @param {...rest} .inputs any extra parameters provided by user in to component render
+ * @return  {Component}            render component if user credentials are valid, otherwise return an unauthorizes page
+ */
+
 const ProtectedRoute = ({ component: Component, user, ...rest }) => {
   return (
     <Route

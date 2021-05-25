@@ -5,24 +5,30 @@ import AuthService from '../../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import './SignUp.css';
 
+/**
+ *
+ * return Sign Up page*
+ * @component
+ * @return  {Component}            Return Home page showing the user's events
+ */
+
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
 
+  /**
+   * Calls the create user register service with user inputs
+   * @method
+   */
   const onFinish = (values) => {
     setLoading(true);
     AuthService.register(values.email, values.password).then(
       () => {
-        console.log('Success:', values);
         history.push('/login');
         window.location.reload();
       },
       () => {
-        onFinishFailed('Please check form again');
         setLoading(false);
       },
     );

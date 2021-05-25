@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Banner</title>
+    <title>JSDoc: Class: ProtectedRoute</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Banner</h1>
+    <h1 class="page-title">Class: ProtectedRoute</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Banner<span class="signature">(currentUser, event)</span><span class="type-signature"> &rarr; {Component}</span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>ProtectedRoute<span class="signature">(component, User)</span><span class="type-signature"> &rarr; {Component}</span></h2>
         
     
 </header>
@@ -41,7 +41,7 @@
     
 
     
-    <h4 class="name" id="Banner"><span class="type-signature"></span>new Banner<span class="signature">(currentUser, event)</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    <h4 class="name" id="ProtectedRoute"><span class="type-signature"></span>new ProtectedRoute<span class="signature">(component, User)</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
     
@@ -49,7 +49,7 @@
 
 
 <div class="description">
-    <p>returns a banner rendered with event</p>
+    <p>return a Protected Route</p>
 </div>
 
 
@@ -73,6 +73,8 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -85,46 +87,95 @@
 
         <tr>
             
-                <td class="name"><code>currentUser</code></td>
+                <td class="name"><code>component</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">User</span>
+<span class="param-type">Component</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>the user object</p></td>
+            <td class="description last"><p>the component to be rendered</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>event</code></td>
+                <td class="name"><code>User</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">event</span>
+<span class="param-type">user</span>
 
 
             
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last"><p>the event object we will be creating the banner from</p></td>
+            <td class="description last"><p>the current user</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>.inputs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">rest</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>any extra parameters provided by user in to component render</p></td>
         </tr>
 
     
@@ -165,7 +216,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_meetings_eventComponents_Banner.jsx.html">components/meetings/eventComponents/Banner.jsx</a>, <a href="components_meetings_eventComponents_Banner.jsx.html#line18">line 18</a>
+        <a href="components_unauth_ProtectedRoute.js.html">components/unauth/ProtectedRoute.js</a>, <a href="components_unauth_ProtectedRoute.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -194,7 +245,7 @@
 
         
 <div class="param-desc">
-    <p>Return single event component</p>
+    <p>render component if user credentials are valid, otherwise return an unauthorizes page</p>
 </div>
 
 

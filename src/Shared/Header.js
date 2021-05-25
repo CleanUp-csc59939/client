@@ -25,6 +25,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   /**
    * when user clicks outside of modal, it sets overlay in App.js and modal to false
    * which then hids the modal and removes opacity background in App.js
+   * @method
    * @param none
    * @return none
    */

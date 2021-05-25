@@ -77,7 +77,7 @@ const Banner = (props) => {
                 </Col>
               </Row>
             </Space>
-            
+
             <Row>
               <AiOutlineUsergroupAdd color='#3EFFD1' size={24} />
               <text className='banner-text'>{`${event.amount} people attending`}</text>
@@ -107,7 +107,7 @@ const Banner = (props) => {
               href={eventUrl}
             >
               <Col style={{ paddingTop: '5%' }}>
-                <Space> 
+                <Space>
                   <h3>More Details</h3>
                   <AiOutlineArrowRight size={22} />
                 </Space>
