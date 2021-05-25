@@ -19,7 +19,8 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   };
 
   /**
-   * sets overlay in App.js and modal to false
+   * when user clicks outside of modal, it sets overlay in App.js and modal to false
+   * which then hids the modal and removes opacity background in App.js
    * @param none
    * @return none
    */
@@ -28,7 +29,8 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
     setShowModal(false);
   };
 
-  const triggerModal = () => {
+  const triggerModal = (event, refine) => {
+    refine(event.currentTarget.value);
     setOverlay(true);
     setShowModal(true);
   };
@@ -149,13 +151,17 @@ export default Header;
  * @param {function} triggerModal parent function to trigger search hits to show
  * @return                        search bar componennt
  */
-const CustomSearch = connectSearchBox((props) => {
-  const { triggerModal } = props;
+
+const CustomSearch = connectSearchBox(({ refine, currentRefinement, triggerModal }) => {
+  // const { triggerModal } = props;
   return (
     <Input.Group style={{ paddingTop: '2%' }}>
-      <Input placeholder='Search Events' onChange={() => triggerModal()} style={{ width: 400, borderRadius: 10 }} />
+      <Input
+        value={currentRefinement}
+        placeholder='Search Events'
+        onChange={(event) => triggerModal(event, refine)}
+        style={{ width: 400, borderRadius: 10 }}
+      />
     </Input.Group>
   );
 });
-
-// export connectSearchBox(SearchCustomSearch)
