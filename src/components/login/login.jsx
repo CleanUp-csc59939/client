@@ -32,7 +32,11 @@ const checkemail = (value) => {
 
 /**
  *
+<<<<<<< HEAD
+ * return home page with multiple user events*
+=======
  * return Login page*
+>>>>>>> 05a6d880b7895c0041fd364f094c89906bdcf35e
  * @component
  * @return  {Component}            Return Login page where user can input their credentials
  */
@@ -47,7 +51,10 @@ const Login = () => {
 
   /**
    * detects changes in the email field changes in the email field
+<<<<<<< HEAD
+=======
    * @method
+>>>>>>> 05a6d880b7895c0041fd364f094c89906bdcf35e
    * @param {object} e Component props
    * @param {string} e.target.value Sets the email field as current user's email input
    */
@@ -58,7 +65,10 @@ const Login = () => {
 
   /**
    * detects changes in the password field changes in the password field
+<<<<<<< HEAD
+=======
    * @method
+>>>>>>> 05a6d880b7895c0041fd364f094c89906bdcf35e
    * @param {object} e Component props
    * @param {string} e.target.value Sets the password field as current user's password input
    */
