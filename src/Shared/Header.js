@@ -29,6 +29,14 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
     setShowModal(false);
   };
 
+  /**
+   * when user clicks search, it sets overlay in App.js and modal to true
+   * which triggers modal and ropacity background in App.js and sets the search value to generate hits(refine)
+   *
+   * @param {event} input read-only from search bar input
+   * @param {function }refine prop from connectSearchBox
+   * @returns none
+   */
   const triggerModal = (event, refine) => {
     refine(event.currentTarget.value);
     setOverlay(true);
@@ -151,9 +159,7 @@ export default Header;
  * @param {function} triggerModal parent function to trigger search hits to show
  * @return                        search bar componennt
  */
-
 const CustomSearch = connectSearchBox(({ refine, currentRefinement, triggerModal }) => {
-  // const { triggerModal } = props;
   return (
     <Input.Group style={{ paddingTop: '2%' }}>
       <Input
