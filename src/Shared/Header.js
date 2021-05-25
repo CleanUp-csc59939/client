@@ -18,7 +18,6 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   const [showModal, setShowModal] = useState(false);
   // logic to check if logged in goes here to switch between 2 different headers
   const logOut = () => {
-    console.log('log out');
     AuthService.logout();
   };
 
@@ -84,7 +83,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
         <img className='headerImg' src='/logo.png' alt='' />
         <Row className='web' style={{ padding: '2%' }}>
           <Col span={3} style={{ paddingTop: '10px' }}>
-            <Button className='homeButton' type='link' href='/home'>
+            <Button className='homeButton' type='link' href='/'>
               <h2 style={{ fontWeight: 'bold', color: '#4F4F4F' }}>CleanUp</h2>
             </Button>
           </Col>
@@ -141,7 +140,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
       className='site-page-header'
       ghost={false}
       title={[
-        <Button className='homeButton' href='/home' key='1'>
+        <Button className='homeButton' href='/' key='1'>
           <h2 className='headerTitle'>CleanUp</h2>
         </Button>,
       ]}

@@ -27,7 +27,7 @@ exports[`Header should render correctly in "debug" mode 1`] = `
     >
       <Button
         className="homeButton"
-        href="/home"
+        href="/"
         type="link"
       >
         <h2
@@ -82,7 +82,7 @@ exports[`Header should render correctly in "debug" mode 1`] = `
           stalledSearchDelay={200}
         >
           <ConnectorWrapper
-            onChange={[Function]}
+            triggerModal={[Function]}
           />
         </InstantSearch>
       </ClickOutComponent>

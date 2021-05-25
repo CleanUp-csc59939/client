@@ -29,7 +29,6 @@ exports[`SignUp should render correctly in "debug" mode 1`] = `
           <FormWeb
             loading={false}
             onFinish={[Function]}
-            onFinishFailed={[Function]}
             setLoading={[Function]}
           />
         </div>
@@ -41,7 +40,6 @@ exports[`SignUp should render correctly in "debug" mode 1`] = `
   >
     <FormMobile
       onFinish={[Function]}
-      onFinishFailed={[Function]}
     />
   </div>
 </div>
