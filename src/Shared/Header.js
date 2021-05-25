@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { PageHeader, Button, Row, Col, Space } from 'antd';
+import { PageHeader, Button, Row, Col, Space, Input } from 'antd';
 import { AiOutlinePlus } from 'react-icons/ai';
 import AuthService from '../services/auth.service';
-import { InstantSearch, SearchBox, Hits /* connectSearchBox */ } from 'react-instantsearch-dom';
+import { InstantSearch, /* SearchBox , */ Hits, connectSearchBox } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import SearchHits from './SearchHits';
 // import env from 'react-dotenv';
@@ -19,12 +19,11 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   };
 
   /**
-   * sets search value to '' and sets overlay in App.js and modal to false
+   * sets overlay in App.js and modal to false
    * @param none
    * @return none
    */
   const onClickOut = () => {
-    document.getElementsByClassName('ais-SearchBox-input')[0].value = ''; // set search value to ''
     setOverlay(false);
     setShowModal(false);
   };
@@ -77,7 +76,7 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
           <Col span={9}>
             <ClickOutHandler onClickOut={() => onClickOut()}>
               <InstantSearch indexName='events' searchClient={searchClient}>
-                <SearchBox onChange={() => triggerModal()} />
+                <CustomSearch triggerModal={triggerModal} />
                 {showModal ? (
                   <div className='hits'>
                     <SearchHits hitComponent={Hits} />
@@ -144,3 +143,19 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   );
 };
 export default Header;
+
+/**
+ * Custom search bar component wrapped in a instant-search helper function
+ * @param {function} triggerModal parent function to trigger search hits to show
+ * @return                        search bar componennt
+ */
+const CustomSearch = connectSearchBox((props) => {
+  const { triggerModal } = props;
+  return (
+    <Input.Group style={{ paddingTop: '2%' }}>
+      <Input placeholder='Search Events' onChange={() => triggerModal()} style={{ width: 400, borderRadius: 10 }} />
+    </Input.Group>
+  );
+});
+
+// export connectSearchBox(SearchCustomSearch)
