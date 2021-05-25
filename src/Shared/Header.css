@@ -36,6 +36,13 @@
   padding: 0 2% 0 2%; /*horizontal padding*/
 }
 
+.hits {
+  background-color: white;
+  z-index: 1000;
+  opacity: 1;
+  position: relative;
+}
+
 /*For web (s, m, l): Hide on xs screen*/
 @media (max-width: 48em) {
   .web {

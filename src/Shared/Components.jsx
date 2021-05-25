@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import { ConvertDate } from './Functions';
 import './shared.less';
 import '../components/homepage/home.less';
-
+/**
+ *
+ * @param {*} props
+ * @returns a line with custom color, height, width
+ *
+ */
 export const Divider = (props) => {
   const { height, color, width } = props;
   return (

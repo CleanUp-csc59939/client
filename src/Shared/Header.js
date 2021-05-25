@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { PageHeader, Button, Row, Col, Space } from 'antd';
+import { PageHeader, Button, Row, Col, Space, Input } from 'antd';
 import { AiOutlinePlus } from 'react-icons/ai';
 import AuthService from '../services/auth.service';
-import { InstantSearch, SearchBox, Hits /* connectSearchBox */ } from 'react-instantsearch-dom';
+import { InstantSearch, /* SearchBox , */ Hits, connectSearchBox } from 'react-instantsearch-dom';
 import { instantMeiliSearch } from '@meilisearch/instant-meilisearch';
 import SearchHits from './SearchHits';
 // import env from 'react-dotenv';
@@ -19,17 +19,26 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   };
 
   /**
-   * sets search value to '' and sets overlay in App.js and modal to false
+   * when user clicks outside of modal, it sets overlay in App.js and modal to false
+   * which then hids the modal and removes opacity background in App.js
    * @param none
    * @return none
    */
   const onClickOut = () => {
-    document.getElementsByClassName('ais-SearchBox-input')[0].value = ''; // set search value to ''
     setOverlay(false);
     setShowModal(false);
   };
 
-  const triggerModal = () => {
+  /**
+   * when user clicks search, it sets overlay in App.js and modal to true
+   * which triggers modal and ropacity background in App.js and sets the search value to generate hits(refine)
+   * @function
+   * @param {event} input read-only from search bar input
+   * @param {function }refine prop from connectSearchBox
+   * @returns none
+   */
+  const triggerModal = (event, refine) => {
+    refine(event.currentTarget.value);
     setOverlay(true);
     setShowModal(true);
   };
@@ -77,9 +86,9 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
           <Col span={9}>
             <ClickOutHandler onClickOut={() => onClickOut()}>
               <InstantSearch indexName='events' searchClient={searchClient}>
-                <SearchBox onChange={() => triggerModal()} />
+                <CustomSearch triggerModal={triggerModal} />
                 {showModal ? (
-                  <div style={{ backgroundColor: 'white' }}>
+                  <div className='hits'>
                     <SearchHits hitComponent={Hits} />
                   </div>
                 ) : null}
@@ -144,3 +153,21 @@ const Header = ({ currentUser /* pageTitle  */, setOverlay }) => {
   );
 };
 export default Header;
+
+/**
+ * Custom search bar component wrapped in a instant-search helper function
+ * @param {function} triggerModal parent function to trigger search hits to show
+ * @return                        search bar componennt
+ */
+const CustomSearch = connectSearchBox(({ refine, currentRefinement, triggerModal }) => {
+  return (
+    <Input.Group style={{ paddingTop: '2%' }}>
+      <Input
+        value={currentRefinement}
+        placeholder='Search Events'
+        onChange={(event) => triggerModal(event, refine)}
+        style={{ width: 400, borderRadius: 10 }}
+      />
+    </Input.Group>
+  );
+});
