@@ -4,7 +4,6 @@ import { React, useState } from 'react';
 import eventsService from '../../../services/events.service';
 import ImgCrop from 'antd-img-crop';
 
-
 /**
  * Uploading Event Pictures Component
  * @component
@@ -18,13 +17,12 @@ const EventPics = ({ id }) => {
   const [previewTitle, setPreviewTitle] = useState('');
   const [fileList, setFileList] = useState([]);
 
-
   /**
- * Checks if image size and type are acceptable. Images must be JPG/PNG files and less than 2MB
- * @method
- * @param {file} file the picture user uploaded
- * @returns {Base64} The Base64 version of image otherwise error
- */
+   * Checks if image size and type are acceptable. Images must be JPG/PNG files and less than 2MB
+   * @method
+   * @param {file} file the picture user uploaded
+   * @returns {Base64} The Base64 version of image otherwise error
+   */
 
   function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -33,16 +31,16 @@ const EventPics = ({ id }) => {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
-  };
+  }
 
   /**
- * Function is called to send the picture profile to the profile picture service which sends it the backend
- * @method
- * @param {object} options contains information about the object such the file uploaded and other variables
- * @param {file} options.file image file
- * @param {int} options.action event id
- * @property send the parameters to the event service to send the image to the backend for uploading
- */
+   * Function is called to send the picture profile to the profile picture service which sends it the backend
+   * @method
+   * @param {object} options contains information about the object such the file uploaded and other variables
+   * @param {file} options.file image file
+   * @param {int} options.action event id
+   * @property send the parameters to the event service to send the image to the backend for uploading
+   */
 
   const uploadRequest = async (options) => {
     eventsService
@@ -56,18 +54,18 @@ const EventPics = ({ id }) => {
   };
 
   /**
- * Hides the preview image
- * @method
- */
+   * Hides the preview image
+   * @method
+   */
   const handleCancel = () => {
     setPreviewVisible(false);
   };
 
   /**
- * Enables the preview image to show and sets the preview image
- * @method
- * @param {file} file image file
- */
+   * Enables the preview image to show and sets the preview image
+   * @method
+   * @param {file} file image file
+   */
 
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -80,22 +78,22 @@ const EventPics = ({ id }) => {
   };
 
   /**
- * adds image to image array
- * @method
- * @param {object} options contains information about the object such the file uploaded and other variables
- * @param {array} options.fileList the array of images that have been uploaded by user
- */
+   * adds image to image array
+   * @method
+   * @param {object} options contains information about the object such the file uploaded and other variables
+   * @param {array} options.fileList the array of images that have been uploaded by user
+   */
   const handleChange = (options) => {
     // console.log(options.fileList);
     setFileList(options.fileList);
   };
 
-   /**
- *
- * Function renders the upload button
- * @method
- * @returns Plus sign to uplaod
- */
+  /**
+   *
+   * Function renders the upload button
+   * @method
+   * @returns Plus sign to uplaod
+   */
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -122,5 +120,5 @@ const EventPics = ({ id }) => {
       </Modal>
     </>
   );
-}
+};
 export default EventPics;
