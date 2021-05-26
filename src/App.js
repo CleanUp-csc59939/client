@@ -41,8 +41,11 @@ function App() {
             <Content className={overlay ? 'overlayTop' : null}>
               <div className={overlay ? 'overlay' : null}>
                 <Switch>
-                  <Route exact path='/' component={Landing} />
-                  <ProtectedRoute path='/' component={Home} user={currentUser} />
+                  {currentUser ? (
+                    <ProtectedRoute path='/' component={Home} user={currentUser} />
+                  ) : (
+                    <Route exact path='/' component={Landing} />
+                  )}
                   <Route exact path='/login'>
                     <Login />
                   </Route>
