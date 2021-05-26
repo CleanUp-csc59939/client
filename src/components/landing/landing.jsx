@@ -4,7 +4,13 @@ import cleanPic from './stockImage.png';
 import phoneMockup from './phonemockup.png';
 import phoneMockup2 from './events2.png';
 
-const landing = () => {
+/**
+ * @component
+ * Landing page component. Renders all sections of the landing page
+ * @returns {Component}
+ *
+ */
+const Landing = () => {
   return (
     <div style={{ backgroundColor: '#F3F2F2' }}>
       <Covid />
@@ -15,6 +21,12 @@ const landing = () => {
   );
 };
 
+/**
+ * @method
+ * 3rd component. Renders mockup images and static signup button
+ * @returns {Component}
+ *
+ */
 const Three = () => {
   return (
     <Row style={{ padding: '5%', margin: '2%', backgroundColor: 'white', marginTop: '2%' }}>
@@ -34,6 +46,12 @@ const Three = () => {
   );
 };
 
+/**
+ * @method
+ * 2nd component. Renders static sample event images
+ * @returns {Component}
+ *
+ */
 const Two = () => {
   return (
     <Row style={{ padding: '2%', margin: '2%', backgroundColor: 'white' }}>
@@ -65,6 +83,12 @@ const Two = () => {
   );
 };
 
+/**
+ * @method
+ * 1st component. Renders static sample event images + description
+ * @returns {Component}
+ *
+ */
 const One = () => {
   return (
     <Row style={{ margin: '2%', backgroundColor: 'white', padding: '2%' }}>
@@ -84,6 +108,12 @@ const One = () => {
   );
 };
 
+/**
+ * @method
+ * Covid Banner
+ * @returns {Component}
+ *
+ */
 const Covid = () => {
   return (
     <Row align='middle' justify='center' style={{ backgroundColor: '#208970', height: 80 }}>
@@ -94,6 +124,12 @@ const Covid = () => {
   );
 };
 
+/**
+ * @method
+ * Static button
+ * @returns {Component}
+ *
+ */
 const Register = (props) => {
   const { text } = props;
   return (
@@ -117,4 +153,4 @@ const Register = (props) => {
   );
 };
 
-export default landing;
+export default Landing;

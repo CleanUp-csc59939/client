@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/landing/landing.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/landing/landing.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Row, Col, Space, Input } from 'antd';
+import cleanPic from './stockImage.png';
+import phoneMockup from './phonemockup.png';
+import phoneMockup2 from './events2.png';
+
+/**
+ * @component
+ * Landing page component. Renders all sections of the landing page
+ * @returns {Component}
+ * 
+ */
+const Landing = () => {
+  return (
+    &lt;div style={{ backgroundColor: '#F3F2F2' }}>
+      &lt;Covid />
+      &lt;One />
+      &lt;Two />
+      &lt;Three />
+    &lt;/div>
+  );
+};
+
+/**
+ * @method
+ * 3rd component. Renders mockup images and static signup button
+ * @returns {Component}
+ * 
+ */
+const Three = () => {
+  return (
+    &lt;Row style={{ padding: '5%', margin: '2%', backgroundColor: 'white', marginTop: '2%' }}>
+      &lt;Col span={10}>
+        &lt;h2 style={{ fontWeight: 'bold' }}>iOS app coming soon!&lt;/h2>
+        &lt;h2 style={{ fontSize: 32 }}>Subscribe for updates and be the first to know&lt;/h2>
+        &lt;Input style={{ width: 300, marginBottom: '5%' }} placeholder='Enter your email' />
+        &lt;Register text='Submit' />
+      &lt;/Col>
+      &lt;Col span={12} push={2}>
+        &lt;Space>
+          &lt;img src={phoneMockup} style={{ height: 400, width: 210 }} alt='phone' />
+          &lt;img src={phoneMockup2} style={{ height: 400, width: 210 }} alt='phone' />
+        &lt;/Space>
+      &lt;/Col>
+    &lt;/Row>
+  );
+};
+
+
+/**
+ * @method
+ * 2nd component. Renders static sample event images
+ * @returns {Component}
+ * 
+ */
+const Two = () => {
+  return (
+    &lt;Row style={{ padding: '2%', margin: '2%', backgroundColor: 'white' }}>
+      &lt;Row>
+        &lt;Col span={13}>
+          &lt;h2 style={{ fontWeight: 'bold' }}>Cleanups are back&lt;/h2>
+        &lt;/Col>
+        &lt;Col span={24}>
+          &lt;h2 style={{ fontSize: 32 }}>Social distance while making a difference&lt;/h2>
+        &lt;/Col>
+      &lt;/Row>
+      &lt;Row>
+        &lt;Space size='large'>
+          &lt;Col span={8}>
+            &lt;img src={cleanPic} style={{ width: '300%', height: 200 }} alt='cleaning' />
+            &lt;p style={{ fontSize: 20 }}>Beaches&lt;/p>
+          &lt;/Col>
+          &lt;Col span={8}>
+            &lt;img src={cleanPic} style={{ width: '300%', height: 200 }} alt='cleaning' />
+            &lt;p style={{ fontSize: 20 }}>Parks&lt;/p>
+          &lt;/Col>
+          &lt;Col span={8}>
+            &lt;img src={cleanPic} style={{ width: '300%', height: 200 }} alt='cleaning' />
+            &lt;p style={{ fontSize: 20 }}>Streets&lt;/p>
+          &lt;/Col>
+        &lt;/Space>
+      &lt;/Row>
+    &lt;/Row>
+  );
+};
+
+/**
+ * @method
+ * 1st component. Renders static sample event images + description
+ * @returns {Component}
+ * 
+ */
+const One = () => {
+  return (
+    &lt;Row style={{ margin: '2%', backgroundColor: 'white', padding: '2%' }}>
+      &lt;Col span={12}>
+        &lt;img src={cleanPic} style={{ width: '100%', height: 350 }} alt='cleaning' />
+      &lt;/Col>
+      &lt;Col span={12} style={{ backgroundColor: '#DCFFE6', padding: '5%' }}>
+        &lt;Row align='middle' justify='center'>
+          &lt;Col>
+            &lt;h2 style={{ textAlign: 'start', fontSize: 40 }}>Spring Cleaning?&lt;/h2>
+            &lt;h1 style={{ textAlign: 'start', fontSize: 32 }}>Your community could use a hand&lt;/h1>
+            &lt;Register text='Get Involved' />
+          &lt;/Col>
+        &lt;/Row>
+      &lt;/Col>
+    &lt;/Row>
+  );
+};
+
+/**
+ * @method
+ * Covid Banner
+ * @returns {Component}
+ * 
+ */
+const Covid = () => {
+  return (
+    &lt;Row align='middle' justify='center' style={{ backgroundColor: '#208970', height: 80 }}>
+      &lt;h1 style={{ color: 'white', textAlign: 'center', textDecorationLine: 'underline' }}>
+        See our new Covid-19 guidelines
+      &lt;/h1>
+    &lt;/Row>
+  );
+};
+
+/**
+ * @method
+ * Static button
+ * @returns {Component}
+ * 
+ */
+const Register = (props) => {
+  const { text } = props;
+  return (
+    &lt;a href='/myMeetUps/create' alt='' type='submit'>
+      &lt;div
+        style={{
+          height: 50,
+          width: 300,
+          backgroundColor: '#AEFFCF',
+          borderRadius: 60,
+          borderColor: '#AEFFCF',
+        }}
+      >
+        &lt;Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+          &lt;Space size='small'>
+            &lt;h2 style={{ paddingTop: '5%' }}>{text}&lt;/h2>
+          &lt;/Space>
+        &lt;/Row>
+      &lt;/div>
+    &lt;/a>
+  );
+};
+
+export default Landing;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Banner.html">Banner</a></li><li><a href="CreateMeetUp.html">CreateMeetUp</a></li><li><a href="CustomSearch.html">CustomSearch</a></li><li><a href="EventPics.html">EventPics</a></li><li><a href="Header.html">Header</a></li><li><a href="Home.html">Home</a></li><li><a href="Landing.html">Landing</a></li><li><a href="Login.html">Login</a></li><li><a href="MyMeetups.html">MyMeetups</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProfilePic.html">ProfilePic</a></li><li><a href="ProtectedRoute.html">ProtectedRoute</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="SingleEvent.html">SingleEvent</a></li></ul><h3>Global</h3><ul><li><a href="global.html#%253E%253E%253E%253E%253E%253E%253E05a6d880b7895c0041fd364f094c89906bdcf35e">>>>>>>> 05a6d880b7895c0041fd364f094c89906bdcf35e</a></li><li><a href="global.html#authHeader">authHeader</a></li><li><a href="global.html#ConvertDate">ConvertDate</a></li><li><a href="global.html#CovidBanner">Covid Banner</a></li><li><a href="global.html#Staticbutton">Static button</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue May 25 2021 22:53:39 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
