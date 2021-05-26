@@ -41,6 +41,8 @@ function App() {
             <Content className={overlay ? 'overlayTop' : null}>
               <div className={overlay ? 'overlay' : null}>
                 <Switch>
+                  <Route exact path='/' component={Landing} />
+                  <ProtectedRoute path='/' component={Home} user={currentUser} />
                   <Route exact path='/login'>
                     <Login />
                   </Route>
@@ -75,8 +77,6 @@ function App() {
                   />
                   <ProtectedRoute exact path='/event/:id/edit' component={EditEvent} user={currentUser} />
                   <ProtectedRoute exact path='/profile/edit' component={EditProfile} user={currentUser} />
-                  <Route exact path='/' component={Landing} />
-                  <ProtectedRoute path='/' component={Home} user={currentUser} />
                 </Switch>
               </div>
             </Content>
