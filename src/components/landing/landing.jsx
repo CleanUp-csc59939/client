@@ -8,7 +8,7 @@ import phoneMockup2 from './events2.png';
  * @component
  * Landing page component. Renders all sections of the landing page
  * @returns {Component}
- * 
+ *
  */
 const Landing = () => {
   return (
@@ -25,7 +25,7 @@ const Landing = () => {
  * @method
  * 3rd component. Renders mockup images and static signup button
  * @returns {Component}
- * 
+ *
  */
 const Three = () => {
   return (
@@ -46,12 +46,11 @@ const Three = () => {
   );
 };
 
-
 /**
  * @method
  * 2nd component. Renders static sample event images
  * @returns {Component}
- * 
+ *
  */
 const Two = () => {
   return (
@@ -88,7 +87,7 @@ const Two = () => {
  * @method
  * 1st component. Renders static sample event images + description
  * @returns {Component}
- * 
+ *
  */
 const One = () => {
   return (
@@ -113,7 +112,7 @@ const One = () => {
  * @method
  * Covid Banner
  * @returns {Component}
- * 
+ *
  */
 const Covid = () => {
   return (
@@ -129,7 +128,7 @@ const Covid = () => {
  * @method
  * Static button
  * @returns {Component}
- * 
+ *
  */
 const Register = (props) => {
   const { text } = props;
