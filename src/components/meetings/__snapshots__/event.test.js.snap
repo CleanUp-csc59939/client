@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleEvent should render correctly in "debug" mode 1`] = `
+<SingleEvent
+  currentUser={
+    Object {
+      "bio": null,
+      "img": "https://res.cloudinary.com/cleanup/image/upload/v1621121500/download_remvsp.png",
+      "location": null,
+      "name": null,
+      "userID": 15,
+    }
+  }
+  debug={true}
+  match={
+    Object {
+      "params": Object {
+        "id": 34,
+      },
+    }
+  }
+>
+  <div
+    id="loading"
+  >
+    <img
+      alt="Loading..."
+      id="loading-image"
+      src="loading/loading-gif.gif"
+    />
+  </div>
+</SingleEvent>
+`;

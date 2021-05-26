@@ -48,6 +48,9 @@ jobs:
         with:
           name: build
           path: build
+      
+      - name: Test Build
+          run: npm test 
 
   deploy-gcr:
     name: Deploy to GCR
