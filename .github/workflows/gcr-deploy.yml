@@ -50,7 +50,7 @@ jobs:
           path: build
       
       - name: Test Build
-          run: npm test 
+        run: npm test 
 
   deploy-gcr:
     name: Deploy to GCR
